@@ -1,3 +1,19 @@
 python app.py
 
 (venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>python backend/app.py
+
+
+
+
+//-------------------------------------------------------------------------
+Running the tests:
+
+set PYTHONPATH=G:\E_drive_data\GitHubProjects\CurateHub\CurateHub
+//------------------------------------------------------------------------
+
+(venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>python -m unittest tests.test_recommendation_logic
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
