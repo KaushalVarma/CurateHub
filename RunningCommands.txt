@@ -1,11 +1,11 @@
 python app.py
 
-(venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>python backend/app.py
+(venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>python app.py
 
 
 
 
-//-------------------------------------------------------------------------
+//-----------------------------Testing--------------------------------------------
 Running the tests:
 
 set PYTHONPATH=G:\E_drive_data\GitHubProjects\CurateHub\CurateHub
@@ -17,3 +17,8 @@ set PYTHONPATH=G:\E_drive_data\GitHubProjects\CurateHub\CurateHub
 Ran 1 test in 0.000s
 
 OK
+
+
+//--------------------------------Application Running--------------------------------------------------------------------------
+
+(venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>python src/app.py

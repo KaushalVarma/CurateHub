@@ -2,7 +2,10 @@
 
 **Overview:**
 
-Detoxify is a proposed web-based solution aimed at helping users regain control over their online video feeds, specifically targeting platforms like YouTube and Instagram, which can often become overloaded with repetitive or unwanted content based on user history. The goal of Detoxify is to provide users with a method to curate their feeds more effectively, focusing on educational and high-quality content that aligns with their interests.
+Detoxify is a proposed web-based solution aimed at helping users regain control over their online video feeds, 
+specifically targeting platforms like YouTube and Instagram, which can often become overloaded with repetitive or 
+unwanted content based on user history. The goal of Detoxify is to provide users with a method to curate their feeds 
+more effectively, focusing on educational and high-quality content that aligns with their interests.
 
 **Problem Statement:**
 
@@ -10,7 +13,10 @@ Online platforms like YouTube and Instagram use algorithms to tailor content rec
 
 **Solution:**
 
-Detoxify aims to address this issue by offering a platform where users can select specific interests or technologies they wish to explore, such as DevOps, Rust, or GoLang. The system would then curate and surf their YouTube account to populate their feed with high-quality, popular content related to their selected interests. This would involve:
+Detoxify aims to address this issue by offering a platform where users can select specific interests or technologies 
+they wish to explore, such as DevOps, Rust, or GoLang. 
+The system would then curate and surf their YouTube account to populate their feed with high-quality, 
+popular content related to their selected interests. This would involve:
 
 1. **Interest Selection:** Users select a topic or technology they are interested in learning about.
 2. **Content Curation:** Detoxify will navigate and interact with the user's YouTube feed on their behalf, consuming content related to the selected topic.
@@ -1738,3 +1744,1370 @@ Here's the current status of the CurateHub project:
   - Starting or planning the frontend interface if needed.
 
 Would you like to proceed with any specific tasks, or do you have any additional features in mind?
+
+//---------------------------------------------------------------------------------------------------------------------------------
+
+(venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>git commit -m "Merged functionalities, tested recommendation logic, and added test cases"
+[master 5c23fb5] Merged functionalities, tested recommendation logic, and added test cases
+ 9 files changed, 508 insertions(+), 25 deletions(-)
+ create mode 100644 System_diagrams/Link.txt
+ delete mode 100644 backend/app.py
+ create mode 100644 src/__init__.py
+ create mode 100644 src/recommendation_logic.py
+ create mode 100644 tests/__init__.py
+ create mode 100644 tests/test_recommendation_logic.py
+
+(venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>git push origin master
+Enumerating objects: 18, done.
+Counting objects: 100% (18/18), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (10/10), done.
+Writing objects: 100% (12/12), 6.73 KiB | 1.68 MiB/s, done.
+Total 12 (delta 3), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (3/3), completed with 3 local objects.
+To https://github.com/KaushalVarma/CurateHub
+   7cb29ff..5c23fb5  master -> master
+
+
+Let's go ahead and push the code to the GitHub repository. Here's a step-by-step guide to do so:
+
+### 1. **Add the Changes:**
+```bash
+git add .
+```
+
+### 2. **Commit the Changes:**
+```bash
+git commit -m "Merged functionalities, tested recommendation logic, and added test cases"
+```
+
+### 3. **Push the Changes:**
+Since your branch is already set to track `master`, you can push the changes using:
+```bash
+git push origin master
+```
+
+After executing these commands, the latest changes will be pushed to your GitHub repository. Let me know if you encounter any issues!
+
+//-----------------------------------------------------------------------------------------------------------------
+
+Aim:
+
+Certainly! The aim of the **CurateHub** project is to develop a web-based solution that helps users manage and refine their online video feeds, particularly on platforms like YouTube and Instagram. The goal is to provide users with a tool to:
+
+1. **Regain Control**: Reduce the overload of repetitive or unwanted content based on user history.
+2. **Curate Feeds**: Focus on high-quality, educational, and relevant content that aligns with the user's interests.
+3. **Enhanced Experience**: Provide recommendations based on user input to improve the relevance of the content they see.
+
+The project aims to deliver a user-friendly interface where users can specify their interests and receive tailored video recommendations, enhancing their content consumption experience.
+
+//-----------------------------------------------------------------------------------------------------------------------
+
+Great! We'll continue focusing on the aim of **CurateHub** and adhere to Low-Level Design (LLD) principles. Here’s a step-by-step approach to move forward:
+
+### 1. **Implement Additional Features**
+
+   - **User Input Handling**: Enhance the logic to handle a wider range of user interests and preferences.
+   - **Recommendation Algorithms**: Implement more sophisticated algorithms to improve recommendation accuracy.
+   - **Error Handling**: Add comprehensive error handling and validation to ensure robustness.
+
+### 2. **Documenting Design and Code**
+
+   - **Update Architecture Diagram**: Reflect any new components or changes in the system.
+   - **Class and Sequence Diagrams**: Ensure that all new features are covered in the diagrams.
+
+### 3. **Testing**
+
+   - **Unit Tests**: Write detailed unit tests for new features and functionalities.
+   - **Integration Tests**: Test the integration of different components to ensure they work together seamlessly.
+
+### 4. **Deployment Preparation**
+
+   - **Configuration Management**: Prepare configuration files for different environments (development, testing, production).
+   - **Continuous Integration/Continuous Deployment (CI/CD)**: Set up pipelines if needed for automated testing and deployment.
+
+### 5. **Documentation and Final Touches**
+
+   - **User Documentation**: Create documentation for users explaining how to use the application.
+   - **Developer Documentation**: Document the codebase and provide instructions for future development and maintenance.
+
+---
+
+#### Current Focus:
+
+1. **Feature Development**: 
+   - Consolidate recommendation logic and ensure it's functioning as expected.
+   - Develop and test additional features based on user needs.
+
+2. **Testing**: 
+   - Verify that all new functionalities work as intended with thorough testing.
+
+3. **Code Review and Push**: 
+   - Review the code for any improvements or optimizations before pushing changes to GitHub.
+
+Would you like to start with a specific feature or area from the steps above?
+
+Understood. Here's how we can proceed with feature development while ensuring stability:
+
+### Feature Development Plan
+
+1. **Feature Design**:
+   - For each new feature, design its functionality clearly, outlining how it integrates with existing features.
+
+2. **Modular Code**:
+   - Develop new features in a modular way. Encapsulate new functionality into separate modules or functions where possible to minimize impact on existing code.
+
+3. **Integration Testing**:
+   - Test the new feature independently and then integrate it with the existing system. Ensure that it works as expected without disrupting current functionality.
+
+4. **Regression Testing**:
+   - After integrating the new feature, perform regression testing to verify that existing features still function correctly.
+
+5. **Version Control**:
+   - Use version control (e.g., Git) to manage changes. Create a new branch for each feature, develop and test it in isolation, and then merge it into the main branch after testing.
+
+6. **Documentation**:
+   - Update documentation to reflect new features and any changes to existing functionalities.
+
+### Next Steps:
+
+1. **Define Next Feature**:
+   - Identify the next feature to be developed and create a detailed design plan.
+
+2. **Update the Codebase**:
+   - Implement the feature in a modular fashion. Update any existing code if needed while keeping changes minimal.
+
+3. **Test the New Feature**:
+   - Write test cases to verify the new feature and ensure it integrates well with the existing system.
+
+4. **Perform Regression Testing**:
+   - Run tests to ensure existing features are not affected.
+
+5. **Push Changes**:
+   - Once everything is tested and verified, push the changes to the GitHub repository.
+
+Would you like to proceed with a specific feature or need help with the next steps?
+
+//----------------------------------------------------------------------------------------------------------------------
+
+It looks like you only need to manage one `app.py` file in the `src` directory, which combines both GET and POST methods for recommendations and includes a test route. Since the `backend` folder and its `app.py` file no longer exist, we can focus on updating and testing the single `src/app.py` file.
+
+### Updated `src/app.py` File:
+
+Here’s a combined and updated version of your `app.py` file:
+
+```python
+from flask import Flask, jsonify, request
+
+app = Flask(__name__)
+
+# Home route
+@app.route('/')
+def home():
+    return "Welcome to CurateHub!"
+
+# GET method for recommendations
+@app.route('/api/recommendations', methods=['GET'])
+def get_recommendations_get():
+    interests = request.args.getlist('interests')
+    recommendations = [
+        {"title": f"Recommended video for {interest} 1"} for interest in interests
+    ]
+    return jsonify({'recommendations': recommendations})
+
+# POST method for recommendations
+@app.route('/api/recommendations', methods=['POST'])
+def get_recommendations_post():
+    data = request.json
+    interest = data.get('interest')
+    recommendations = [
+        {"title": f"Recommended video for {interest} 1"},
+        {"title": f"Recommended video for {interest} 2"}
+    ]
+    return jsonify({"recommendations": recommendations})
+
+# Test route
+@app.route('/test', methods=['GET'])
+def test():
+    return jsonify({'message': 'GET method works!'})
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+### Next Steps:
+
+1. **Implement the New Feature**:
+   - Let me know what feature you would like to implement next, or if you need suggestions, I can provide them.
+
+2. **Update the Code**:
+   - Based on the feature you want to add, we will update the existing `app.py` file accordingly.
+
+3. **Testing**:
+   - After implementing the feature, we will run tests to ensure everything works correctly.
+
+4. **Document Changes**:
+   - Document the changes made and update any related documentation.
+
+5. **Commit and Push**:
+   - Once everything is tested and documented, we’ll commit the changes and push them to GitHub.
+
+Please let me know the next feature or changes you have in mind, and we’ll proceed with integrating them into the code.
+
+//-------------------------------------------------------------------------------------------------------------
+
+Certainly! Here’s how we can proceed, ensuring we align with the previously established design principles and flow:
+
+### **1. Feature Identification and Planning**
+
+**New Feature:** Add a search functionality to filter recommendations by keywords.
+
+- **Description:** Users can filter recommendations by providing keywords in their requests.
+
+### **2. Code Update and Integration**
+
+**Files to Update:**
+1. **`src/app.py`** - Update to include a search functionality.
+
+Here’s how we can modify the `src/app.py` file to include this new feature:
+
+```python
+from flask import Flask, jsonify, request
+
+app = Flask(__name__)
+
+# Home route
+@app.route('/')
+def home():
+    return "Welcome to CurateHub!"
+
+# GET method for recommendations
+@app.route('/api/recommendations', methods=['GET'])
+def get_recommendations_get():
+    interests = request.args.getlist('interests')
+    search_keyword = request.args.get('search', '')
+    recommendations = [
+        {"title": f"Recommended video for {interest} 1"} for interest in interests if search_keyword.lower() in f"Recommended video for {interest} 1".lower()
+    ]
+    return jsonify({'recommendations': recommendations})
+
+# POST method for recommendations
+@app.route('/api/recommendations', methods=['POST'])
+def get_recommendations_post():
+    data = request.json
+    interest = data.get('interest')
+    search_keyword = data.get('search', '')
+    recommendations = [
+        {"title": f"Recommended video for {interest} 1"},
+        {"title": f"Recommended video for {interest} 2"}
+    ]
+    filtered_recommendations = [rec for rec in recommendations if search_keyword.lower() in rec['title'].lower()]
+    return jsonify({"recommendations": filtered_recommendations})
+
+# Test route
+@app.route('/test', methods=['GET'])
+def test():
+    return jsonify({'message': 'GET method works!'})
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+### **3. Testing**
+
+**Test Cases:**
+
+1. **Test Case for GET method with Search Keyword**
+    - **Input:** URL with query parameters: `?interests=Python&search=1`
+    - **Expected Output:** Recommendations including "1" in the title.
+
+2. **Test Case for POST method with Search Keyword**
+    - **Input:** JSON body: `{"interest": "Python", "search": "2"}`
+    - **Expected Output:** Recommendations including "2" in the title.
+
+**Test File: `tests/test_recommendation_logic.py`**
+
+Here’s how you can add test cases to `tests/test_recommendation_logic.py`:
+
+```python
+import unittest
+from app import app
+
+class RecommendationTestCase(unittest.TestCase):
+    
+    @classmethod
+    def setUpClass(cls):
+        cls.app = app.test_client()
+        cls.app.testing = True
+    
+    def test_get_recommendations_with_search(self):
+        response = self.app.get('/api/recommendations?interests=Python&search=1')
+        data = response.get_json()
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(any("1" in rec["title"] for rec in data['recommendations']))
+    
+    def test_post_recommendations_with_search(self):
+        response = self.app.post('/api/recommendations', json={"interest": "Python", "search": "2"})
+        data = response.get_json()
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(any("2" in rec["title"] for rec in data['recommendations']))
+
+if __name__ == '__main__':
+    unittest.main()
+```
+
+### **4. Documentation**
+
+Update the README to include:
+- **New Feature:** Search functionality for recommendations.
+- **How to Use:** Example requests for the GET and POST methods with search functionality.
+
+### **5. Refactor if Necessary**
+
+Ensure that the code is clean and follows best practices. After updating, make sure to:
+
+- Review the updated code for any potential improvements.
+- Check that all tests pass.
+
+### **Proceeding Steps:**
+
+1. **Update `src/app.py`**: Implement the new feature as shown.
+2. **Update `tests/test_recommendation_logic.py`**: Add the new test cases.
+3. **Run Tests**: Verify that all tests pass.
+4. **Update Documentation**: Reflect the new feature and usage in the README.
+
+Please let me know if you need any modifications or further steps!
+
+//-----------------------------------------------------------------------------------------------------------
+
+Your test case for the recommendation logic looks well-structured. Here's a step-by-step guide on how to proceed with integrating this test and running it:
+
+### **1. Ensure `recommend_content` Function Exists**
+
+Ensure that the `recommend_content` function is correctly defined in `src/recommendation_logic.py`. It should be something like this:
+
+```python
+def recommend_content(interests):
+    recommendations = []
+    for interest in interests:
+        recommendations.extend([
+            {"title": f"Recommended video for {interest} 1"},
+            {"title": f"Recommended video for {interest} 2"}
+        ])
+    return recommendations
+```
+
+### **2. Update the Test File**
+
+Make sure your test file `tests/test_recommendation_logic.py` is placed correctly and matches the following:
+
+```python
+import unittest
+from src.recommendation_logic import recommend_content
+
+class TestRecommendationLogic(unittest.TestCase):
+
+    def test_recommend_content(self):
+        # Test case with sample interests
+        interests = ["Python", "Blockchain"]
+        expected_output = [
+            {"title": "Recommended video for Python 1"},
+            {"title": "Recommended video for Python 2"},
+            {"title": "Recommended video for Blockchain 1"},
+            {"title": "Recommended video for Blockchain 2"}
+        ]
+        result = recommend_content(interests)
+        self.assertEqual(result, expected_output)
+
+if __name__ == '__main__':
+    unittest.main()
+```
+
+### **3. Run the Tests**
+
+Navigate to the `tests` directory and run the test using:
+
+```bash
+python -m unittest test_recommendation_logic
+```
+
+### **4. Verify Output**
+
+Ensure the output matches the expected results. If the test passes, it will confirm that your recommendation logic is functioning as expected.
+
+### **5. Next Steps**
+
+- **Integrate Changes:** If the test passes, integrate the `recommend_content` logic into your `src/app.py` as needed.
+- **Document Changes:** Update any documentation if the recommendation logic changes.
+- **Push Code:** Once everything is verified, push the changes to GitHub.
+
+If you encounter any issues or need additional help, feel free to ask!
+
+
+The error you're encountering indicates that the `src` module cannot be found. This usually means that Python is not able to locate the `src` directory in your project's structure. Here’s how you can fix this:
+
+### **1. Check `PYTHONPATH`**
+
+Ensure that the `PYTHONPATH` is set correctly to include the `src` directory. You can set the `PYTHONPATH` temporarily for your test session:
+
+```bash
+set PYTHONPATH=G:\E_drive_data\GitHubProjects\CurateHub\CurateHub
+```
+
+### **2. Modify the Test Script**
+
+You can modify the `test_recommendation_logic.py` to use relative imports. For instance:
+
+```python
+import unittest
+from recommendation_logic import recommend_content  # Remove 'src.' if running directly
+
+class TestRecommendationLogic(unittest.TestCase):
+
+    def test_recommend_content(self):
+        # Test case with sample interests
+        interests = ["Python", "Blockchain"]
+        expected_output = [
+            {"title": "Recommended video for Python 1"},
+            {"title": "Recommended video for Python 2"},
+            {"title": "Recommended video for Blockchain 1"},
+            {"title": "Recommended video for Blockchain 2"}
+        ]
+        result = recommend_content(interests)
+        self.assertEqual(result, expected_output)
+
+if __name__ == '__main__':
+    unittest.main()
+```
+
+### **3. Run the Test**
+
+Navigate to the `tests` directory and run:
+
+```bash
+python -m unittest test_recommendation_logic
+```
+
+### **4. Check Directory Structure**
+
+Ensure your directory structure looks like this:
+
+```
+CurateHub/
+├── src/
+│   ├── app.py
+│   └── recommendation_logic.py
+└── tests/
+    └── test_recommendation_logic.py
+```
+
+### **5. Verify Import**
+
+If the above steps do not resolve the issue, you can verify if `recommendation_logic.py` is correctly placed in the `src` directory and that the directory is being recognized correctly. 
+
+Let me know if these steps help or if you need further assistance!
+
+
+
+Great! The test for `recommend_content` passed successfully, which means your recommendation logic is working as expected. Here’s a quick summary of what we’ve accomplished and what’s next:
+
+### **Summary**
+
+1. **Project Setup**:
+   - Integrated recommendation logic into `src/recommendation_logic.py`.
+   - Implemented the combined Flask app in `src/app.py` to handle both GET and POST requests for recommendations.
+   - Updated test cases in `tests/test_recommendation_logic.py` to validate the recommendation logic.
+
+2. **Testing**:
+   - Verified that the test cases for the recommendation logic pass successfully.
+
+### **Next Steps**
+
+1. **Documentation**:
+   - Document the latest changes and test results.
+   - Update README or other documentation as needed to reflect the new features and improvements.
+
+2. **Feature Integration**:
+   - Proceed with integrating new features while ensuring existing functionalities remain unaffected.
+   - Continue following LLD principles to maintain code quality and project structure.
+
+3. **Deployment**:
+   - Prepare for deployment if applicable or continue development based on the project’s roadmap.
+
+4. **Review and Refactor**:
+   - Regularly review code to identify any improvements or refactoring opportunities.
+   - Conduct code reviews if collaborating with others.
+
+If you need help with any of these next steps or anything else, just let me know!
+
+//---------------------------------------------------------------------------------------------
+
+Great! Let's proceed with the next steps.
+
+### **Next Steps in Development:**
+
+1. **Feature Development:** We can start by planning and implementing new features based on the project's roadmap. Each feature should be added carefully, ensuring that existing functionality is not affected.
+   
+2. **Test Cases:** For every new feature, we'll write corresponding test cases. This will help maintain the integrity of the project as we add more functionality.
+
+3. **Code Review and Refactoring:** After adding new features, we'll review and refactor the code to ensure it's clean, efficient, and follows best practices.
+
+4. **Documentation:** Documenting the code and the process will help in understanding and maintaining the project in the long term. This includes updating README files, commenting code, and maintaining design documents.
+
+5. **Continuous Integration:** Set up CI/CD pipelines if needed, to automate testing and deployment. This will ensure that any new changes are automatically tested and deployed without manual intervention.
+
+### **Current Feature Development**
+- If you have a specific feature in mind that you want to work on next, let's identify the files and logic needed for that feature.
+- If not, we can discuss possible features based on the project's goals and prioritize them.
+
+Please let me know how you'd like to proceed!
+
+//-------------------------------------------------------------------------------------------------------------
+
+Feature_1:
+User Profiles and Preferences
+Description: Allow users to create profiles where they can save their preferences, watch history, and liked content.
+Impact: High. This enables personalized recommendations tailored to each user’s interests and behavior.
+Priority: High.
+
+Great! Let's proceed with developing the "User Profiles and Preferences" feature for CurateHub. 
+Here’s a general outline of what we can do:
+
+1. **User Profiles**:
+   - Create a model or database structure to store user profiles.
+   - Include fields like username, email, password (hashed), preferences, watch history, and liked content.
+
+2. **User Authentication**:
+   - Implement user registration and login functionality.
+   - Use authentication methods like JWT (JSON Web Token) for secure login sessions.
+
+3. **User Preferences**:
+   - Allow users to save their content preferences, such as favorite categories or interests.
+   - Modify the recommendation logic to consider these preferences for personalized content suggestions.
+
+4. **Watch History and Liked Content**:
+   - Track the content users have watched and liked.
+   - Update the recommendation algorithm to incorporate this data.
+
+5. **Profile Management**:
+   - Allow users to update their profile information and preferences.
+   - Provide an option for users to view and manage their watch history and liked content.
+
+6. **Testing and Integration**:
+   - Test the new features using Postman and automated unit tests to ensure they work correctly.
+   - Integrate the new functionality with the existing codebase.
+
+
+
+Let's begin with setting up the user profile model and authentication system. Since we're working with Flask, we'll need to integrate a database to store user information and use a library like `Flask-JWT-Extended` for authentication.
+
+### Step 1: Set Up the Database
+We'll use SQLite for simplicity, but this can be easily switched to another database like PostgreSQL or MySQL later.
+
+1. **Install the Required Libraries**:
+   Make sure you have these installed in your virtual environment:
+   ```bash
+   pip install Flask-SQLAlchemy Flask-JWT-Extended
+   ```
+
+2. **Create the User Model**:
+   Let's add a `User` model to represent user profiles in the database.
+
+   Please provide the code for `src/app.py`, and I'll add the necessary changes for setting up the `User` model and the database.
+
+   //----------------------------------------------------------------------------------------------------------
+
+   Let's modify the `app.py` file to add the `User` model, set up the database, and implement basic user registration. Here's how the updated `src/app.py` will look:
+
+```python
+from flask import Flask, jsonify, request
+from flask_sqlalchemy import SQLAlchemy
+from flask_jwt_extended import JWTManager, create_access_token
+from werkzeug.security import generate_password_hash, check_password_hash
+
+app = Flask(__name__)
+
+# Configuration for SQLAlchemy and JWT
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///curatehub.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['JWT_SECRET_KEY'] = 'your_secret_key'
+
+# Initialize extensions
+db = SQLAlchemy(app)
+jwt = JWTManager(app)
+
+# User model
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    password_hash = db.Column(db.String(120), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    preferences = db.Column(db.String(500), nullable=True)
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
+# Home route
+@app.route('/')
+def home():
+    return "Welcome to CurateHub!"
+
+# User registration
+@app.route('/register', methods=['POST'])
+def register():
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
+    email = data.get('email')
+
+    if User.query.filter_by(username=username).first() is not None:
+        return jsonify({"error": "Username already exists"}), 400
+
+    new_user = User(username=username, email=email)
+    new_user.set_password(password)
+    db.session.add(new_user)
+    db.session.commit()
+
+    access_token = create_access_token(identity=username)
+    return jsonify({"access_token": access_token}), 201
+
+# GET method for recommendations
+@app.route('/api/recommendations', methods=['GET'])
+def get_recommendations_get():
+    interests = request.args.getlist('interests')
+    search_keyword = request.args.get('search', '')
+    recommendations = [
+        {"title": f"Recommended video for {interest} 1"} for interest in interests
+    ]
+    return jsonify({'recommendations': recommendations})
+
+# POST method for recommendations
+@app.route('/api/recommendations', methods=['POST'])
+def get_recommendations_post():
+    data = request.json
+    interest = data.get('interest')
+    search_keyword = data.get('search', '')
+    recommendations = [
+        {"title": f"Recommended video for {interest} 1"},
+        {"title": f"Recommended video for {interest} 2"}
+    ]
+    filtered_recommendations = [rec for rec in recommendations if search_keyword.lower() in rec['title'].lower()]
+    return jsonify({"recommendations": filtered_recommendations})
+
+# Test route
+@app.route('/test', methods=['GET'])
+def test():
+    return jsonify({'message': 'GET method works!'})
+
+if __name__ == '__main__':
+    db.create_all()  # Creates the database tables
+    app.run(debug=True)
+```
+
+### Explanation:
+
+1. **User Model**: 
+   - The `User` model includes `username`, `password_hash`, `email`, and `preferences`.
+   - It includes methods to set and check passwords securely using `werkzeug.security`.
+
+2. **User Registration Route** (`/register`):
+   - This route allows new users to register by providing a `username`, `password`, and `email`.
+   - The password is hashed for security, and a JWT access token is returned upon successful registration.
+
+3. **Database Setup**:
+   - The `SQLAlchemy` extension is used to interact with the SQLite database.
+   - The database is created when the application runs for the first time with `db.create_all()`.
+
+### Next Steps:
+1. **Run the Application**: Ensure the application starts without errors and the database is created.
+2. **Test User Registration**: You can use Postman to send a `POST` request to `/register` with `username`, `password`, and `email` to test the registration process.
+3. **Further Development**: Implement login, profile management, and other features based on the project’s goals.
+
+Would you like to proceed with testing the user registration in Postman?
+
+//----------------------------------------------------------------------------------------------
+
+Secret key generator:
+
+import os
+print(os.urandom(24))
+
+The `your_secret_key` in the code is a placeholder for the actual secret key that you should use for your Flask application. The secret key is used by Flask and Flask-JWT-Extended to sign session cookies and tokens, so it's essential for ensuring the security of your application.
+
+### How to Set the Secret Key:
+1. **Generate a Secret Key:**
+   - You can generate a random secret key in Python using the following command:
+     ```python
+     import os
+     os.urandom(24)
+     ```
+   - This will give you a random 24-byte key that you can use. For example:
+     ```python
+     b'\xa4\xcf\xb3\x1f\xad\xf4\x1d\xa9\xd9\xbe\xab\xf7\xbd\xb8\xcf\xba\x17\x9a'
+     ```
+
+2. **Set the Secret Key in Your Code:**
+   - Replace `your_secret_key` in your `app.config['JWT_SECRET_KEY']` with the generated key:
+     ```python
+     app.config['JWT_SECRET_KEY'] = b'\xa4\xcf\xb3\x1f\xad\xf4\x1d\xa9\xd9\xbe\xab\xf7\xbd\xb8\xcf\xba\x17\x9a'
+     ```
+
+   - Alternatively, convert the key to a string and use it directly:
+     ```python
+     app.config['JWT_SECRET_KEY'] = 'a4cfb31fadb71da9d9beabf7bd8cfba17a'
+     ```
+
+3. **Environment Variables (Recommended):**
+   - For better security, it's recommended to store the secret key in an environment variable and load it in your application:
+     ```python
+     import os
+     app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY', 'default_secret_key')
+     ```
+   - You can set the environment variable `JWT_SECRET_KEY` in your development or production environment.
+
+This way, you can keep your secret key secure and avoid hardcoding it directly in your source code.
+
+//----------------------------------------------------------------------------
+
+The code snippet you've provided is setting up configurations for both SQLAlchemy and JWT in your Flask application. Here's what each configuration does:
+
+1. **SQLAlchemy Configuration**:
+   ```python
+   app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///curatehub.db'
+   app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+   ```
+   - `SQLALCHEMY_DATABASE_URI`: This sets up the URI for your SQLite database, which will be named `curatehub.db` and stored in the root directory of your project.
+   - `SQLALCHEMY_TRACK_MODIFICATIONS`: This is set to `False` to disable the feature that signals the application every time a change is about to be made in the database, which helps reduce overhead.
+
+2. **JWT Secret Key Configuration**:
+   ```python
+   app.config['JWT_SECRET_KEY'] = b'\xe8\xb1\xb9\xcc\xd3i\xa6\x15\xf2\xe2/j\xd0\x1d\xfe\xb2M\xc7(\x1e\x11\xb0\xa3\xb9'
+   ```
+   - `JWT_SECRET_KEY`: This key is used to sign JWT (JSON Web Tokens) in your application. The key you've provided is a randomly generated 24-byte key.
+
+### Points to Consider:
+- **Database URI**: If you're using SQLite, this setup is fine for a small-scale application or during development. For production, you might want to use a more robust database like PostgreSQL or MySQL.
+- **JWT Secret Key**: Ensure that this key remains secret and is not shared publicly, as it's critical for the security of your JWT tokens.
+- **Environment Variables**: Consider storing sensitive information like the `JWT_SECRET_KEY` in environment variables for enhanced security, especially when deploying to production.
+
+You can now proceed with setting up your models and routes that will utilize this configuration. If you want to continue, you can share the next piece of code or let me know what you'd like to do next.
+
+//-----------------------------------------------------------------------------------------------------
+
+Here are the next steps:
+
+1. **User Profile Model Implementation**:
+   - Implement a user profile model to store user information, preferences, and history in the database.
+   - Define the schema for the user profile, including fields like `username`, `email`, `password`, `preferences`, `watch_history`, etc.
+
+2. **User Registration and Authentication**:
+   - Implement user registration, login, and authentication functionality.
+   - Use JWT for user authentication and ensure secure password storage with hashing.
+
+3. **Integration with Recommendation Logic**:
+   - Modify the recommendation logic to utilize user profiles. Recommendations should now be tailored based on user preferences and watch history.
+
+4. **API Endpoints for User Profiles**:
+   - Create API endpoints for managing user profiles, such as creating a profile, updating preferences, and fetching user-specific recommendations.
+
+5. **Testing**:
+   - Write test cases for the new features, including user registration, authentication, and personalized recommendations.
+   - Run tests to ensure everything works as expected.
+
+6. **Database Migration**:
+   - If necessary, perform database migrations to accommodate the new user profile model.
+
+7. **Postman Testing**:
+   - Use Postman to manually test the new API endpoints and ensure they work as expected.
+
+8. **Documentation**:
+   - Update the project documentation to include details about the new features, how to use them, and any specific setup or configuration steps.
+
+Would you like to start with any specific step?
+
+//-------------------------------------------------------------------------------------------------------------
+
+Great! Let’s start with **User Profile Model Implementation**.
+
+### 1. User Profile Model Implementation
+
+**Objective:** Create a user profile model to store user information, preferences, and history in the database.
+
+#### Steps:
+
+1. **Define the User Profile Model**:
+   - Create a model for the user profile in your application. This model should include fields such as `username`, `email`, `password`, `preferences`, and `watch_history`.
+
+2. **Update `app.py`**:
+   - Add SQLAlchemy setup and define the User model.
+
+3. **Initialize the Database**:
+   - Create and initialize the SQLite database with the new User model.
+
+#### Example Implementation:
+
+**1. Define the User Profile Model:**
+
+Create a new file named `models.py` in the `src` directory.
+
+```python
+# src/models.py
+
+from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
+
+db = SQLAlchemy()
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password_hash = db.Column(db.String(128), nullable=False)
+    preferences = db.Column(db.String(500))
+    watch_history = db.Column(db.String(500))
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+```
+
+**2. Update `app.py`:**
+
+```python
+# src/app.py
+
+from flask import Flask, jsonify, request
+from src.models import db, User  # Import the database and User model
+
+app = Flask(__name__)
+
+# Configuration for SQLAlchemy and JWT
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///curatehub.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['JWT_SECRET_KEY'] = 'your_secret_key_here'
+
+db.init_app(app)
+
+# Home route
+@app.route('/')
+def home():
+    return "Welcome to CurateHub!"
+
+# Example route for creating a new user
+@app.route('/api/users', methods=['POST'])
+def create_user():
+    data = request.json
+    username = data.get('username')
+    email = data.get('email')
+    password = data.get('password')
+    user = User(username=username, email=email)
+    user.set_password(password)
+    db.session.add(user)
+    db.session.commit()
+    return jsonify({'message': 'User created successfully!'})
+
+# Initialize the database
+@app.before_first_request
+def create_tables():
+    db.create_all()
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+**3. Initialize the Database:**
+
+Run the application to initialize the database and create tables.
+
+```bash
+python src/app.py
+```
+
+**Testing:**
+
+- Use Postman to test the `POST /api/users` endpoint to ensure that user creation works.
+
+Would you like to proceed with this step, or do you have any modifications or questions before we move on to the next step?
+
+//-----------------------------------------------------------------------------------------
+
+The error you're encountering indicates that the `db.create_all()` call is happening outside of the application context. This means that Flask is not aware of the current application instance when you're trying to interact with the database.
+
+To resolve this, you need to ensure that the database creation is done within the application context. You can do this by wrapping the `db.create_all()` call inside an application context block.
+
+Here's how to modify the `app.py` file:
+
+```python
+from flask import Flask, jsonify, request
+from flask_sqlalchemy import SQLAlchemy
+from flask_jwt_extended import JWTManager, create_access_token
+from werkzeug.security import generate_password_hash, check_password_hash
+
+app = Flask(__name__)
+
+# Configuration for SQLAlchemy and JWT
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///curatehub.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# For testing purposes, I have kept the key publicly available
+app.config['JWT_SECRET_KEY'] = b'\xe8\xb1\xb9\xcc\xd3i\xa6\x15\xf2\xe2/j\xd0\x1d\xfe\xb2M\xc7(\x1e\x11\xb0\xa3\xb9'
+
+# Initialize extensions
+db = SQLAlchemy(app)
+jwt = JWTManager(app)
+
+# User model
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    password_hash = db.Column(db.String(120), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    preferences = db.Column(db.String(500), nullable=True)
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
+# Home route
+@app.route('/')
+def home():
+    return "Welcome to CurateHub!"
+
+# User registration
+@app.route('/register', methods=['POST'])
+def register():
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
+    email = data.get('email')
+
+    if User.query.filter_by(username=username).first() is not None:
+        return jsonify({"error": "Username already exists"}), 400
+
+    new_user = User(username=username, email=email)
+    new_user.set_password(password)
+    db.session.add(new_user)
+    db.session.commit()
+
+    access_token = create_access_token(identity=username)
+    return jsonify({"access_token": access_token}), 201
+
+# GET method for recommendations
+@app.route('/api/recommendations', methods=['GET'])
+def get_recommendations_get():
+    interests = request.args.getlist('interests')
+    search_keyword = request.args.get('search', '')
+    recommendations = [
+        {"title": f"Recommended video for {interest} 1"} for interest in interests
+    ]
+    return jsonify({'recommendations': recommendations})
+
+# POST method for recommendations
+@app.route('/api/recommendations', methods=['POST'])
+def get_recommendations_post():
+    data = request.json
+    interest = data.get('interest')
+    search_keyword = data.get('search', '')
+    recommendations = [
+        {"title": f"Recommended video for {interest} 1"},
+        {"title": f"Recommended video for {interest} 2"}
+    ]
+    filtered_recommendations = [rec for rec in recommendations if search_keyword.lower() in rec['title'].lower()]
+    return jsonify({"recommendations": filtered_recommendations})
+
+# Test route
+@app.route('/test', methods=['GET'])
+def test():
+    return jsonify({'message': 'GET method works!'})
+
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()  # Creates the database tables
+    app.run(debug=True)
+```
+
+### Explanation:
+
+- **`with app.app_context():`**: This ensures that the application context is available when `db.create_all()` is called, allowing Flask to properly interact with the database.
+
+Try running the application again with this change. If you encounter any more issues or need further adjustments, let me know!
+
+//-------------------------------------------------------------------------------------------------------
+
+To test your Flask application using Postman, follow these steps to verify each endpoint. Here's a guide for testing the `/register` endpoint and other endpoints:
+
+### 1. **Testing the `/register` Endpoint**
+
+#### **Setup:**
+- Make sure your Flask application is running.
+
+#### **Steps:**
+
+1. **Open Postman.**
+
+2. **Create a New Request:**
+   - Click on the `+` button or `New` to create a new request.
+
+3. **Set Request Type:**
+   - Select `POST` from the dropdown menu.
+
+4. **Enter the URL:**
+   - Enter `http://127.0.0.1:5000/register` in the request URL field.
+
+5. **Set Headers (if required):**
+   - You might need to set the `Content-Type` to `application/json`.
+     - Go to the `Headers` tab.
+     - Add a key-value pair: `Content-Type: application/json`.
+
+6. **Enter Request Body:**
+   - Go to the `Body` tab.
+   - Select `raw` and choose `JSON` from the dropdown menu.
+   - Enter the following JSON payload:
+     ```json
+     {
+       "username": "testuser",
+       "password": "password123",
+       "email": "testuser@example.com"
+     }
+     ```
+
+7. **Send the Request:**
+   - Click the `Send` button.
+   - Check the response. You should see a JSON response with an `access_token` if the registration is successful.
+
+   **Sample Response:**
+   ```json
+   {
+     "access_token": "<your_access_token_here>"
+   }
+   ```
+
+### 2. **Testing the `/api/recommendations` Endpoints**
+
+#### **GET Method:**
+
+1. **Create a New Request:**
+   - Click on the `+` button or `New` to create a new request.
+
+2. **Set Request Type:**
+   - Select `GET` from the dropdown menu.
+
+3. **Enter the URL:**
+   - Enter `http://127.0.0.1:5000/api/recommendations?interests=Python&interests=Data%20Science` in the request URL field.
+
+4. **Send the Request:**
+   - Click the `Send` button.
+   - Check the response. You should see a list of recommended videos based on the provided interests.
+
+   **Sample Response:**
+   ```json
+   {
+     "recommendations": [
+       {"title": "Recommended video for Python 1"},
+       {"title": "Recommended video for Data Science 1"}
+     ]
+   }
+   ```
+
+#### **POST Method:**
+
+1. **Create a New Request:**
+   - Click on the `+` button or `New` to create a new request.
+
+2. **Set Request Type:**
+   - Select `POST` from the dropdown menu.
+
+3. **Enter the URL:**
+   - Enter `http://127.0.0.1:5000/api/recommendations` in the request URL field.
+
+4. **Set Headers (if required):**
+   - Set the `Content-Type` to `application/json`.
+     - Go to the `Headers` tab.
+     - Add a key-value pair: `Content-Type: application/json`.
+
+5. **Enter Request Body:**
+   - Go to the `Body` tab.
+   - Select `raw` and choose `JSON` from the dropdown menu.
+   - Enter the following JSON payload:
+     ```json
+     {
+       "interest": "Python",
+       "search": "1"
+     }
+     ```
+
+6. **Send the Request:**
+   - Click the `Send` button.
+   - Check the response. You should see filtered recommendations based on the provided interest and search keyword.
+
+   **Sample Response:**
+   ```json
+   {
+     "recommendations": [
+       {"title": "Recommended video for Python 1"}
+     ]
+   }
+   ```
+
+### 3. **Testing the `/test` Endpoint**
+
+1. **Create a New Request:**
+   - Click on the `+` button or `New` to create a new request.
+
+2. **Set Request Type:**
+   - Select `GET` from the dropdown menu.
+
+3. **Enter the URL:**
+   - Enter `http://127.0.0.1:5000/test` in the request URL field.
+
+4. **Send the Request:**
+   - Click the `Send` button.
+   - Check the response. You should see a JSON response confirming the GET method works.
+
+   **Sample Response:**
+   ```json
+   {
+     "message": "GET method works!"
+   }
+   ```
+
+### Summary
+
+- **Register User:** Verify if the `/register` endpoint returns an access token.
+- **Get Recommendations:** Test the `/api/recommendations` GET and POST endpoints to ensure they return the expected recommendations.
+- **Test Endpoint:** Ensure the `/test` endpoint returns the success message.
+
+//-------------------------------------------------------------------------------------------------------
+
+It looks like you have duplicated the content of `src/app.py`. Here's a cleaned-up version of `src/app.py` that you can use. I have removed the duplicate content and added the necessary updates to ensure everything is in order:
+
+### `src/app.py`
+
+```python
+from flask import Flask, jsonify, request
+from flask_sqlalchemy import SQLAlchemy
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
+
+app = Flask(__name__)
+
+# Configuration for SQLAlchemy and JWT
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///curatehub.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# For testing purposes, I have kept the key publicly available
+app.config['JWT_SECRET_KEY'] = b'\xe8\xb1\xb9\xcc\xd3i\xa6\x15\xf2\xe2/j\xd0\x1d\xfe\xb2M\xc7(\x1e\x11\xb0\xa3\xb9'
+
+# Initialize extensions
+db = SQLAlchemy(app)
+jwt = JWTManager(app)
+
+# User model
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    password_hash = db.Column(db.String(120), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    preferences = db.Column(db.String(500), nullable=True)
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
+# Activity Log model
+class ActivityLog(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), nullable=False)
+    action = db.Column(db.String(200), nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__(self):
+        return f'<ActivityLog {self.username} - {self.action}>'
+
+# Home route
+@app.route('/')
+def home():
+    return "Welcome to CurateHub!"
+
+# User registration
+@app.route('/register', methods=['POST'])
+def register():
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
+    email = data.get('email')
+
+    if User.query.filter_by(username=username).first() is not None:
+        return jsonify({"error": "Username already exists"}), 400
+
+    new_user = User(username=username, email=email)
+    new_user.set_password(password)
+    db.session.add(new_user)
+    db.session.commit()
+
+    access_token = create_access_token(identity=username)
+    return jsonify({"access_token": access_token}), 201
+
+# User profile update
+@app.route('/profile', methods=['PUT'])
+@jwt_required()
+def update_profile():
+    current_user = get_jwt_identity()
+    data = request.get_json()
+    preferences = data.get('preferences')
+
+    user = User.query.filter_by(username=current_user).first()
+    if user:
+        user.preferences = preferences
+        db.session.commit()
+        return jsonify({"message": "Profile updated successfully"}), 200
+    return jsonify({"error": "User not found"}), 404
+
+# Get user profile
+@app.route('/profile', methods=['GET'])
+@jwt_required()
+def get_profile():
+    current_user = get_jwt_identity()
+    user = User.query.filter_by(username=current_user).first()
+    if user:
+        return jsonify({"username": user.username, "email": user.email, "preferences": user.preferences}), 200
+    return jsonify({"error": "User not found"}), 404
+
+# GET method for recommendations
+@app.route('/api/recommendations', methods=['GET'])
+def get_recommendations_get():
+    interests = request.args.getlist('interests')
+    search_keyword = request.args.get('search', '')
+    recommendations = [
+        {"title": f"Recommended video for {interest} 1"} for interest in interests
+    ]
+    return jsonify({'recommendations': recommendations})
+
+# POST method for recommendations
+@app.route('/api/recommendations', methods=['POST'])
+def get_recommendations_post():
+    data = request.json
+    interest = data.get('interest')
+    search_keyword = data.get('search', '')
+    recommendations = [
+        {"title": f"Recommended video for {interest} 1"},
+        {"title": f"Recommended video for {interest} 2"}
+    ]
+    filtered_recommendations = [rec for rec in recommendations if search_keyword.lower() in rec['title'].lower()]
+    return jsonify({"recommendations": filtered_recommendations})
+
+# Log user activity
+@app.route('/log_activity', methods=['POST'])
+@jwt_required()
+def log_activity():
+    current_user = get_jwt_identity()
+    data = request.get_json()
+    action = data.get('action')
+
+    log = ActivityLog(username=current_user, action=action)
+    db.session.add(log)
+    db.session.commit()
+
+    return jsonify({"message": "Activity logged successfully"}), 201
+
+# Get user analytics
+@app.route('/analytics', methods=['GET'])
+@jwt_required()
+def get_analytics():
+    current_user = get_jwt_identity()
+    logs = ActivityLog.query.filter_by(username=current_user).all()
+    analytics = [{"action": log.action, "timestamp": log.timestamp} for log in logs]
+    return jsonify({"analytics": analytics}), 200
+
+# Test route
+@app.route('/test', methods=['GET'])
+def test():
+    return jsonify({'message': 'GET method works!'})
+
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()  # Creates the database tables
+    app.run(debug=True)
+```
+
+### Summary of Changes
+1. **User Profile Management**: Added endpoints for updating and retrieving user profiles.
+2. **Activity Logging and Analytics**: Added models and endpoints for logging user activities and retrieving analytics.
+3. **Context Management**: Ensured the app context is correctly used for creating database tables.
+
+### Testing in Postman
+1. **User Registration:**
+   - **POST** `/register`
+   - **Body**: JSON with `username`, `password`, and `email`.
+
+2. **User Profile:**
+   - **PUT** `/profile`
+   - **Headers**: `Authorization: Bearer <access_token>`
+   - **Body**: JSON with `preferences`.
+
+   - **GET** `/profile`
+   - **Headers**: `Authorization: Bearer <access_token>`
+
+3. **Recommendations:**
+   - **GET** `/api/recommendations`
+   - **POST** `/api/recommendations`
+   - **Body**: JSON with `interest` and `search` (for POST).
+
+4. **Activity Logging:**
+   - **POST** `/log_activity`
+   - **Body**: JSON with `action`.
+   - **Headers**: `Authorization: Bearer <access_token>`
+
+5. **Analytics:**
+   - **GET** `/analytics`
+   - **Headers**: `Authorization: Bearer <access_token>`
+
+Feel free to let me know if you need more details or assistance with any specific feature!
+
+//-----------------------------------------------------------------------------------------------------------
+
+To run the application, follow these steps:
+
+1. **Navigate to the Application Directory**:
+   Make sure you are in the directory where `src/app.py` is located.
+
+   ```bash
+   cd G:/E_drive_data/GitHubProjects/CurateHub/CurateHub/src
+   ```
+
+2. **Activate Your Virtual Environment**:
+   Ensure your virtual environment is activated. If it's not already activated, do so with:
+
+   ```bash
+   venv\Scripts\activate
+   ```
+
+   If you are using a different virtual environment manager, adjust the command accordingly.
+
+3. **Run the Application**:
+   Execute the application using Python:
+
+   ```bash
+   python app.py
+   ```
+
+   This command should start your Flask application, and you should see output indicating that the server is running, typically something like:
+
+   ```
+   * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+   ```
+
+4. **Verify Application Is Running**:
+   Open your web browser or a tool like Postman and navigate to `http://127.0.0.1:5000/` to check if the home route is working.
+
+Let me know if you encounter any issues or need further assistance!
+
+//----------------------------------------------------------------------------
