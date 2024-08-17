@@ -3111,3 +3111,27 @@ To run the application, follow these steps:
 Let me know if you encounter any issues or need further assistance!
 
 //----------------------------------------------------------------------------
+
+Let's go ahead and push the code. Here's a step-by-step guide to do that:
+
+### 1. **Stage the Changes**
+   Open your terminal in the project directory and run:
+   ```bash
+   git add .
+   ```
+
+### 2. **Commit the Changes**
+   Commit the staged changes with a descriptive message:
+   ```bash
+   git commit -m "Implemented user registration, JWT authentication, and basic recommendation features"
+   ```
+
+### 3. **Push the Changes to the Remote Repository**
+   Finally, push the changes to the remote repository:
+   ```bash
+   git push origin <your-branch-name>
+   ```
+
+If you’re pushing to the `main` or `master` branch, replace `<your-branch-name>` with `main` or `master`. If you’re working on a feature branch, use the name of that branch.
+
+Let me know if you encounter any issues during the process!
