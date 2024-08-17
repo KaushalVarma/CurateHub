@@ -1,0 +1,6 @@
+/src - Contains the source code.
+/docs - All project documentation.
+/tests - Unit and integration tests.
+/configs - Configuration files.
+/logs - Log files.
+/data - Any data files or databases.

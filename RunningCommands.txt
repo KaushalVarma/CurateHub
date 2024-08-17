@@ -1,0 +1,3 @@
+python app.py
+
+(venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>python backend/app.py
