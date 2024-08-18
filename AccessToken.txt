@@ -1,0 +1,18 @@
+POST:
+
+http://127.0.0.1:5000/register
+
+body:
+
+{
+  "username": "newuser",
+  "password": "newpassword",
+  "email": "newuser@example.com"
+}
+
+
+Response(AWT):
+
+{
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyMzk2MzA3NywianRpIjoiOTdmOTMxYTUtZmNlYS00Mzg0LTk0MjctZWJhNmI1NzllOGJmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6Im5ld3VzZXIiLCJuYmYiOjE3MjM5NjMwNzcsImNzcmYiOiJiMjYzMTZhYS05NTJlLTQ2ZjUtYWExYS05Y2QyOGE0MjY4MDkiLCJleHAiOjE3MjM5NjM5Nzd9.DcGbtswVBoQtdLA_Oc0lO7VCLpljYfs66f5LZJPBYrk"
+}

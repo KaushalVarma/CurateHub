@@ -3135,3 +3135,509 @@ Let's go ahead and push the code. Here's a step-by-step guide to do that:
 If you’re pushing to the `main` or `master` branch, replace `<your-branch-name>` with `main` or `master`. If you’re working on a feature branch, use the name of that branch.
 
 Let me know if you encounter any issues during the process!
+
+//----------------------------------------------------------------------
+
+(venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>git push
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 326 bytes | 326.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/KaushalVarma/CurateHub
+   7169b0b..48f47de  master -> master
+
+//-------------------------------------------------------------------------------------------------
+
+Next Steps:
+Feature Development: We discussed adding features like user profiles, preferences, and analytics.
+Testing and Refinement: Ensure all features work as intended and optimize the code.
+Deployment Considerations: Prepare the project for deployment, including any necessary configurations.
+
+To prioritize the features, we should start with those that directly impact the core functionality and user experience of the application. Here's a suggested order:
+
+### High-Priority Features:
+
+1. **User Profiles and Preferences**
+   - **Description**: Allow users to create and manage their profiles, including saving preferences, watch history, and liked content.
+   - **Impact**: Personalization is crucial for enhancing user engagement and ensuring that recommendations are tailored to individual preferences.
+   - **Components**:
+     - Profile creation and editing
+     - Storing user preferences (e.g., favorite categories, preferred content type)
+     - Displaying and managing watch history
+     - Liked content management
+
+2. **Authentication and Authorization**
+   - **Description**: Implement a robust authentication system to protect user data and restrict access to certain features.
+   - **Impact**: Ensures security and personalized access, critical for user trust.
+   - **Components**:
+     - JWT-based authentication for secure access
+     - Role-based access control (e.g., admin vs. regular user)
+
+3. **Content Curation and Management**
+   - **Description**: Allow admins or users to curate and manage content within the platform.
+   - **Impact**: Ensures that the content library is relevant, up-to-date, and tailored to user interests.
+   - **Components**:
+     - Admin panel for adding, editing, or removing content
+     - Tagging and categorization of content for better recommendations
+     - User contributions (e.g., suggesting new content)
+
+### Medium-Priority Features:
+
+4. **Search and Filtering**
+   - **Description**: Enhance the recommendation system with advanced search and filtering options.
+   - **Impact**: Improves user experience by making it easier to find relevant content.
+   - **Components**:
+     - Search bar with keyword suggestions
+     - Filtering options (e.g., by category, popularity, recency)
+
+5. **Analytics and Reporting**
+   - **Description**: Implement analytics to track user behavior, content performance, and overall platform usage.
+   - **Impact**: Provides insights for improving the platform and content recommendations.
+   - **Components**:
+     - User activity tracking (e.g., time spent on the platform, most-watched content)
+     - Content performance reports (e.g., views, likes, shares)
+     - Admin dashboard with key metrics
+
+6. **Notifications**
+   - **Description**: Implement notifications to keep users engaged with updates, new content, or recommendations.
+   - **Impact**: Increases user retention and engagement.
+   - **Components**:
+     - Email notifications for updates or recommendations
+     - In-app notifications for new content or features
+
+### Low-Priority Features:
+
+7. **Social Features**
+   - **Description**: Add social features like commenting, sharing, and following other users or content creators.
+   - **Impact**: Enhances community engagement but is secondary to core functionality.
+   - **Components**:
+     - Commenting on content
+     - Sharing content on social media
+     - Following users or content categories
+
+8. **Customization and Themes**
+   - **Description**: Allow users to customize their interface or select themes.
+   - **Impact**: Improves user experience but isn’t critical to core functionality.
+   - **Components**:
+     - Interface customization options
+     - Dark mode or theme selection
+
+### Immediate Action:
+Let's begin by focusing on **User Profiles and Preferences** since it's essential for personalized content recommendations. This will involve:
+- Expanding the user model to include more detailed profile information and preferences.
+- Implementing routes for updating and retrieving user profiles.
+- Modifying the recommendation system to take user preferences into account.
+
+Would you like to start with the implementation of user profiles and preferences?
+
+//---------------------------------------------------------------------------------------------------
+
+We can create a new file called `user_profile.py` within the `src` directory to handle the logic for user profiles 
+and preferences.
+
+### File Path:
+```
+src/user_profile.py
+```
+
+### Directory Structure:
+```
+CurateHub/
+├── src/
+│   ├── app.py
+│   ├── models.py
+│   └── user_profile.py  # New file for handling user profiles and preferences
+├── tests/
+│   ├── test_app.py
+│   └── test_user_profile.py  # New test file for user profile-related tests
+└── ...  # Other project files and directories
+```
+
+### Purpose of `user_profile.py`:
+- Handle user profile management.
+- Implement functionality to update user preferences.
+- Integrate this with the existing `User` model from `models.py`.
+
+Let me know when you're ready, and we can start working on the implementation details for `user_profile.py`.
+
+//-------------------------------------------------------------------------------------------------------
+
+Let's create the `user_profile.py` file to manage user profiles and preferences. Below is a basic implementation to start with:
+
+### `src/user_profile.py`
+
+```python
+from flask import Blueprint, request, jsonify
+from src.models import db, User
+from flask_jwt_extended import jwt_required, get_jwt_identity
+
+user_profile_bp = Blueprint('user_profile', __name__)
+
+@user_profile_bp.route('/profile', methods=['GET'])
+@jwt_required()
+def get_profile():
+    current_user = get_jwt_identity()
+    user = User.query.filter_by(username=current_user).first()
+
+    if user is None:
+        return jsonify({"error": "User not found"}), 404
+
+    return jsonify({
+        "username": user.username,
+        "email": user.email,
+        "preferences": user.preferences
+    })
+
+@user_profile_bp.route('/profile/preferences', methods=['PUT'])
+@jwt_required()
+def update_preferences():
+    current_user = get_jwt_identity()
+    user = User.query.filter_by(username=current_user).first()
+
+    if user is None:
+        return jsonify({"error": "User not found"}), 404
+
+    preferences = request.json.get('preferences')
+    user.preferences = preferences
+    db.session.commit()
+
+    return jsonify({"message": "Preferences updated successfully"}), 200
+```
+
+### Explanation:
+
+1. **Blueprint**: We're using a `Blueprint` called `user_profile_bp` to encapsulate all routes related to user profiles. This keeps our application modular.
+
+2. **`/profile` GET Route**:
+   - This route allows the user to retrieve their profile information, including username, email, and preferences.
+   - It requires the user to be authenticated with JWT.
+
+3. **`/profile/preferences` PUT Route**:
+   - This route allows the user to update their preferences.
+   - Again, it requires JWT authentication.
+
+### Integrating `user_profile.py` with `app.py`:
+
+We need to register this blueprint in `app.py` to make these routes available in our application.
+
+### Modify `src/app.py`
+
+Add the following lines to `app.py`:
+
+```python
+from src.user_profile import user_profile_bp
+
+# Register the blueprint
+app.register_blueprint(user_profile_bp)
+```
+
+This will register the routes defined in `user_profile.py` with the main Flask application.
+
+Let me know if you'd like to proceed with testing or if you have any other adjustments you'd like to make!
+
+//-------------------------------------------------------------------------------------------------
+
+Great! Your Flask application is up and running. You can now use Postman to test the features. Here’s a summary of the steps you should follow:
+
+### Testing the User Profile Features
+
+#### 1. **Register a User:**
+   - **Method:** POST
+   - **URL:** `http://localhost:5000/register`
+   - **Headers:** Content-Type: application/json
+   - **Body:**
+     ```json
+     {
+         "username": "testuser",
+         "password": "testpassword",
+         "email": "testuser@example.com"
+     }
+     ```
+
+#### 2. **Get JWT Token:**
+   - After registration, you'll receive an access token in the response. Copy this token for authentication in the following requests.
+
+#### 3. **Get User Profile:**
+   - **Method:** GET
+   - **URL:** `http://localhost:5000/profile`
+   - **Headers:** 
+     - Authorization: Bearer `<your_access_token>`
+
+#### 4. **Update User Preferences:**
+   - **Method:** PUT
+   - **URL:** `http://localhost:5000/profile/preferences`
+   - **Headers:**
+     - Authorization: Bearer `<your_access_token>`
+     - Content-Type: application/json
+   - **Body:**
+     ```json
+     {
+         "preferences": "Python, Blockchain, AI"
+     }
+     ```
+
+#### 5. **Verify Updated Preferences:**
+   - **Method:** GET
+   - **URL:** `http://localhost:5000/profile`
+   - **Headers:** 
+     - Authorization: Bearer `<your_access_token>`
+
+### Postman Testing Checklist:
+1. **Ensure each request is correctly configured** with the appropriate method, URL, headers, and body.
+2. **Check the response status and body** to confirm that the operations (registration, profile retrieval, preference update) are working as expected.
+3. **Look for any error messages** that may indicate issues with your code or configuration.
+
+Let me know if you encounter any issues or if there's anything else you'd like to work on!
+
+//---------------------------------------------------------------------------------------------
+
+It looks like you’re trying to send a PUT request to update user preferences, but you’re encountering a 404 error, which means the endpoint doesn’t exist or isn’t recognized by the server.
+
+### Steps to Resolve the 404 Error
+
+1. **Check Endpoint Definition:**
+   Ensure that the `/profile/preferences` endpoint is correctly defined in your Flask application. If it’s not defined, you’ll need to add it.
+
+2. **Define the PUT Endpoint:**
+   If the endpoint doesn’t exist, you’ll need to define it in your `src/app.py` file. Here's an example of how you can implement a PUT endpoint to update user preferences:
+
+```python
+from flask import Flask, jsonify, request
+from flask_sqlalchemy import SQLAlchemy
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+from werkzeug.security import generate_password_hash, check_password_hash
+
+app = Flask(__name__)
+
+# Configuration for SQLAlchemy and JWT
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///curatehub.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['JWT_SECRET_KEY'] = 'your_secret_key'
+
+# Initialize extensions
+db = SQLAlchemy(app)
+jwt = JWTManager(app)
+
+# User model
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    password_hash = db.Column(db.String(120), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    preferences = db.Column(db.String(500), nullable=True)
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
+# Home route
+@app.route('/')
+def home():
+    return "Welcome to CurateHub!"
+
+# User registration
+@app.route('/register', methods=['POST'])
+def register():
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
+    email = data.get('email')
+
+    if User.query.filter_by(username=username).first() is not None:
+        return jsonify({"error": "Username already exists"}), 400
+
+    new_user = User(username=username, email=email)
+    new_user.set_password(password)
+    db.session.add(new_user)
+    db.session.commit()
+
+    access_token = create_access_token(identity=username)
+    return jsonify({"access_token": access_token}), 201
+
+# GET method for recommendations
+@app.route('/api/recommendations', methods=['GET'])
+def get_recommendations_get():
+    interests = request.args.getlist('interests')
+    search_keyword = request.args.get('search', '')
+    recommendations = [
+        {"title": f"Recommended video for {interest} 1"} for interest in interests
+    ]
+    return jsonify({'recommendations': recommendations})
+
+# POST method for recommendations
+@app.route('/api/recommendations', methods=['POST'])
+def get_recommendations_post():
+    data = request.json
+    interest = data.get('interest')
+    search_keyword = data.get('search', '')
+    recommendations = [
+        {"title": f"Recommended video for {interest} 1"},
+        {"title": f"Recommended video for {interest} 2"}
+    ]
+    filtered_recommendations = [rec for rec in recommendations if search_keyword.lower() in rec['title'].lower()]
+    return jsonify({"recommendations": filtered_recommendations})
+
+# PUT method to update user preferences
+@app.route('/profile/preferences', methods=['PUT'])
+@jwt_required()
+def update_preferences():
+    current_user = get_jwt_identity()
+    data = request.get_json()
+    preferences = data.get('preferences')
+
+    user = User.query.filter_by(username=current_user).first()
+    if user:
+        user.preferences = preferences
+        db.session.commit()
+        return jsonify({"message": "Preferences updated successfully!"}), 200
+    else:
+        return jsonify({"error": "User not found"}), 404
+
+# Test route
+@app.route('/test', methods=['GET'])
+def test():
+    return jsonify({'message': 'GET method works!'})
+
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()  # Creates the database tables
+    app.run(debug=True)
+```
+
+### Testing in Postman
+
+1. **Ensure the Server is Running:**
+   Make sure your Flask server is running.
+
+2. **Set Up the Request:**
+   - **Method:** PUT
+   - **URL:** `http://localhost:5000/profile/preferences`
+   - **Headers:**
+     - `Authorization: Bearer <your_jwt_token>` (Replace `<your_jwt_token>` with the actual JWT token received after login.)
+     - `Content-Type: application/json`
+   - **Body:**
+     ```json
+     {
+         "preferences": "Python, Blockchain, AI"
+     }
+     ```
+
+3. **Send the Request:**
+   Check if the preferences are updated successfully or if there are any errors.
+
+Feel free to reach out if you need further assistance or run into any issues!
+
+//--------------------------------------------------------------------------
+
+The response you received indicates that the `/profile` endpoint is functioning correctly and returning the expected user profile data. 
+
+### Summary of Response
+
+```json
+{
+    "email": "newuser@example.com",
+    "preferences": "Python, Blockchain, AI",
+    "username": "newuser"
+}
+```
+
+### Things to Check
+
+1. **JWT Token:**
+   - Ensure that the token you used is valid and has not expired.
+
+2. **User Profile Update:**
+   - If you made a `PUT` request to update the profile, verify that the preferences were updated as expected.
+
+3. **Testing Other Endpoints:**
+   - Test other endpoints like `/api/recommendations`, `/log_activity`, and `/analytics` to ensure everything is working as expected.
+
+### Next Steps
+
+If everything is functioning correctly, you might want to:
+
+1. **Push Code Updates:**
+   - Commit and push any changes to your repository.
+
+2. **Add More Features:**
+   - Consider adding additional features or improving existing ones based on your project requirements.
+
+3. **Document API:**
+   - Document your API endpoints, request/response formats, and any special considerations.
+
+4. **Consider Security:**
+   - Ensure that your application is secure and properly handles user data, especially if you plan to deploy it to production.
+
+If you need any more help with specific features or further testing, let me know!
+
+//------------------------------------------------------------------------------------------
+
+Here's where we are in the project development:
+
+### **Current Status:**
+1. **Core Functionality Implemented:**
+   - **User Registration:** Users can register and receive an access token.
+   - **User Profile Management:** Users can update and retrieve their profiles, including preferences.
+   - **Recommendations:** Endpoints for getting and posting recommendations based on interests.
+   - **Activity Logging:** Users can log their activities, and this data is stored in the database.
+   - **Analytics:** Users can retrieve their activity logs for analysis.
+
+2. **Testing:**
+   - **Endpoints Tested:** The endpoints for user registration, profile management, and recommendations have been tested and are functioning correctly.
+
+3. **Code Repository:**
+   - **Code Pushed:** The latest code changes have been pushed to the GitHub repository.
+
+### **Next Steps:**
+1. **Additional Features:**
+   - Consider implementing additional features based on project goals and user needs. Possible features could include:
+     - **Enhanced Analytics:** More detailed user analytics.
+     - **Notification System:** Alerts or notifications for user activities.
+     - **Social Features:** Allow users to follow others, share content, etc.
+
+2. **Documentation:**
+   - Document the API endpoints, their usage, and any special considerations for users or developers.
+
+3. **Security and Performance:**
+   - Review security measures to ensure that user data is protected.
+   - Optimize performance if necessary, especially if expecting high traffic.
+
+4. **Deployment Preparation:**
+   - Prepare for deployment by setting up a production environment and ensuring the application is robust and secure.
+
+5. **User Testing:**
+   - Conduct user testing to gather feedback and make improvements based on user experience.
+
+Let me know if there's a specific area you'd like to focus on or if you need assistance with any of these next steps!
+
+//--------------------------------------------------------------------------------------------
+
+Yes, this is a good stage to push the changes. Here's a quick checklist to confirm:
+
+- **Core Functionality:** The essential features like user registration, profile management, and recommendations are working.
+- **Testing:** Basic testing has been completed, and endpoints are functioning as expected.
+- **Code Repository:** The latest code has been committed and is ready for deployment.
+
+If everything looks good, you can proceed with the push. Here’s a summary of the commands you’ll need:
+
+1. **Stage Changes:**
+   ```bash
+   git add .
+   ```
+
+2. **Commit Changes:**
+   ```bash
+   git commit -m "Added user profile management, activity logging, and analytics features"
+   ```
+
+3. **Push to Remote Repository:**
+   ```bash
+   git push origin master
+   ```
+
+Let me know if you need help with any of these steps!

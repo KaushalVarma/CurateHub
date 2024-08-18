@@ -21,4 +21,10 @@ OK
 
 //--------------------------------Application Running--------------------------------------------------------------------------
 
-(venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>python src/app.py
+(venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub\src>python app.py
+
+//-------------------------------------------------------------------------------------------------------------------
+
+Deactivating the venv:
+
+deactivate

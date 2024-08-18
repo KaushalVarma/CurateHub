@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
+from src.user_profile import user_profile_bp
 
 app = Flask(__name__)
 
@@ -144,3 +145,6 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()  # Creates the database tables
     app.run(debug=True)
+
+# Register the blueprint
+app.register_blueprint(user_profile_bp)
