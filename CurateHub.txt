@@ -3641,3 +3641,251 @@ If everything looks good, you can proceed with the push. Here’s a summary of t
    ```
 
 Let me know if you need help with any of these steps!
+
+//--------------------------Updates------------------------------------------------------------------
+
+G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>git add .
+
+G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>git commit -m "Added user profile management, activity logging, and analytics features"
+[master 981c86e] Added user profile management, activity logging, and analytics features
+ 6 files changed, 571 insertions(+), 2 deletions(-)
+ create mode 100644 AccessToken.txt
+ create mode 100644 src/user_profile.py
+
+G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>git push origin master
+Enumerating objects: 17, done.
+Counting objects: 100% (17/17), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (9/9), done.
+Writing objects: 100% (10/10), 7.05 KiB | 1.76 MiB/s, done.
+Total 10 (delta 6), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (6/6), completed with 4 local objects.
+To https://github.com/KaushalVarma/CurateHub
+   48f47de..981c86e  master -> master
+
+   //---------------------------------------------------------------------------------------------------------
+
+To confirm that all these features are implemented and working as expected, we'll test each one step by step. You can use Postman or another API testing tool to perform these tests.
+
+### 1. **User Registration**
+   - **Endpoint:** `POST /register`
+   - **Description:** Users can register by providing a username, password, and email. They will receive an access token upon successful registration.
+   - **Test:**
+     - **Request Body:**
+       ```json
+       {
+           "username": "newuser",
+           "password": "password123",
+           "email": "newuser@example.com"
+       }
+       ```
+     - **Expected Response:**
+       ```json
+       {
+           "access_token": "your_jwt_token"
+       }
+       ```
+
+### 2. **User Profile Management**
+   - **Endpoint:** `PUT /profile`
+   - **Description:** Users can update their profiles, including setting preferences.
+   - **Test:**
+     - **Request Header:** 
+       - `Authorization: Bearer your_jwt_token`
+     - **Request Body:**
+       ```json
+       {
+           "preferences": "Python, Blockchain, AI"
+       }
+       ```
+     - **Expected Response:**
+       ```json
+       {
+           "message": "Profile updated successfully"
+       }
+       ```
+
+   - **Endpoint:** `GET /profile`
+   - **Description:** Users can retrieve their profile information.
+   - **Test:**
+     - **Request Header:** 
+       - `Authorization: Bearer your_jwt_token`
+     - **Expected Response:**
+       ```json
+       {
+           "username": "newuser",
+           "email": "newuser@example.com",
+           "preferences": "Python, Blockchain, AI"
+       }
+       ```
+
+### 3. **Recommendations**
+   - **Endpoint (GET):** `GET /api/recommendations`
+   - **Description:** Users can get recommendations based on their interests.
+   - **Test:**
+     - **Request URL:** `http://localhost:5000/api/recommendations?interests=Python&interests=AI`
+     - **Expected Response:**
+       ```json
+       {
+           "recommendations": [
+               {"title": "Recommended video for Python 1"},
+               {"title": "Recommended video for AI 1"}
+           ]
+       }
+       ```
+
+   - **Endpoint (POST):** `POST /api/recommendations`
+   - **Description:** Users can post interests and get filtered recommendations.
+   - **Test:**
+     - **Request Body:**
+       ```json
+       {
+           "interest": "Python",
+           "search": "video"
+       }
+       ```
+     - **Expected Response:**
+       ```json
+       {
+           "recommendations": [
+               {"title": "Recommended video for Python 1"},
+               {"title": "Recommended video for Python 2"}
+           ]
+       }
+       ```
+
+### 4. **Activity Logging**
+   - **Endpoint:** `POST /log_activity`
+   - **Description:** Users can log their activities, which are stored in the database.
+   - **Test:**
+     - **Request Header:** 
+       - `Authorization: Bearer your_jwt_token`
+     - **Request Body:**
+       ```json
+       {
+           "action": "Viewed Python tutorial"
+       }
+       ```
+     - **Expected Response:**
+       ```json
+       {
+           "message": "Activity logged successfully"
+       }
+       ```
+
+### 5. **Analytics**
+   - **Endpoint:** `GET /analytics`
+   - **Description:** Users can retrieve their activity logs for analysis.
+   - **Test:**
+     - **Request Header:** 
+       - `Authorization:
+       
+       //--------------------------------------------------------------------------------------------------------------
+       
+       http://127.0.0.1:5000/register
+       
+       {
+  "username": "test1user",
+  "password": "test1password",
+  "email": "newuser1@example.com"
+}
+
+
+{
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyNDA0ODA4NCwianRpIjoiNWYzM2JjNjQtNTQ3NC00NjA2LTgwNGItYjFlYmI0ZDgzZWRlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InRlc3QxdXNlciIsIm5iZiI6MTcyNDA0ODA4NCwiY3NyZiI6IjBhYzU3NTExLTE0NTItNDkzMS1iNGNkLWJmYWY4YTFiNmVmMiIsImV4cCI6MTcyNDA0ODk4NH0.bavJfrWltVy6JEOLdqioWGFjJnu3ijDZgFzo7Qx9RM8"
+} Bearer your_jwt_token`
+     - **Expected Response:**
+       ```json
+       {
+           "analytics": [
+               {"action": "Viewed Python tutorial", "timestamp": "2024-08-19T10:00:00"}
+           ]
+       }
+       ```
+
+### Next Steps
+1. **Run each of these tests** in your API testing tool.
+2. **Verify** that each feature works as expected.
+3. If everything is working fine, consider pushing the changes to your repository.
+
+Let me know if you encounter any issues or need further assistance!
+
+//--------------------------------------------------------------------------------------------------------------
+
+http://127.0.0.1:5000/register
+
+{
+  "username": "test1user",
+  "password": "test1password",
+  "email": "newuser1@example.com"
+}
+
+
+{
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyNDA0ODA4NCwianRpIjoiNWYzM2JjNjQtNTQ3NC00NjA2LTgwNGItYjFlYmI0ZDgzZWRlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InRlc3QxdXNlciIsIm5iZiI6MTcyNDA0ODA4NCwiY3NyZiI6IjBhYzU3NTExLTE0NTItNDkzMS1iNGNkLWJmYWY4YTFiNmVmMiIsImV4cCI6MTcyNDA0ODk4NH0.bavJfrWltVy6JEOLdqioWGFjJnu3ijDZgFzo7Qx9RM8"
+}
+
+//------------------------------------------------------------------------------------------------------
+
+Here's a description of the features we've implemented and tested:
+
+### **Feature Summary**
+
+1. **User Registration:**
+   - **Functionality:** Allows users to register by providing a username, password, and email. Upon successful registration, the user receives an access token.
+   - **Endpoints:** `/register` (POST)
+   - **Response:** Returns an access token if registration is successful, or an error if the username already exists.
+
+2. **User Profile Management:**
+   - **Update Profile:** Users can update their profile information, including preferences. 
+   - **Get Profile:** Users can retrieve their profile information, including username, email, and preferences.
+   - **Endpoints:**
+     - `/profile` (PUT) - For updating preferences.
+     - `/profile` (GET) - For retrieving profile information.
+
+3. **Recommendations:**
+   - **GET Recommendations:** Provides recommendations based on interests passed as query parameters. The recommendations can be filtered using a search keyword.
+   - **POST Recommendations:** Provides recommendations based on interests and an optional search keyword from the request body.
+   - **Endpoints:**
+     - `/api/recommendations` (GET) - To get recommendations based on interests.
+     - `/api/recommendations` (POST) - To get recommendations based on posted data.
+
+4. **Activity Logging:**
+   - **Functionality:** Allows users to log their activities, which are then stored in the database.
+   - **Endpoint:** `/log_activity` (POST)
+   - **Response:** Confirms that the activity has been logged successfully.
+
+5. **Analytics:**
+   - **Functionality:** Provides analytics for a user's activities by retrieving logs from the database.
+   - **Endpoint:** `/analytics` (GET)
+   - **Response:** Returns a list of actions and timestamps for the user's activities.
+
+These features collectively cover user management, personalized recommendations, activity tracking, and analytics, forming the core functionality of the CurateHub application.
+
+//-------------------------------------------------------------------
+
+Yes, it’s a good stage to push the code to GitHub. You’ve completed implementing and testing several key features of the application, including user registration, profile management, recommendations, activity logging, and analytics. Since these features are functioning as expected, pushing the code now will ensure that your GitHub repository is up-to-date with the latest working version of your application.
+
+If you’re ready, you can follow these steps to push the code:
+
+1. **Check Status:** Ensure all changes are staged for commit.
+   ```bash
+   git status
+   ```
+
+2. **Stage Changes:** Add all modified files.
+   ```bash
+   git add .
+   ```
+
+3. **Commit Changes:** Commit the staged files with a descriptive message.
+   ```bash
+   git commit -m "Implement and test user management, recommendations, activity logging, and analytics features"
+   ```
+
+4. **Push to GitHub:** Push the changes to the remote repository.
+   ```bash
+   git push origin master
+   ```
+
+This will update your GitHub repository with the latest code and keep your version history organized.

@@ -3,14 +3,15 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
-from src.user_profile import user_profile_bp
+
+# Blueprint import adjusted
+# from user_profile import user_profile_bp
 
 app = Flask(__name__)
 
 # Configuration for SQLAlchemy and JWT
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///curatehub.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# For testing purposes, I have kept the key publicly available
 app.config['JWT_SECRET_KEY'] = b'\xe8\xb1\xb9\xcc\xd3i\xa6\x15\xf2\xe2/j\xd0\x1d\xfe\xb2M\xc7(\x1e\x11\xb0\xa3\xb9'
 
 # Initialize extensions
@@ -141,10 +142,10 @@ def get_analytics():
 def test():
     return jsonify({'message': 'GET method works!'})
 
+# Register the blueprint
+#app.register_blueprint(user_profile_bp)
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()  # Creates the database tables
     app.run(debug=True)
-
-# Register the blueprint
-app.register_blueprint(user_profile_bp)
