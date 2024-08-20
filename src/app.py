@@ -3,9 +3,9 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
+import logging
 
-# Blueprint import adjusted
-# from user_profile import user_profile_bp
+logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__)
 
@@ -93,26 +93,70 @@ def get_profile():
 
 # GET method for recommendations
 @app.route('/api/recommendations', methods=['GET'])
+@jwt_required()
 def get_recommendations_get():
+    current_user = get_jwt_identity()
+    user = User.query.filter_by(username=current_user).first()
     interests = request.args.getlist('interests')
     search_keyword = request.args.get('search', '')
+
+    logging.debug("Interests: %s", interests)
+    logging.debug("Search Keyword: %s", search_keyword)
+
+    # Use user preferences if available
+    preferences = user.preferences.split(',') if user.preferences else []
+    logging.debug("Preferences: %s", preferences)
+
+    # Fetch recent activity logs
+    activity_logs = ActivityLog.query.filter_by(username=current_user).all()
+    past_actions = [log.action for log in activity_logs]
+    logging.debug("Past Actions: %s", past_actions)
+
+    # Combine interests, preferences, and past actions for recommendations
+    relevant_topics = set(interests + preferences + past_actions)
+    logging.debug("Relevant Topics: %s", relevant_topics)
+
     recommendations = [
-        {"title": f"Recommended video for {interest} 1"} for interest in interests
+        {"title": "Recommended video for %s 1" % topic} for topic in relevant_topics
     ]
+    logging.debug("Recommendations before search filter: %s", recommendations)
+
+    # Filter recommendations based on search keyword
+    if search_keyword:
+        recommendations = [rec for rec in recommendations if search_keyword.lower() in rec['title'].lower()]
+
+    logging.debug("Filtered Recommendations: %s", recommendations)
+
     return jsonify({'recommendations': recommendations})
 
 # POST method for recommendations
 @app.route('/api/recommendations', methods=['POST'])
+@jwt_required()
 def get_recommendations_post():
+    current_user = get_jwt_identity()
+    user = User.query.filter_by(username=current_user).first()
     data = request.json
     interest = data.get('interest')
     search_keyword = data.get('search', '')
+
+    # Use user preferences if available
+    preferences = user.preferences.split(',') if user.preferences else []
+
+    # Fetch recent activity logs
+    activity_logs = ActivityLog.query.filter_by(username=current_user).all()
+    past_actions = [log.action for log in activity_logs]
+
+    # Combine interest, preferences, and past actions for recommendations
+    relevant_topics = set([interest] + preferences + past_actions)
     recommendations = [
-        {"title": f"Recommended video for {interest} 1"},
-        {"title": f"Recommended video for {interest} 2"}
+        {"title": "Recommended video for %s" % topic} for topic in relevant_topics
     ]
-    filtered_recommendations = [rec for rec in recommendations if search_keyword.lower() in rec['title'].lower()]
-    return jsonify({"recommendations": filtered_recommendations})
+
+    # Filter recommendations based on search keyword
+    if search_keyword:
+        recommendations = [rec for rec in recommendations if search_keyword.lower() in rec['title'].lower()]
+
+    return jsonify({"recommendations": recommendations})
 
 # Log user activity
 @app.route('/log_activity', methods=['POST'])
