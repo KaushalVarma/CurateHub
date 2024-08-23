@@ -4,10 +4,25 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 import logging
+from flask_cors import CORS
+from flask import Flask, session, redirect, url_for
 
 logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__)
+app.secret_key = b'`\xc8\xe7C5\xc3\x13wE\xe4\xf0\xba\x8cM\xfeW\x0e\x87O6\x87\xbaP\x9f'
+
+# Initialize CORS
+CORS(app)  # Allow requests from all origins
+
+# Simulated user data for authentication
+users = {
+    'johndoe': {
+        'username': 'johndoe',
+        'email': 'johndoe@example.com',
+        'full_name': 'John Doe'
+    }
+}
 
 # Configuration for SQLAlchemy and JWT
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///curatehub.db'
@@ -91,6 +106,32 @@ def get_profile():
         return jsonify({"username": user.username, "email": user.email, "preferences": user.preferences}), 200
     return jsonify({"error": "User not found"}), 404
 
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+
+    # Extract username and password from the request data
+    username = data.get('username')
+    password = data.get('password')
+
+    user = User.query.filter_by(username=username).first()
+
+    # Simple authentication logic
+    if username in users and users[username] == password:
+        # If credentials are valid, return a success message
+        return jsonify({"access_token": "your_jwt_token_here"}), 200
+    else:
+        # If credentials are invalid, return an error message
+        return jsonify({"error": "Invalid credentials"}), 401
+
+@app.route('/logout', methods=['POST'])
+def logout():
+    # Clear the session to log the user out
+    session.clear()
+    # Redirect to the login page or home page after logout
+    return redirect(url_for('/login'))  # Replace 'login' with your login route
+
+
 # GET method for recommendations
 @app.route('/api/recommendations', methods=['GET'])
 @jwt_required()
@@ -157,6 +198,21 @@ def get_recommendations_post():
         recommendations = [rec for rec in recommendations if search_keyword.lower() in rec['title'].lower()]
 
     return jsonify({"recommendations": recommendations})
+
+#User Info
+@app.route('/user_info', methods=['GET'])
+def user_info():
+    # Retrieve username from query parameters
+    username = request.args.get('username')
+    
+    if not username:
+        return jsonify({'error': 'Username parameter is missing'}), 400
+    
+    if username not in users:
+        return jsonify({'error': 'User not found'}), 404
+    
+    return jsonify(users[username])
+
 
 # Log user activity
 @app.route('/log_activity', methods=['POST'])

@@ -1,0 +1,14 @@
+Registeration
+
+
+
+{
+  "username": "testuser124",
+  "password": "password@99",
+  "email": "testuser124@example.com",
+  "full_name": "Test User"
+}
+
+
+
+

@@ -1,9 +1,248 @@
+Running commands:
+
+G:\E_drive_data\GitHubProjects\CurateHub\CurateHub\frontend>npm start
+
+
+G:\E_drive_data\GitHubProjects\CurateHub\CurateHub\src>python app.py
+
+
+
+
+
+
+
+
+
+
+
+
+Generate an access token everytime from "http://127.0.0.1:5000/register" endpoint using below data:
+
+POST request
+
+{
+  "username": "testuser111",
+  "password": "password@991",
+  "email": "testuser124@example.com",
+  "full_name": "Test User"
+}
+
+
+Make sure to change everything in the request body.
+
+This will create an access token(everytime):
+
+{
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyNDQwOTEzMSwianRpIjoiYmZiZTc1YmItMmYzMS00MTJkLWE2ODgtODM0ZmE5MTI1MjI1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InRlc3Rpbmd1c2VyMTExIiwibmJmIjoxNzI0NDA5MTMxLCJjc3JmIjoiMTBjZTJmOGQtYjk2OC00NzQyLWE4ODktMGYyZjFkNjllNWIzIiwiZXhwIjoxNzI0NDEwMDMxfQ.bjYLcDModkqn_PxKVL4rbrLTUlqmrK5cBF21KHalbv0"
+}
+
+
+Use this access token to login
+
+Body:
+{
+  "username": "testuser111",
+  "password": "password@991"
+}
+
+
+headers:
+
+Content type: application/json
+access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyNDQwOTEzMSwianRpIjoiYmZiZTc1YmItMmYzMS00MTJkLWE2ODgtODM0ZmE5MTI1MjI1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InRlc3Rpbmd1c2VyMTExIiwibmJmIjoxNzI0NDA5MTMxLCJjc3JmIjoiMTBjZTJmOGQtYjk2OC00NzQyLWE4ODktMGYyZjFkNjllNWIzIiwiZXhwIjoxNzI0NDEwMDMxfQ.bjYLcDModkqn_PxKVL4rbrLTUlqmrK5cBF21KHalbv0
+
+
+
+
+
+Here are the steps to run both the frontend and backend of your application from VS Code:
+
+### **Backend (Flask Application)**
+1. **Open VS Code and Navigate to Your Backend Folder:**
+   - Make sure you have activated your Python virtual environment if you’re using one.
+   - Navigate to the folder where your `app.py` or equivalent Flask application file is located.
+
+2. **Activate the Virtual Environment (if applicable):**
+   - If you have a virtual environment, activate it:
+     - **Windows:** `venv\Scripts\activate`
+     - **macOS/Linux:** `source venv/bin/activate`
+
+3. **Run the Backend Server:**
+   - Open the integrated terminal in VS Code (``Ctrl + ` ``).
+   - Run the Flask application:
+     ```bash
+     python app.py
+     ```
+   - Make sure the backend server is running on `http://127.0.0.1:5000`.
+
+### **Frontend (HTML, CSS, JS)**
+1. **Open a New Terminal in VS Code:**
+   - Open a new terminal tab in VS Code by clicking the `+` icon in the terminal pane or using the shortcut (``Ctrl + Shift + ` ``).
+
+2. **Navigate to Your Frontend Folder:**
+   - In the new terminal tab, navigate to the folder where your `index.html` and other frontend files are located:
+     ```bash
+     cd G:\E_drive_data\GitHubProjects\CurateHub\CurateHub\frontend
+     ```
+
+3. **Serve the Frontend:**
+   - If you have a simple static frontend (HTML, CSS, JS), you can use a simple Python HTTP server to serve it:
+     ```bash
+     python -m http.server 5500
+     ```
+   - This command will serve your frontend at `http://localhost:5500`.
+
+### **Test the Application**
+1. **Open Your Browser:**
+   - Open a web browser and navigate to `http://localhost:5500/frontend/index.html` (or wherever your frontend entry point is).
+
+2. **Interact with the Application:**
+   - Attempt to log in or perform other actions and monitor the browser console and VS Code terminal for any errors.
+
+### **Debugging (Optional)**
+- **Set Breakpoints in VS Code**:
+  - For the backend: Open your `app.py` or any other relevant Python file, click on the line number where you want to set a breakpoint.
+  - Start the debugger by pressing `F5`.
+- **Monitor Logs**:
+  - Pay attention to both the terminal logs in VS Code and the browser console for any errors.
+
+By following these steps, you should be able to run and debug both the frontend and backend of your application from within VS Code.
+
+//------------------------------------------------------------------------------------------------------------------
+
+
+POSTMAN testing:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Here are the steps to run and test your application:
+
+### Step 1: Start Your Flask Backend
+1. **Navigate to your project directory** (where `app.py` is located).
+2. To start the virtual environment, you just need to open a terminal in "G:\E_drive_data\GitHubProjects\CurateHub\CurateHub\src>" folder.
+
+      ```
+3. **Run your Flask application**:
+    ```bash
+    python app.py
+    ```
+
+   This will start your Flask backend on `http://127.0.0.1:5000`.
+
+### Step 2: Start Your Frontend Server
+1. **Navigate to your frontend directory** (where `index.html` is located):
+    ```bash
+    cd G:\E_drive_data\GitHubProjects\CurateHub\CurateHub\frontend
+    ```
+2. **Start a simple HTTP server** to serve your frontend files:
+    - If you have Python 3 installed, you can use:
+      ```bash
+      python -m http.server 5500
+      ```
+    - Alternatively, you can use:
+      ```bash
+      npx serve
+      ```
+  
+   Your frontend will be accessible at `http://localhost:5500`.
+
+### Step 3: Test the Login Functionality
+1. **Open your browser** and navigate to your frontend URL:
+    ```
+    http://localhost:5500/frontend/
+    ```
+2. **Enter your login credentials** on the login page and submit the form.
+3. **Monitor the browser console** (press `F12` and go to the "Console" tab) to check for any errors.
+4. **Check the Flask backend console** to see if the login request is received and processed correctly.
+
+### Step 4: Debugging (If Necessary)
+- If the login is unsuccessful:
+  - **Check the Flask console** for any errors or missing routes.
+  - **Review the browser console** for CORS or network issues.
+  - Ensure that the `/login` route is defined correctly and accessible.
+
+
+
+//------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 python app.py
 
-(venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>python app.py
+To start the virtual environment, you just need to open a terminal in "G:\E_drive_data\GitHubProjects\CurateHub\CurateHub\src>" folder.
+
+Running html from python terminal:
+
+2. Run the Frontend
+You can serve your frontend files using a simple HTTP server. If you're using Python, navigate to the directory where your index.html is located (G:\E_drive_data\GitHubProjects\CurateHub\CurateHub\frontend) and run:
+
+bash
+Copy code
+python -m http.server 5500
+This command will start a local HTTP server at http://localhost:5500, serving your frontend files.
 
 
 
+List of folders:
+http://localhost:5500/
 
 //-----------------------------Testing--------------------------------------------
 Running the tests:

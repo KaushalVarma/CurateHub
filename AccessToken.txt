@@ -5,15 +5,20 @@ http://127.0.0.1:5000/register
 body:
 
 {
-  "username": "newuser23",
-  "password": "newpassword23",
-  "email": "newuser23@example.com"
+  "username": "testuser124",
+  "password": "password@99",
+  "email": "testuser124@example.com",
+  "full_name": "Test User"
 }
 
-Datestamp: 20-08-24
+Datestamp: 21-08-24
 
 Response(AWT):
 
 {
-    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyNDEzMDg3MSwianRpIjoiZTgxNzVlZTMtMzc1OS00N2QwLTk1MzMtNTRhYTI2Y2FmNGZjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6Im5ld3VzZXIyMzEyIiwibmJmIjoxNzI0MTMwODcxLCJjc3JmIjoiZjI5OTU2NmEtYmY1Ni00MDQ1LTlkMWMtNjdhZDg3MGQxOTc2IiwiZXhwIjoxNzI0MTMxNzcxfQ.i7eHoYd9wTjQ9smIwzX78VNfGrnbiSKn1N_InXTcHII"
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyNDMxMjM0MSwianRpIjoiMzU2ZGQ3MGQtZWYyNy00MDkyLTg2NDYtNGE4NzE0NTQzMzVlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InRlc3R1c2VyXzEiLCJuYmYiOjE3MjQzMTIzNDEsImNzcmYiOiJjOTgwN2FmNS0xMGExLTQwOGYtYWYwYS03YTZiNWY0NTZiZjMiLCJleHAiOjE3MjQzMTMyNDF9.TOJcqxdE8D8Jl7Q8GnFCCQglbYlwHzvlvlvKSRiIVSQ"
 }
+
+
+
+

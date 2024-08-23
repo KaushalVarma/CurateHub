@@ -9,7 +9,10 @@ more effectively, focusing on educational and high-quality content that aligns w
 
 **Problem Statement:**
 
-Online platforms like YouTube and Instagram use algorithms to tailor content recommendations based on user activity and history. While this can be beneficial for discovering new content, it can also lead to a feed that becomes monotonous or overwhelming. For example, a user might find themselves inundated with videos on a specific topic like real estate or back cracking after interacting with a few related videos. This can make it difficult to find and focus on new, relevant content or learning opportunities.
+Online platforms like YouTube and Instagram use algorithms to tailor content recommendations based on user activity and history. 
+While this can be beneficial for discovering new content, it can also lead to a feed that becomes monotonous or overwhelming. 
+For example, a user might find themselves inundated with videos on a specific topic like real estate or back cracking after 
+interacting with a few related videos. This can make it difficult to find and focus on new, relevant content or learning opportunities.
 
 **Solution:**
 
@@ -4516,3 +4519,1715 @@ Accomplished and next set of actions(20-8-24)
    - Collect feedback from users or stakeholders to make any necessary adjustments or improvements.
 
 Let me know if you need help with any of these steps or if you want to address something specific next!
+
+//-------------------------------------------------------------------------------------------------------------
+
+G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>git add .
+
+G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>git commit -m "Implemented and tested recommendations API endpoints; refined logging and error handling"
+[master 2f6c879] Implemented and tested recommendations API endpoints; refined logging and error handling
+ 4 files changed, 685 insertions(+), 13 deletions(-)
+
+G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>git push origin master
+Enumerating objects: 15, done.
+Counting objects: 100% (15/15), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (7/7), done.
+Writing objects: 100% (8/8), 6.46 KiB | 1.62 MiB/s, done.
+Total 8 (delta 5), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (5/5), completed with 4 local objects.
+To https://github.com/KaushalVarma/CurateHub
+   678ed8e..2f6c879  master -> master
+
+   //---------------------------------------------------------------------------------
+
+   The original purpose of the CurateHub application was to provide a platform where users can manage their preferences and activities, and receive personalized recommendations based on their interests and past actions. The core features included:
+
+1. **User Management**: Allowing users to register, log in, and manage their profiles.
+2. **Activity Logging**: Tracking user actions to enhance personalized recommendations.
+3. **Recommendation System**: Providing recommendations based on user preferences, interests, and past actions.
+4. **Analytics**: Offering insights into user activities and preferences.
+5. **Security**: Implementing JWT for secure authentication.
+
+You’ve made significant progress by implementing and testing features related to user management, activity logging, recommendations, and analytics. What’s the next focus for the application?
+
+//------------------------------------------------------------------------------
+
+Yes, we're making progress towards the goal of CurateHub. Here's how:
+
+1. **User Preferences and Interests**: We've implemented features to handle user preferences and interests, allowing users to manage and update their preferences, which aligns with the goal of tailoring content to their interests.
+
+2. **Recommendation System**: The recommendation endpoints have been designed to use user interests, preferences, and past actions to generate relevant content recommendations. This is a key part of curating high-quality content related to user-selected topics.
+
+3. **Activity Logging**: We've included logging of user activities, which helps in refining recommendations based on their interactions.
+
+4. **Testing and Validation**: The application has been tested for various scenarios to ensure that recommendations are generated correctly based on user inputs.
+
+To move further towards the original goal of curating high-quality content, the next steps might include:
+
+- **Integration with External APIs**: If feasible, integrating with platforms like YouTube to fetch and display content directly might enhance the user experience.(Starting with this)
+- **Advanced Filtering and Sorting**: Improving the recommendation logic to include more advanced filtering and sorting options based on content quality and relevance.
+- **User Feedback Mechanism**: Implementing a way for users to provide feedback on recommendations to continuously improve the system.
+- **User Interface Enhancements**: If applicable, developing a front-end interface to make interactions more user-friendly.
+
+
+   Keep this at the bottom everytime, add code above:
+   Check your code here: "https://github.com/KaushalVarma/CurateHub/tree/master"
+
+//--------------------------------------------------------------------------------------------------------------------------------
+
+FRONTEND
+
+Great! To begin developing the front end for CurateHub, we should outline the main components and design the user interface (UI) that will best represent the application's flow. Here’s how we can start:
+
+### 1. **Tech Stack Selection**
+   - **Frontend Framework:** Do you have a preferred framework in mind? Options could include React, Angular, or Vue.js.
+   - **Styling:** We can use CSS frameworks like Bootstrap or Tailwind CSS for a responsive design.
+   - **API Integration:** Axios or Fetch for making HTTP requests to our backend.
+
+### 2. **Basic UI Layout**
+   - **Home Page:** Introduction and overview of what CurateHub does.
+   - **User Authentication:** Sign-up and login forms.
+   - **User Dashboard:** Display user profile, preferences, and recommendations.
+   - **Recommendation Page:** List of curated content based on the user’s selected interests.
+   - **Activity Logs & Analytics:** Visual representation of user activity.
+
+### 3. **Component Breakdown**
+   - **Header and Navigation Bar:** Links to Home, Dashboard, Profile, Recommendations.
+   - **Form Components:** For registration, login, and updating user profiles.
+   - **Content Display:** For displaying recommendations, analytics, and user activity logs.
+
+### 4. **Wireframing**
+   - Create simple wireframes for each of the components and pages to visualize the design.
+
+### 5. **Implementation**
+   - Start coding the basic structure of the application.
+   - Integrate API endpoints with the frontend components.
+
+Given the requirements of the CurateHub application, the following options would be best suited for developing the front end:
+
+1. **Front-End Framework:** **React.js**
+   - **Why?** React is highly popular, offers component-based architecture, and has a large ecosystem of libraries for state management, routing, and more. It's also highly performant and can integrate well with back-end APIs.
+
+2. **CSS Framework:** **Tailwind CSS**
+   - **Why?** Tailwind CSS is highly customizable and allows for utility-first styling, making it easy to create a unique design while maintaining consistency. It integrates well with React and allows for rapid development.
+
+3. **State Management:** **Redux (with Redux Toolkit)**
+   - **Why?** Redux Toolkit simplifies the usage of Redux by reducing boilerplate code and providing best practices. It's a good choice for managing complex state across the application, especially with user preferences, activity logs, and recommendations.
+
+4. **Routing:** **React Router**
+   - **Why?** React Router is the standard routing library for React applications. It’s well-documented, flexible, and seamlessly integrates with React, making it easy to handle dynamic routing based on user interactions.
+
+5. **API Integration:** **Axios**
+   - **Why?** Axios is a promise-based HTTP client for making API requests. It's easy to use and can handle complex requests and responses, including the JWT-based authentication used in the CurateHub application.
+
+These choices should provide a robust and flexible front-end stack that can grow with the application's needs. 
+
+
+Given that you already have a basic frontend setup with `index.html`, `scripts.js`, and `styles.css`, we can focus on integrating the existing backend functionality with this frontend. Here's a plan:
+
+1. **Ensure API Connectivity**: We'll connect the frontend with your backend by ensuring that the JavaScript code in `scripts.js` can make requests to your Flask API.
+
+2. **Expand Frontend Functionality**:
+    - Add features like user registration, login, and profile management to the frontend.
+    - Enhance the recommendations section to allow for dynamic interaction with user preferences and interests.
+
+3. **Style Enhancements**: Refine the CSS to create a more polished and user-friendly interface.
+
+4. **Deployment Setup**: Consider setting up a simple deployment pipeline that serves both the frontend and backend, allowing you to run the full application locally or on a server.
+
+Would you like to proceed with connecting your existing frontend to the backend API and expanding the features?
+
+//-----------------------------------------------------------------------------------------------------------------------------------
+
+Great! Let's start by updating your existing frontend files to connect with the backend API and add some basic user interactions like registration, login, and displaying recommendations.
+
+### 1. Update `index.html`
+We’ll add sections for user registration, login, and profile management.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CurateHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to CurateHub</h1>
+    </header>
+    <main>
+        <!-- User Registration -->
+        <section id="user-registration">
+            <h2>Register</h2>
+            <form id="register-form">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Register</button>
+            </form>
+        </section>
+
+        <!-- User Login -->
+        <section id="user-login">
+            <h2>Login</h2>
+            <form id="login-form">
+                <input type="text" id="login-username" placeholder="Username" required>
+                <input type="password" id="login-password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </section>
+
+        <!-- Interest Selection and Recommendations -->
+        <section id="interest-selection">
+            <h2>Select Your Interests</h2>
+            <form id="interest-form">
+                <input type="text" id="interest-input" placeholder="Enter a topic or technology">
+                <button type="submit">Submit</button>
+            </form>
+            <div id="recommendations">
+                <!-- Recommendations will be displayed here -->
+            </div>
+        </section>
+    </main>
+    <script src="scripts.js"></script>
+</body>
+</html>
+```
+
+### 2. Update `scripts.js`
+We'll add functions for user registration, login, and sending the JWT token with API requests.
+
+```javascript
+document.getElementById('register-form').addEventListener('submit', function(event){
+    event.preventDefault();
+    let username = document.getElementById('username').value;
+    let email = document.getElementById('email').value;
+    let password = document.getElementById('password').value;
+
+    fetch('/register', {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({ username: username, email: email, password: password })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.access_token) {
+            localStorage.setItem('jwt_token', data.access_token);
+            alert('Registration successful');
+        } else {
+            alert('Registration failed');
+        }
+    });
+});
+
+document.getElementById('login-form').addEventListener('submit', function(event){
+    event.preventDefault();
+    let username = document.getElementById('login-username').value;
+    let password = document.getElementById('login-password').value;
+
+    fetch('/login', {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({ username: username, password: password })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.access_token) {
+            localStorage.setItem('jwt_token', data.access_token);
+            alert('Login successful');
+        } else {
+            alert('Login failed');
+        }
+    });
+});
+
+document.getElementById('interest-form').addEventListener('submit', function(event){
+    event.preventDefault();
+    let interest = document.getElementById('interest-input').value;
+    let token = localStorage.getItem('jwt_token');
+
+    if(interest && token){
+        // Send interest to the backend and fetch recommendations
+        fetch('/api/recommendations', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ interest: interest })
+        })
+        .then(response => response.json())
+        .then(data => {
+            let recommendationsDiv = document.getElementById('recommendations');
+            recommendationsDiv.innerHTML = '<h3>Recommendations:</h3>';
+            data.recommendations.forEach(item => {
+                let p = document.createElement('p');
+                p.textContent = item.title;
+                recommendationsDiv.appendChild(p);
+            });
+        });
+    }
+});
+```
+
+### 3. Update `styles.css`
+You can customize the styles further, but the basic CSS you provided should be fine for now.
+
+### Next Steps
+1. **Test the Frontend:** Load `index.html` in your browser and test the registration, login, and interest submission.
+2. **Iterate:** Depending on the results, we can make further refinements or add more functionality, such as displaying user profiles or integrating more advanced features.
+
+Would you like to proceed with these updates?
+
+//----------------------------------------------------------------------------
+
+Here's a basic `styles.css` file to complement the HTML and JavaScript functionality:
+
+```css
+/* Basic styling for the entire body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Styling for the header section */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 0;
+    text-align: center;
+}
+
+/* Main content area */
+main {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Styling for each section (registration, login, interest selection) */
+section {
+    margin-bottom: 30px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading styles */
+h2 {
+    color: #333;
+}
+
+/* Input fields and buttons */
+input[type="text"], input[type="email"], input[type="password"] {
+    width: calc(100% - 40px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Recommendations section */
+#recommendations {
+    margin-top: 20px;
+}
+
+#recommendations h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+#recommendations p {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+```
+
+### Explanation:
+- **Body and Header**: Basic styling for the entire body, with a dark header to make the title stand out.
+- **Sections**: Each section (registration, login, interest selection) has a white background with a subtle shadow for a card-like appearance.
+- **Input Fields and Buttons**: Styled to be user-friendly, with adequate padding, borders, and rounded corners.
+- **Recommendations**: Recommendations are displayed in a light grey background with a border to distinguish them from other content.
+
+This should give your application a clean and functional appearance. Would you like to proceed with testing the front end now?
+
+//--------------------------------------------------------------------------------------------------------
+
+To separate user login and registration onto different pages, you'll need to create distinct HTML files for each page and update your JavaScript and CSS accordingly. Here’s how you can structure it:
+
+### File Structure
+```
+frontend/
+│
+├── index.html
+├── login.html
+├── register.html
+├── scripts.js
+└── styles.css
+```
+
+### `frontend/index.html`
+This file will remain the same as before, handling interest selection and recommendations.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CurateHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to CurateHub</h1>
+    </header>
+    <main>
+        <!-- Interest Selection and Recommendations -->
+        <section id="interest-selection">
+            <h2>Select Your Interests</h2>
+            <form id="interest-form">
+                <input type="text" id="interest-input" placeholder="Enter a topic or technology">
+                <button type="submit">Submit</button>
+            </form>
+            <div id="recommendations">
+                <!-- Recommendations will be displayed here -->
+            </div>
+        </section>
+    </main>
+    <script src="scripts.js"></script>
+</body>
+</html>
+```
+
+### `frontend/login.html`
+This page will handle user login.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - CurateHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Login to CurateHub</h1>
+    </header>
+    <main>
+        <section id="user-login">
+            <h2>Login</h2>
+            <form id="login-form">
+                <input type="text" id="login-username" placeholder="Username" required>
+                <input type="password" id="login-password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <div id="login-message"></div>
+            <p>Don't have an account? <a href="register.html">Register here</a></p>
+        </section>
+    </main>
+    <script src="scripts.js"></script>
+</body>
+</html>
+```
+
+### `frontend/register.html`
+This page will handle user registration.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - CurateHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Register for CurateHub</h1>
+    </header>
+    <main>
+        <section id="user-registration">
+            <h2>Register</h2>
+            <form id="register-form">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Register</button>
+            </form>
+            <div id="register-message"></div>
+            <p>Already have an account? <a href="login.html">Login here</a></p>
+        </section>
+    </main>
+    <script src="scripts.js"></script>
+</body>
+</html>
+```
+
+### `frontend/scripts.js`
+Update the JavaScript to handle login and registration operations:
+
+```javascript
+// Handle interest form submission
+document.getElementById('interest-form')?.addEventListener('submit', function(event){
+    event.preventDefault();
+    let interest = document.getElementById('interest-input').value;
+    let token = localStorage.getItem('jwt_token');
+
+    if(interest && token){
+        fetch('/api/recommendations', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ interest: interest })
+        })
+        .then(response => response.json())
+        .then(data => {
+            let recommendationsDiv = document.getElementById('recommendations');
+            recommendationsDiv.innerHTML = '<h3>Recommendations:</h3>';
+            data.recommendations.forEach(item => {
+                let p = document.createElement('p');
+                p.textContent = item.title;
+                recommendationsDiv.appendChild(p);
+            });
+        });
+    }
+});
+
+// Handle registration form submission
+document.getElementById('register-form')?.addEventListener('submit', function(event){
+    event.preventDefault();
+    let username = document.getElementById('username').value;
+    let email = document.getElementById('email').value;
+    let password = document.getElementById('password').value;
+
+    fetch('/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username: username, email: email, password: password })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.access_token) {
+            localStorage.setItem('jwt_token', data.access_token);
+            document.getElementById('register-message').textContent = 'Registration successful!';
+        } else {
+            document.getElementById('register-message').textContent = 'Registration failed!';
+        }
+    });
+});
+
+// Handle login form submission
+document.getElementById('login-form')?.addEventListener('submit', function(event){
+    event.preventDefault();
+    let username = document.getElementById('login-username').value;
+    let password = document.getElementById('login-password').value;
+
+    fetch('/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username: username, password: password })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.access_token) {
+            localStorage.setItem('jwt_token', data.access_token);
+            document.getElementById('login-message').textContent = 'Login successful!';
+            window.location.href = 'index.html'; // Redirect to main page on successful login
+        } else {
+            document.getElementById('login-message').textContent = 'Login failed!';
+        }
+    });
+});
+```
+
+### `frontend/styles.css`
+No major changes are needed here, but you might want to ensure styles are consistent across all pages.
+
+With these changes, you’ll have separate pages for user registration and login, and the main page for interest selection and recommendations. Make sure your backend supports these endpoints (`/register`, `/login`, `/api/recommendations`) for the front end to function correctly.
+   
+
+//---------------------------------------------------------------------------------------------------------------
+
+It looks like there are still issues with the `POST` request to `/register`. Here's how to address these problems:
+
+### **1. Fixing the `405 (Method Not Allowed)` Error**
+
+This error indicates that the server is rejecting the POST request. 
+
+#### **Steps to Resolve:**
+
+- **Verify Route Definition**: Ensure that the `/register` route in `app.py` is correctly defined to handle POST requests.
+
+In `app.py`, confirm the route definition:
+
+```python
+@app.route('/register', methods=['POST'])
+def register():
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
+    email = data.get('email')
+
+    if User.query.filter_by(username=username).first() is not None:
+        return jsonify({"error": "Username already exists"}), 400
+
+    new_user = User(username=username, email=email)
+    new_user.set_password(password)
+    db.session.add(new_user)
+    db.session.commit()
+
+    access_token = create_access_token(identity=username)
+    return jsonify({"access_token": access_token}), 201
+```
+
+- **Check URL Path**: Ensure the URL used in the fetch request matches the route defined in `app.py`.
+
+If the `app.py` is correctly defined, check if there's an issue with how your server is configured or how the fetch request is being routed. 
+
+- **Verify Server Configuration**: Ensure that the Flask server is running and listening on the expected port (`5500` in your case). If you have modified the port, make sure to update it in the fetch request URL.
+
+### **2. Handling Network Response Errors**
+
+The `Network response was not ok` error indicates that the server response is not what was expected. This is related to the `405` error but could also be caused by other server-side issues.
+
+#### **Steps to Resolve:**
+
+- **Update Frontend Code**: Ensure your fetch request properly handles HTTP errors. Here's how you can improve the error handling:
+
+Update your `scripts.js` file with better error handling:
+
+```javascript
+fetch('/register', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ username: username, email: email, password: password })
+})
+.then(response => {
+    if (!response.ok) {
+        return response.text().then(text => {
+            throw new Error(`HTTP error! Status: ${response.status}, ${text}`);
+        });
+    }
+    return response.json();
+})
+.then(data => {
+    if (data.access_token) {
+        localStorage.setItem('jwt_token', data.access_token);
+        document.getElementById('register-message').textContent = 'Registration successful!';
+    } else {
+        document.getElementById('register-message').textContent = 'Registration failed!';
+    }
+})
+.catch(error => {
+    document.getElementById('register-message').textContent = 'An error occurred. Please try again.';
+    document.getElementById('register-message').style.color = 'red';
+    console.error('Error:', error);
+});
+```
+
+### **Next Steps**
+
+1. **Check Server Logs**: Look at the Flask server logs to see if there are any errors or warnings that provide more context.
+
+2. **Test Endpoints**: Use tools like Postman or cURL to manually test the `/register` endpoint to ensure it's functioning correctly.
+
+3. **Verify Network Requests**: Use browser developer tools to check the network requests and responses to ensure the client-side and server-side interactions are correct.
+
+Would you like to make these changes or need help with any specific step?
+
+//---------------------------------------------------------------------------------------
+
+The CORS (Cross-Origin Resource Sharing) error you're encountering happens when your frontend (running on `http://localhost:5500`) tries to make a request to your backend (running on `http://127.0.0.1:5000`), but the backend isn't configured to allow requests from the origin of your frontend.
+
+To fix this, you need to enable CORS in your Flask backend. Here's how you can do it:
+
+1. **Install Flask-CORS**: You need to install the `flask-cors` library, which provides a way to handle CORS in Flask applications.
+
+   ```bash
+   pip install flask-cors
+   ```
+
+2. **Update `app.py`**: Modify your `app.py` to import and configure `CORS`.
+
+   ```python
+   from flask import Flask, jsonify, request
+   from flask_sqlalchemy import SQLAlchemy
+   from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+   from werkzeug.security import generate_password_hash, check_password_hash
+   from datetime import datetime
+   import logging
+   from flask_cors import CORS  # Import CORS
+
+   logging.basicConfig(level=logging.DEBUG)
+
+   app = Flask(__name__)
+
+   # Initialize CORS
+   CORS(app, resources={r"/*": {"origins": "*"}})  # Allow requests from all origins
+
+   # Configuration for SQLAlchemy and JWT
+   app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///curatehub.db'
+   app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+   app.config['JWT_SECRET_KEY'] = b'\xe8\xb1\xb9\xcc\xd3i\xa6\x15\xf2\xe2/j\xd0\x1d\xfe\xb2M\xc7(\x1e\x11\xb0\xa3\xb9'
+
+   # Initialize extensions
+   db = SQLAlchemy(app)
+   jwt = JWTManager(app)
+
+   # User model
+   class User(db.Model):
+       id = db.Column(db.Integer, primary_key=True)
+       username = db.Column(db.String(80), unique=True, nullable=False)
+       password_hash = db.Column(db.String(120), nullable=False)
+       email = db.Column(db.String(120), unique=True, nullable=False)
+       preferences = db.Column(db.String(500), nullable=True)
+
+       def set_password(self, password):
+           self.password_hash = generate_password_hash(password)
+
+       def check_password(self, password):
+           return check_password_hash(self.password_hash, password)
+
+   # Activity Log model
+   class ActivityLog(db.Model):
+       id = db.Column(db.Integer, primary_key=True)
+       username = db.Column(db.String(80), nullable=False)
+       action = db.Column(db.String(200), nullable=False)
+       timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+
+       def __repr__(self):
+           return f'<ActivityLog {self.username} - {self.action}>'
+
+   # Home route
+   @app.route('/')
+   def home():
+       return "Welcome to CurateHub!"
+
+   # User registration
+   @app.route('/register', methods=['POST'])
+   def register():
+       data = request.get_json()
+       username = data.get('username')
+       password = data.get('password')
+       email = data.get('email')
+
+       if User.query.filter_by(username=username).first() is not None:
+           return jsonify({"error": "Username already exists"}), 400
+
+       new_user = User(username=username, email=email)
+       new_user.set_password(password)
+       db.session.add(new_user)
+       db.session.commit()
+
+       access_token = create_access_token(identity=username)
+       return jsonify({"access_token": access_token}), 201
+
+   # User profile update
+   @app.route('/profile', methods=['PUT'])
+   @jwt_required()
+   def update_profile():
+       current_user = get_jwt_identity()
+       data = request.get_json()
+       preferences = data.get('preferences')
+
+       user = User.query.filter_by(username=current_user).first()
+       if user:
+           user.preferences = preferences
+           db.session.commit()
+           return jsonify({"message": "Profile updated successfully"}), 200
+       return jsonify({"error": "User not found"}), 404
+
+   # Get user profile
+   @app.route('/profile', methods=['GET'])
+   @jwt_required()
+   def get_profile():
+       current_user = get_jwt_identity()
+       user = User.query.filter_by(username=current_user).first()
+       if user:
+           return jsonify({"username": user.username, "email": user.email, "preferences": user.preferences}), 200
+       return jsonify({"error": "User not found"}), 404
+
+   # GET method for recommendations
+   @app.route('/api/recommendations', methods=['GET'])
+   @jwt_required()
+   def get_recommendations_get():
+       current_user = get_jwt_identity()
+       user = User.query.filter_by(username=current_user).first()
+       interests = request.args.getlist('interests')
+       search_keyword = request.args.get('search', '')
+
+       logging.debug("Interests: %s", interests)
+       logging.debug("Search Keyword: %s", search_keyword)
+
+       # Use user preferences if available
+       preferences = user.preferences.split(',') if user.preferences else []
+       logging.debug("Preferences: %s", preferences)
+
+       # Fetch recent activity logs
+       activity_logs = ActivityLog.query.filter_by(username=current_user).all()
+       past_actions = [log.action for log in activity_logs]
+       logging.debug("Past Actions: %s", past_actions)
+
+       # Combine interests, preferences, and past actions for recommendations
+       relevant_topics = set(interests + preferences + past_actions)
+       logging.debug("Relevant Topics: %s", relevant_topics)
+
+       recommendations = [
+           {"title": "Recommended video for %s 1" % topic} for topic in relevant_topics
+       ]
+       logging.debug("Recommendations before search filter: %s", recommendations)
+
+       # Filter recommendations based on search keyword
+       if search_keyword:
+           recommendations = [rec for rec in recommendations if search_keyword.lower() in rec['title'].lower()]
+
+       logging.debug("Filtered Recommendations: %s", recommendations)
+
+       return jsonify({'recommendations': recommendations})
+
+   # POST method for recommendations
+   @app.route('/api/recommendations', methods=['POST'])
+   @jwt_required()
+   def get_recommendations_post():
+       current_user = get_jwt_identity()
+       user = User.query.filter_by(username=current_user).first()
+       data = request.json
+       interest = data.get('interest')
+       search_keyword = data.get('search', '')
+
+       # Use user preferences if available
+       preferences = user.preferences.split(',') if user.preferences else []
+
+       # Fetch recent activity logs
+       activity_logs = ActivityLog.query.filter_by(username=current_user).all()
+       past_actions = [log.action for log in activity_logs]
+
+       # Combine interest, preferences, and past actions for recommendations
+       relevant_topics = set([interest] + preferences + past_actions)
+       recommendations = [
+           {"title": "Recommended video for %s" % topic} for topic in relevant_topics
+       ]
+
+       # Filter recommendations based on search keyword
+       if search_keyword:
+           recommendations = [rec for rec in recommendations if search_keyword.lower() in rec['title'].lower()]
+
+       return jsonify({"recommendations": recommendations})
+
+   # Log user activity
+   @app.route('/log_activity', methods=['POST'])
+   @jwt_required()
+   def log_activity():
+       current_user = get_jwt_identity()
+       data = request.get_json()
+       action = data.get('action')
+
+       log = ActivityLog(username=current_user, action=action)
+       db.session.add(log)
+       db.session.commit()
+
+       return jsonify({"message": "Activity logged successfully"}), 201
+
+   # Get user analytics
+   @app.route('/analytics', methods=['GET'])
+   @jwt_required()
+   def get_analytics():
+       current_user = get_jwt_identity()
+       logs = ActivityLog.query.filter_by(username=current_user).all()
+       analytics = [{"action": log.action, "timestamp": log.timestamp} for log in logs]
+       return jsonify({"analytics": analytics}), 200
+
+   # Test route
+   @app.route('/test', methods=['GET'])
+   def test():
+       return jsonify({'message': 'GET method works!'})
+
+   # Register the blueprint
+   #app.register_blueprint(user_profile_bp)
+
+   if __name__ == '__main__':
+       with app.app_context():
+           db.create_all()  # Creates the database tables
+       app.run(debug=True)
+   ```
+
+This update includes:
+
+- Importing and initializing `CORS` in your Flask app.
+- Configuring `CORS` to allow requests from any origin (`'*'`). You can modify the configuration to be more restrictive if needed.
+
+After making these changes, restart your Flask server and try the requests again from your frontend. This should resolve the CORS issues and allow your frontend to communicate with the backend.
+
+//------------------------------------------------------------------------------------------------------------
+
+The errors you’re encountering suggest a few key issues:
+
+1. **CORS Policy Blocking**: Your browser is blocking the request due to Cross-Origin Resource Sharing (CORS) policy restrictions. This happens when your frontend (running on `http://localhost:5500`) tries to access a resource from a different origin (your backend at `http://127.0.0.1:5000`).
+
+2. **Incorrect Endpoint (`login.html`)**: The request is mistakenly being sent to `/login.html` instead of `/login`. This is likely causing the 404 errors because the Flask backend doesn't have a route for `login.html`.
+
+### Steps to Fix:
+
+1. **Enable CORS in Flask**:
+   - To fix the CORS issue, you need to allow cross-origin requests in your Flask app. You can do this by installing the `flask-cors` package and updating your `app.py`.
+
+   ```bash
+   pip install flask-cors
+   ```
+
+   Then, modify your `app.py`:
+
+   ```python
+   from flask_cors import CORS
+
+   app = Flask(__name__)
+   CORS(app)  # Enable CORS for all routes
+   ```
+
+2. **Correct the Endpoint in `scripts.js`**:
+   - Ensure that your JavaScript code is making a request to the correct endpoint. In your `scripts.js`, the fetch call for login should look like this:
+
+   ```javascript
+   fetch('http://127.0.0.1:5000/login', {
+       method: 'POST',
+       headers: {
+           'Content-Type': 'application/json'
+       },
+       body: JSON.stringify({ username: username, password: password })
+   })
+   .then(response => {
+       if (!response.ok) {
+           throw new Error('Network response was not ok');
+       }
+       return response.json();
+   })
+   .then(data => {
+       if (data.access_token) {
+           localStorage.setItem('jwt_token', data.access_token);
+           document.getElementById('login-message').textContent = 'Login successful!';
+           window.location.href = 'index.html'; // Redirect to main page on successful login
+       } else {
+           document.getElementById('login-message').textContent = 'Login failed!';
+       }
+   })
+   .catch(error => {
+       console.error('Error:', error);
+       document.getElementById('login-message').textContent = 'Login failed!';
+   });
+   ```
+
+   Notice that the fetch URL should be `http://127.0.0.1:5000/login`, not `http://127.0.0.1:5000/login.html`.
+
+### Next Steps:
+1. **Update `app.py`** to enable CORS.
+2. **Correct the fetch URL in `scripts.js`** to remove `.html`.
+3. **Restart the Flask server** after making these changes.
+4. **Refresh your frontend in the browser** and attempt the login again.
+
+These steps should resolve the CORS issue and the incorrect endpoint problem, allowing you to test the login functionality properly.
+
+//------------------------------------------------------------------------------------------------------------
+
+Since the `/login` route hasn't been defined in your Flask backend, you'll need to create this endpoint to handle login requests. Here's how you can do it:
+
+### 1. **Define the `/login` Route in Flask**
+Add a route in your `app.py` to handle POST requests to `/login`. This route should accept user credentials, authenticate them, and return an appropriate response (e.g., a JWT token if successful).
+
+Here’s an example:
+
+```python
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
+
+# Simulated user data for authentication
+users = {
+    "admin": "password123",
+    "user": "userpassword"
+}
+
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+
+    # Extract username and password from the request data
+    username = data.get('username')
+    password = data.get('password')
+
+    # Simple authentication logic
+    if username in users and users[username] == password:
+        # If credentials are valid, return a success message
+        return jsonify({"access_token": "your_jwt_token_here"}), 200
+    else:
+        # If credentials are invalid, return an error message
+        return jsonify({"error": "Invalid credentials"}), 401
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+### 2. **Update Frontend to Use the `/login` Endpoint**
+Ensure your frontend is making a `POST` request to this new `/login` route. Your `scripts.js` should look like this:
+
+```javascript
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    fetch('http://127.0.0.1:5000/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username: username, password: password })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.access_token) {
+            localStorage.setItem('jwt_token', data.access_token);
+            document.getElementById('login-message').textContent = 'Login successful!';
+            window.location.href = 'index.html'; // Redirect after successful login
+        } else {
+            document.getElementById('login-message').textContent = 'Login failed!';
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        document.getElementById('login-message').textContent = 'Login failed!';
+    });
+});
+```
+
+### 3. **Test the Login Flow**
+1. **Run your Flask backend** with the newly defined `/login` route.
+2. **Attempt to log in through your frontend**.
+3. **Check the browser’s console and Flask server logs** to ensure everything is working as expected.
+
+This should resolve the issue you're facing with the login process. If you encounter any errors, review the console and server logs for specific details.
+
+//-----------------------------------------------------------------------------------------------------------------
+
+Error tracing and resolution:
+
+When you've written a lot of code and start encountering errors, it's important to approach debugging systematically. Here’s a step-by-step guide to help you trace the error, identify its origin, and repair it using logs and the debugger tool in VS Code:
+
+### 1. **Read the Error Message**
+   - **Browser Console/Terminal**: Start by carefully reading the error message in your browser's console (for frontend issues) or terminal/console (for backend issues). This often gives clues about the nature of the error, like the file, line number, or type of error.
+
+### 2. **Use Logging**
+   - **Add Logging Statements**: Insert logging statements at various points in your code to trace the flow of execution and inspect variables’ values. For example, in Python with Flask, you can use `logging.debug()`, `logging.info()`, `logging.warning()`, etc.
+   - **Check Logs**: In the VS Code terminal or your console, review these logs to see how the program is behaving up to the point where the error occurs.
+
+### 3. **Use VS Code Debugger**
+   - **Set Breakpoints**: Open the file where you suspect the error might be. Click on the left side of the line number to set a breakpoint. This will pause the execution at that point, allowing you to inspect the state of your application.
+   - **Run Debugging Session**:
+     - Go to the Run and Debug panel in VS Code (from the left sidebar).
+     - Click on "Run and Debug" and select the appropriate configuration (e.g., "Python: Flask" for a Flask app).
+     - Your application will start in debug mode, and execution will pause when it hits a breakpoint.
+   - **Inspect Variables**: When execution pauses, you can hover over variables to see their current values or use the Variables panel on the left to inspect the entire scope.
+   - **Step Through the Code**: Use the Step Over (`F10`), Step Into (`F11`), and Step Out (`Shift+F11`) buttons to navigate through your code line by line.
+   - **Watch Expressions**: You can add specific variables or expressions to the "Watch" panel to monitor their values as you step through your code.
+
+### 4. **Isolate the Issue**
+   - **Narrow Down**: If possible, isolate the problematic code by commenting out sections or running simplified versions of the code. This helps you focus on the part that is causing the error.
+   - **Check Dependencies**: Ensure that all your dependencies (e.g., APIs, database connections) are correctly set up and accessible.
+
+### 5. **Test with Postman**
+   - **Manually Test APIs**: Use Postman or a similar tool to manually test your API endpoints. This helps you determine if the issue is with the API itself or how it’s being called from the frontend.
+
+### 6. **Iterate and Refine**
+   - After identifying the error, fix it, and then test your application again. If new errors arise, repeat the process.
+
+### 7. **Check for Common Issues**
+   - **CORS Issues**: These often occur when making requests between different domains (e.g., frontend on `localhost:5500` and backend on `127.0.0.1:5000`). Ensure that your backend is configured to allow requests from your frontend.
+   - **404 or 405 Errors**: Double-check your routes and HTTP methods. Ensure that the endpoint exists and that you're using the correct method (GET, POST, etc.).
+
+### 8. **Document and Review**
+   - Keep notes on what changes you make during debugging. This documentation can be invaluable if you need to revert or if similar issues arise later.
+
+By following these steps and leveraging the tools provided by VS Code, you can efficiently trace, identify, and fix errors in your code.
+
+//--------------------------------------------------------------------------------------------------------------------------------
+
+Sure, let's go through the process of running your application and using debugging tools in VS Code. Here’s a step-by-step guide:
+
+### 1. **Start the Backend**
+   - Open your terminal and navigate to the directory containing your Flask application.
+   - Activate your virtual environment if needed:
+     ```bash
+     source venv/bin/activate  # On Linux/MacOS
+     venv\Scripts\activate     # On Windows
+     ```
+   - Run the Flask application:
+     ```bash
+     python app.py
+     ```
+   - Ensure that your Flask app is running on `http://127.0.0.1:5000`.
+
+### 2. **Start the Frontend**
+   - In another terminal or command prompt, navigate to your frontend directory (e.g., `G:\E_drive_data\GitHubProjects\CurateHub\CurateHub\frontend`).
+   - Use a simple HTTP server to serve the frontend:
+     ```bash
+     python -m http.server 5500
+     ```
+   - Ensure your frontend is accessible at `http://localhost:5500/frontend/`.
+
+### 3. **Open VS Code and Set Breakpoints**
+   - Open your project in VS Code.
+   - Navigate to the Python files in your backend where you suspect the issue might be.
+   - Click on the line number to set breakpoints where you want the execution to pause.
+   
+### 4. **Run the Application in Debug Mode**
+   - Go to the Run and Debug panel in VS Code.
+   - Click "Run and Debug," and choose the appropriate configuration (e.g., Flask app).
+   - The application will start in debug mode.
+
+### 5. **Perform the Action that Triggers the Error**
+   - Open your browser and go to your frontend URL (`http://localhost:5500/frontend/`).
+   - Try logging in or performing the action that triggers the error.
+
+### 6. **Inspect the Debugger**
+   - VS Code should pause execution at the breakpoints you set.
+   - Use the Variables panel to inspect the current state.
+   - Use the Step Over (`F10`), Step Into (`F11`), and Step Out (`Shift+F11`) options to navigate through the code.
+   - Watch for any anomalies or incorrect values.
+
+### 7. **Check Logs and Console**
+   - **Browser Console**: Inspect the browser console for any CORS or network-related issues.
+   - **VS Code Terminal**: Check for any error messages or logs that can help identify where the issue is occurring.
+
+### 8. **Fix and Test Again**
+   - Based on your findings, make the necessary code changes.
+   - Stop the server, re-run the application, and test again.
+
+By following these steps, you should be able to effectively trace, identify, and fix the issue in your application.
+
+//-------------------------------------------------------------------------------------------------------
+
+To test all the endpoints in POSTMAN and ensure your backend and frontend are functioning properly, follow these steps:
+
+### Backend (Flask API) Endpoints
+These are the key endpoints you might have in your Flask API:
+
+1. **Register**
+   - **Method:** POST
+   - **Endpoint:** `http://127.0.0.1:5000/register`
+   - **Body (JSON):**
+     ```json
+     {
+       "username": "your_username",
+       "password": "your_password"
+     }
+     ```
+
+2. **Login**
+   - **Method:** POST
+   - **Endpoint:** `http://127.0.0.1:5000/login`
+   - **Body (JSON):**
+     ```json
+     {
+       "username": "your_username",
+       "password": "your_password"
+     }
+     ```
+
+3. **Get User Info**
+   - **Method:** GET
+   - **Endpoint:** `http://127.0.0.1:5000/user_info`
+   - **Headers:**
+     - `Authorization: Bearer <JWT_TOKEN>`
+
+4. **Logout**
+   - **Method:** POST
+   - **Endpoint:** `http://127.0.0.1:5000/logout`
+   - **Headers:**
+     - `Authorization: Bearer <JWT_TOKEN>`
+
+### Frontend
+Your frontend will interact with these endpoints via JavaScript. To test your frontend:
+
+1. **Run the Backend:**
+   - Open a terminal in VS Code.
+   - Navigate to the backend folder.
+   - Run the backend server:
+     ```bash
+     python app.py
+     ```
+
+2. **Run the Frontend:**
+   - Open a new terminal in VS Code.
+   - Navigate to your frontend folder.
+   - Run the frontend server:
+     ```bash
+     live-server --port=5500
+     ```
+   - Ensure `index.html` is accessible at `http://localhost:5500/frontend/index.html`.
+
+### Testing in POSTMAN
+1. **Open POSTMAN** and create new requests for each endpoint listed above.
+2. **Set the Method and URL** according to the endpoint.
+3. **Provide necessary Headers/Body** if required.
+4. **Send the request** and check the response for each endpoint.
+
+### Debugging
+If you face issues:
+- **Check the response status and message** in POSTMAN.
+- **Inspect the logs in VS Code** where the backend is running to identify any errors.
+- **Use breakpoints** and the debugger in VS Code to step through the backend code.
+
+Let me know if you encounter any specific errors or need further assistance!
+
+//---------------------------------------------------------------------------------
+
+The `404 Not Found` error indicates that the URL `http://127.0.0.1:5000/user_info` does not match any route defined in your Flask application.
+
+Here’s how you can troubleshoot and resolve this issue:
+
+1. **Verify Route Definition:**
+   - Check your Flask application's `routes.py` or relevant file where routes are defined.
+   - Ensure that the route `/user_info` is defined and correctly implemented. For example:
+     ```python
+     @app.route('/user_info', methods=['GET'])
+     def user_info():
+         # Your code here
+         return jsonify({'user': 'info'})
+     ```
+
+2. **Check Route Method:**
+   - Ensure that the route method (GET, POST, etc.) matches what you're using in Postman.
+   - If your route is defined to accept `GET` requests, make sure you are sending a `GET` request in Postman.
+
+3. **Confirm URL and Port:**
+   - Double-check the URL and port number you are using to make sure it matches what your Flask server is running on.
+
+4. **Restart Flask Server:**
+   - Restart your Flask server to make sure it picks up any recent changes you made to the routes.
+
+5. **Check Flask Configuration:**
+   - Ensure that your Flask app is correctly set up to handle requests and that no routing issues are present.
+
+6. **Inspect Flask Logs:**
+   - Look at the server logs to see if there are any additional details or errors that could help diagnose the issue.
+
+7. **Test Other Routes:**
+   - Test other routes to ensure that the server is running and can handle different endpoints. This can help confirm whether the issue is specific to the `/user_info` route or a broader issue.
+
+If you provide the code where the routes are defined, I can help you pinpoint the problem further.
+
+//-------------------------------------------------------------------
+
+You're correct. If you want the `user_info` endpoint to return stored user information, you'll need to incorporate user management functionality. Here’s an example assuming you have user data stored in memory for simplicity. You might typically use a database in a real-world application.
+
+### File: `app.py`
+
+```python
+from flask import Flask, jsonify, request
+
+app = Flask(__name__)
+
+# Sample in-memory user data for demonstration purposes
+users = {
+    'johndoe': {
+        'username': 'johndoe',
+        'email': 'johndoe@example.com',
+        'full_name': 'John Doe'
+    }
+}
+
+@app.route('/user_info', methods=['GET'])
+def user_info():
+    # Retrieve username from query parameters
+    username = request.args.get('username')
+    
+    if not username or username not in users:
+        return jsonify({'error': 'User not found'}), 404
+    
+    return jsonify(users[username])
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+### Explanation:
+
+- **Imports:**
+  - `Flask`, `jsonify`, `request`: As before.
+
+- **In-Memory User Data:**
+  - `users`: A dictionary to simulate user data storage.
+
+- **Route Definition:**
+  - `username = request.args.get('username')`: Retrieves the `username` from query parameters.
+  - `if not username or username not in users`: Checks if the `username` is provided and exists in the `users` dictionary.
+  - `return jsonify({'error': 'User not found'}), 404`: Returns a 404 error if the user is not found.
+  - `return jsonify(users[username])`: Returns the user information if found.
+
+### Running Your Flask Application
+
+1. **Save the Code:**
+   - Save this updated code in the `app.py` file.
+
+2. **Run the Application:**
+   - Start the Flask server:
+     ```bash
+     python app.py
+     ```
+
+3. **Test the Endpoint:**
+   - In Postman, send a `GET` request to `http://127.0.0.1:5000/user_info?username=johndoe`.
+
+This will return the JSON data for the user with the specified username. If you have different storage or need to fetch data from a database, you'll need to adjust the `user_info` function accordingly.
+
+//------------------------------------------------------------------------------------------------
+
+It looks like the `user_info` endpoint is still not being recognized. Let's ensure everything is set up correctly. Here’s a checklist and an updated version of the `app.py` file to troubleshoot this issue:
+
+### Checklist
+
+1. **Check Flask Application:**
+   - Make sure the Flask server is running without errors.
+
+2. **Verify Route:**
+   - Ensure that the route `/user_info` is correctly defined in `app.py`.
+
+3. **Check URL Parameters:**
+   - Confirm you are using the correct query parameter (`username`) in the URL.
+
+4. **Server Restart:**
+   - After making changes, restart the Flask server to apply updates.
+
+### Updated `app.py` File
+
+Here's a more comprehensive example of `app.py` with additional debugging and logging:
+
+```python
+from flask import Flask, jsonify, request
+
+app = Flask(__name__)
+
+# Sample in-memory user data for demonstration purposes
+users = {
+    'johndoe': {
+        'username': 'johndoe',
+        'email': 'johndoe@example.com',
+        'full_name': 'John Doe'
+    }
+}
+
+@app.route('/user_info', methods=['GET'])
+def user_info():
+    # Retrieve username from query parameters
+    username = request.args.get('username')
+    
+    if not username:
+        return jsonify({'error': 'Username parameter is missing'}), 400
+    
+    if username not in users:
+        return jsonify({'error': 'User not found'}), 404
+    
+    return jsonify(users[username])
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+### Steps to Follow
+
+1. **Save Changes:**
+   - Ensure that you've saved any changes made to `app.py`.
+
+2. **Restart Flask Server:**
+   - If the server is running, restart it to apply the updates:
+     ```bash
+     python app.py
+     ```
+
+3. **Test Again:**
+   - In Postman, use the URL: `http://127.0.0.1:5000/user_info?username=johndoe` (make sure the username exists in the `users` dictionary).
+
+4. **Check Logs:**
+   - Look at the terminal or command prompt where Flask is running to see any error messages or logs that could provide more details.
+
+### Debugging
+
+If you’re still getting the 404 error:
+
+- **Confirm Route Handling:** Double-check that Flask is properly handling routes by adding a simple test route:
+  
+  ```python
+  @app.route('/test', methods=['GET'])
+  def test_route():
+      return "Test route is working"
+  ```
+
+  Access `http://127.0.0.1:5000/test` in your browser or Postman to ensure the server is responding.
+
+- **Review URL:** Ensure the URL in Postman matches exactly, including any query parameters.
+
+If you need further assistance, please let me know what errors or logs you see.
+
+//------------------------------------------------------------------------------------------
+
+Great! It looks like the `/user_info` endpoint is now working correctly and returning the expected user information.
+
+Here’s a summary of what was achieved:
+- The `user_info` endpoint now correctly responds with the stored user information based on the `username` query parameter.
+
+### Summary of Changes
+
+1. **Updated `app.py` File:**
+   - Added the `/user_info` route.
+   - Implemented logic to retrieve user information from the `users` dictionary based on the `username` query parameter.
+
+### Next Steps
+
+1. **Add More User Data (Optional):**
+   - If you need to handle more users or store data persistently, consider integrating a database.
+
+2. **Error Handling:**
+   - Enhance error handling to manage different types of errors and edge cases.
+
+3. **Documentation:**
+   - Update API documentation to include the new endpoint and its usage.
+
+4. **Additional Features:**
+   - Consider adding more features or routes as needed.
+
+If you have any other questions or need further assistance with your project, feel free to ask!
+
+//-------------------------------------------------------------------------------------------------
+
+
+Functionality working properly(23-08-24) but frontend is not working. I deleted it.
+
+Great! Since you can see the React starter page, your environment is set up correctly. Let's start building the frontend.
+
+### 1. **Clean Up the Starter Code**
+First, let's clean up the default React template:
+
+1. **Remove unnecessary files:**
+   - Delete the following files inside the `src` folder:
+     - `App.css`
+     - `App.test.js`
+     - `index.css`
+     - `logo.svg`
+     - `reportWebVitals.js`
+     - `setupTests.js`
+
+2. **Clean up `App.js`:**
+   Replace the content of `App.js` with a simple structure:
+
+   ```javascript
+   import React from 'react';
+
+   function App() {
+     return (
+       <div>
+         <h1>Welcome to CurateHub</h1>
+       </div>
+     );
+   }
+
+   export default App;
+   ```
+
+3. **Update `index.js`:**
+   You can simplify `index.js` by removing the imports related to the files you deleted:
+
+   ```javascript
+   import React from 'react';
+   import ReactDOM from 'react-dom';
+   import App from './App';
+
+   ReactDOM.render(
+     <React.StrictMode>
+       <App />
+     </React.StrictMode>,
+     document.getElementById('root')
+   );
+   ```
+
+### 2. **Set Up the Folder Structure**
+Let's create a basic folder structure for the application:
+
+- `src/components/` - To hold all the reusable components.
+- `src/pages/` - To hold different page views.
+- `src/services/` - To manage API calls.
+
+You can create these folders manually or run the following commands in your terminal:
+
+```bash
+mkdir src/components src/pages src/services
+```
+
+### 3. **Create Basic Components**
+Let's start with a basic setup for your application:
+
+1. **Create a Header component:**
+
+   - `src/components/Header.js`
+     ```javascript
+     import React from 'react';
+
+     const Header = () => {
+       return (
+         <header>
+           <h1>CurateHub</h1>
+         </header>
+       );
+     };
+
+     export default Header;
+     ```
+
+2. **Update `App.js` to use the Header:**
+
+   ```javascript
+   import React from 'react';
+   import Header from './components/Header';
+
+   function App() {
+     return (
+       <div>
+         <Header />
+         <main>
+           <h2>Your Content Goes Here</h2>
+         </main>
+       </div>
+     );
+   }
+
+   export default App;
+   ```
+
+### 4. **Set Up Routing**
+You may want to have multiple pages (e.g., Home, Profile, Settings). For this, you'll need to set up routing.
+
+1. Install React Router:
+
+   ```bash
+   npm install react-router-dom
+   ```
+
+2. **Update `App.js` to include routing:**
+
+   ```javascript
+   import React from 'react';
+   import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+   import Header from './components/Header';
+   import Home from './pages/Home';
+   import Profile from './pages/Profile';
+
+   function App() {
+     return (
+       <Router>
+         <Header />
+         <Routes>
+           <Route path="/" element={<Home />} />
+           <Route path="/profile" element={<Profile />} />
+         </Routes>
+       </Router>
+     );
+   }
+
+   export default App;
+   ```
+
+3. **Create `Home` and `Profile` pages:**
+
+   - `src/pages/Home.js`
+     ```javascript
+     import React from 'react';
+
+     const Home = () => {
+       return (
+         <div>
+           <h2>Home Page</h2>
+           <p>Welcome to CurateHub!</p>
+         </div>
+       );
+     };
+
+     export default Home;
+     ```
+
+   - `src/pages/Profile.js`
+     ```javascript
+     import React from 'react';
+
+     const Profile = () => {
+       return (
+         <div>
+           <h2>Profile Page</h2>
+           <p>Your profile information will be displayed here.</p>
+         </div>
+       );
+     };
+
+     export default Profile;
+     ```
+
+### 5. **Integrate with the Backend**
+Once the basic structure is in place, you can start fetching data from your backend API.
+
+1. **Create a service to fetch user information:**
+
+   - `src/services/userService.js`
+     ```javascript
+     export const fetchUserInfo = async (username) => {
+       const response = await fetch(`http://127.0.0.1:5000/user_info?username=${username}`);
+       const data = await response.json();
+       return data;
+     };
+     ```
+
+2. **Use the service in the Profile page:**
+
+   - Update `Profile.js`:
+     ```javascript
+     import React, { useEffect, useState } from 'react';
+     import { fetchUserInfo } from '../services/userService';
+
+     const Profile = () => {
+       const [userInfo, setUserInfo] = useState(null);
+
+       useEffect(() => {
+         const getUserInfo = async () => {
+           const data = await fetchUserInfo('testuser');
+           setUserInfo(data);
+         };
+         getUserInfo();
+       }, []);
+
+       return (
+         <div>
+           <h2>Profile Page</h2>
+           {userInfo ? (
+             <div>
+               <p>Username: {userInfo.username}</p>
+               <p>Full Name: {userInfo.full_name}</p>
+               <p>Email: {userInfo.email}</p>
+             </div>
+           ) : (
+             <p>Loading...</p>
+           )}
+         </div>
+       );
+     };
+
+     export default Profile;
+     ```
+
+This will get you started with building the frontend in React, with routing and integration with your backend. Let me know if you'd like to dive deeper into any specific part!
+
+//--------------------------------------------------------------------
+
+It seems there's a mismatch between what you're trying to import and what is actually exported in your `userService.js` file. Let's resolve the issues step by step.
+
+### 1. **Fixing the Import Issue**
+
+#### Error: `fetchUserInfo` is not exported from `'../services/userService'`
+- The error message suggests that the function you're trying to import (`fetchUserInfo`) doesn't exist in `userService.js`. Instead, `fetchUrlInfo` seems to be available.
+- You have two options:
+  1. **Use the existing function (`fetchUrlInfo`)**:
+     ```javascript
+     import { fetchUrlInfo as fetchUserInfo } from '../services/userService';
+     ```
+     This will rename `fetchUrlInfo` to `fetchUserInfo` locally in your file, and you can use it as intended.
+
+  2. **Rename or Create `fetchUserInfo`**:
+     - If `fetchUrlInfo` is indeed supposed to fetch user information, you might want to rename it directly in `userService.js`:
+       ```javascript
+       export const fetchUserInfo = () => {
+           // Your code to fetch user information
+       };
+       ```
+     - If `fetchUrlInfo` is different and you need a separate `fetchUserInfo` function, add it to `userService.js`.
+
+### 2. **Fixing `useEffect` Import**
+
+#### Error: `'useEffect' is not defined`
+- This error occurs because `useEffect` hasn't been imported from React. To fix it:
+  ```javascript
+  import React, { useEffect } from 'react';
+  ```
+
+### Example of `Profile.js` after Fixes
+```javascript
+import React, { useEffect } from 'react';
+// Import the correct function from userService
+import { fetchUrlInfo as fetchUserInfo } from '../services/userService'; 
+
+const Profile = () => {
+    useEffect(() => {
+        fetchUserInfo(); // Calls the function to fetch user info
+    }, []);
+
+    return (
+        <div>
+            <h2>Profile Page</h2>
+            {/* Render user info here */}
+        </div>
+    );
+};
+
+export default Profile;
+```
+
+### Next Steps:
+1. **Update your `Profile.js` file** with the corrected import statements.
+2. **Ensure that the `fetchUserInfo` function exists** in `userService.js`, whether you decide to rename `fetchUrlInfo` or create a new function.
+3. **Re-run the React application** to see if the errors are resolved.
+
+If you continue to experience issues, feel free to ask for further assistance!
+
+//-----------------------------------------------------
