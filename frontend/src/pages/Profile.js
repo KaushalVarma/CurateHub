@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { fetchUrlInfo as fetchUserInfo } from '../services/userService';
+import { fetchUserInfo } from '../services/userService'; // Ensure correct import
 
 const Profile = () => {
   const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
     const getUserInfo = async () => {
-      const data = await fetchUserInfo('testuser');
+      const data = await fetchUserInfo('testuser'); // Ensure 'testuser' is a valid username
       setUserInfo(data);
     };
     getUserInfo();

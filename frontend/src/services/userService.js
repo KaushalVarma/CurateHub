@@ -3,3 +3,5 @@ export const fetchUrlInfo = async (username) => {
     const data = await response.json();
     return data;
 };
+
+export const fetchUserInfo = fetchUrlInfo;
