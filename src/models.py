@@ -12,6 +12,7 @@ class User(db.Model):
     password_hash = db.Column(db.String(128), nullable=False)
     preferences = db.Column(db.String(500))
     watch_history = db.Column(db.String(500))
+    tags = db.Column(db.String(500)) # New field for storing tags
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)

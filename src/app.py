@@ -1,19 +1,32 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, session, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
+from flask_migrate import Migrate
 import logging
 from flask_cors import CORS
-from flask import Flask, session, redirect, url_for
 
 logging.basicConfig(level=logging.DEBUG)
 
+# Initialize Flask application
 app = Flask(__name__)
 app.secret_key = b'`\xc8\xe7C5\xc3\x13wE\xe4\xf0\xba\x8cM\xfeW\x0e\x87O6\x87\xbaP\x9f'
 
+# Configuration for SQLAlchemy and JWT
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///curatehub.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['JWT_SECRET_KEY'] = b'\xe8\xb1\xb9\xcc\xd3i\xa6\x15\xf2\xe2/j\xd0\x1d\xfe\xb2M\xc7(\x1e\x11\xb0\xa3\xb9'
+
+# Initialize extensions
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+jwt = JWTManager(app)
+
 # Initialize CORS
 CORS(app)  # Allow requests from all origins
+
+
 
 # Simulated user data for authentication
 users = {
@@ -23,15 +36,6 @@ users = {
         'full_name': 'John Doe'
     }
 }
-
-# Configuration for SQLAlchemy and JWT
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///curatehub.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['JWT_SECRET_KEY'] = b'\xe8\xb1\xb9\xcc\xd3i\xa6\x15\xf2\xe2/j\xd0\x1d\xfe\xb2M\xc7(\x1e\x11\xb0\xa3\xb9'
-
-# Initialize extensions
-db = SQLAlchemy(app)
-jwt = JWTManager(app)
 
 # User model
 class User(db.Model):
@@ -117,11 +121,10 @@ def login():
     user = User.query.filter_by(username=username).first()
 
     # Simple authentication logic
-    if username in users and users[username] == password:
-        # If credentials are valid, return a success message
-        return jsonify({"access_token": "your_jwt_token_here"}), 200
+    if user and user.check_password(password):
+        access_token = create_access_token(identity=username)
+        return jsonify({"access_token": access_token}), 200
     else:
-        # If credentials are invalid, return an error message
         return jsonify({"error": "Invalid credentials"}), 401
 
 @app.route('/logout', methods=['POST'])
@@ -129,8 +132,7 @@ def logout():
     # Clear the session to log the user out
     session.clear()
     # Redirect to the login page or home page after logout
-    return redirect(url_for('/login'))  # Replace 'login' with your login route
-
+    return redirect(url_for('home'))  # Redirect to the home page
 
 # GET method for recommendations
 @app.route('/api/recommendations', methods=['GET'])
@@ -199,7 +201,7 @@ def get_recommendations_post():
 
     return jsonify({"recommendations": recommendations})
 
-#User Info
+# User Info
 @app.route('/user_info', methods=['GET'])
 def user_info():
     # Retrieve username from query parameters
@@ -212,7 +214,6 @@ def user_info():
         return jsonify({'error': 'User not found'}), 404
     
     return jsonify(users[username])
-
 
 # Log user activity
 @app.route('/log_activity', methods=['POST'])
@@ -243,7 +244,7 @@ def test():
     return jsonify({'message': 'GET method works!'})
 
 # Register the blueprint
-#app.register_blueprint(user_profile_bp)
+# app.register_blueprint(user_profile_bp)
 
 if __name__ == '__main__':
     with app.app_context():

@@ -16,7 +16,8 @@ def get_profile():
     return jsonify({
         "username": user.username,
         "email": user.email,
-        "preferences": user.preferences
+        "preferences": user.preferences,
+        "tags": user.tags
     })
 
 @user_profile_bp.route('/profile/preferences', methods=['PUT'])
@@ -33,3 +34,18 @@ def update_preferences():
     db.session.commit()
 
     return jsonify({"message": "Preferences updated successfully"}), 200
+
+@user_profile_bp.route('/profile/tags', methods=['PUT'])
+@jwt_required()
+def update_tags():
+    current_user = get_jwt_identity()
+    user = User.query.filter_by(username=current_user).first()
+
+    if user is None:
+        return jsonify({"error": "User not found"}), 404
+    
+    tags = request.json.get('tags')
+    user.tags = tags
+    db.session.commit()
+
+    return jsonify({"message": "Tags updates successfully"}), 200
