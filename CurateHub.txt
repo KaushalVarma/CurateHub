@@ -7662,3 +7662,1762 @@ SELECT * FROM activity_log;
 Monitor the Flask server logs to ensure there are no errors and that all endpoints are functioning as expected. Flask will output logs to the terminal where you run `flask run`.
 
 Let me know if you encounter any issues or need further assistance with specific tests or configurations!
+
+//---------------------------------------------------------------------------
+
+(venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   AccessToken.txt
+        modified:   CurateHub.txt
+        modified:   instance/curatehub.db
+        modified:   src/app.py
+        modified:   src/models.py
+        modified:   src/user_profile.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        src/migrations/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+(venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>git add .
+warning: in the working copy of 'src/migrations/README', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/migrations/alembic.ini', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/migrations/env.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/migrations/script.py.mako', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/migrations/versions/0c8059aab20b_initial_migration.py', LF will be replaced by CRLF the next time Git touches it
+
+(venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>git commit -m "Added activity logging feature and initial database setup"
+[master 3e4262b] Added activity logging feature and initial database setup
+ 11 files changed, 995 insertions(+), 23 deletions(-)
+ create mode 100644 src/migrations/README
+ create mode 100644 src/migrations/alembic.ini
+ create mode 100644 src/migrations/env.py
+ create mode 100644 src/migrations/script.py.mako
+ create mode 100644 src/migrations/versions/0c8059aab20b_initial_migration.py
+
+(venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>git push origin master
+Enumerating objects: 26, done.
+Counting objects: 100% (26/26), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (15/15), done.
+Writing objects: 100% (17/17), 9.85 KiB | 1.64 MiB/s, done.
+Total 17 (delta 7), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (7/7), completed with 7 local objects.
+To https://github.com/KaushalVarma/CurateHub
+   1232d9c..3e4262b  master -> master
+
+(venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   CurateHub.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+//---------------------------------------------------------------------------------------------
+
+To ensure that the next steps do not disrupt the existing functionality, we'll follow a careful and structured approach:
+
+### 1. **Identify and Prioritize New Features or Improvements:**
+   - Review the current state of the project and identify areas where new features or improvements can be made.
+   - Prioritize these changes based on their importance and impact on the project.
+
+### 2. **Create a Separate Git Branch:**
+   - Before implementing any changes, create a new branch in GitHub. This will allow us to work on new features without affecting the main codebase.
+   - After testing and confirming that everything works as expected, we can merge the changes back into the `main` branch.
+
+### 3. **Implement and Test New Features:**
+   - Implement the new feature or improvement in the new branch.
+   - Write unit tests to ensure that the changes do not break any existing functionality.
+   - Run the application and perform manual testing to confirm that everything is working as expected.
+
+### 4. **Perform Code Review:**
+   - Review the code for any potential issues or optimizations.
+   - Consider any potential conflicts with existing code and address them.
+
+### 5. **Merge and Deploy:**
+   - Once the changes are thoroughly tested and reviewed, merge the new branch into the main branch.
+   - Deploy the updated code to your environment and perform final testing.
+
+Would you like to start with identifying the next feature or improvement you'd like to work on, or do you have something specific in mind?
+
+//------------------------------------------------------------------------------
+
+Let's start by reviewing the existing features of CurateHub and identifying areas where we can apply LLD principles. Here's a structured approach:
+
+### 1. **Existing Features Overview**
+   - **Feed Curation:** The core functionality is to allow users to curate their feeds on platforms like YouTube and Instagram.
+   - **User Management:** Users can sign up, log in, and manage their profiles.
+   - **Recommendations:** The system suggests content based on user-selected interests.
+   - **Activity Logging:** Tracks user activities for generating analytics and reports.
+   - **Integration with External APIs:** Fetches and displays content from external platforms.
+   - **Front-end Interface:** A React-based interface for user interaction.
+   - **Backend:** Flask-based backend managing user requests and interactions with the database.
+
+### 2. **Identifying LLD Principles for Existing Features**
+   - **Separation of Concerns:** Ensure different modules like user management, recommendations, and API integration are well-separated.
+   - **Extensibility:** Use design patterns like Factory or Strategy for the recommendation engine to make it adaptable to new platforms or algorithms.
+   - **Encapsulation:** Protect the internal workings of classes and expose only necessary methods.
+   - **Dependency Injection:** Decouple the creation of objects from their usage, particularly in user management and API integration.
+   - **Persistence Layer:** Ensure that the database interactions are abstracted and independent of the rest of the application logic.
+
+### 3. **New Feature Ideas**
+   - **Personalized Detox Plans:** Allow users to set up personalized detox plans with goals, reminders, and progress tracking.
+   - **AI-Driven Content Filtering:** Implement an AI-driven filter to block or prioritize certain types of content based on user preferences.
+   - **Social Integration:** Allow users to share their detox journey or curated content with friends or on social media.
+   - **Advanced Analytics:** Provide detailed analytics on user behavior and content consumption to help users understand their habits.
+
+### 4. **Selecting the Next Steps**
+   - **Enhancing the Recommendation System:** Implementing the Strategy pattern to allow different recommendation algorithms.
+   - **Implementing Personalized Detox Plans:** Introduce a feature where users can set and track their detox goals.
+   - **Improving Extensibility:** Refactor the current codebase to better adhere to the Extensibility and Dependency Injection principles.
+
+What are your thoughts on these ideas? Would you like to proceed with any specific feature or improvement?
+
+//-------------------------------------------------------------------------------------------------
+
+Let's begin by focusing on the first feature. 
+
+Given that CurateHub is used for feeding detoxification, improving the recommendation system could be a good starting point. This feature could directly influence user engagement and the effectiveness of the detox plans by providing users with more relevant content based on their preferences, activity, and needs.
+
+### Step 1: Review Existing Recommendation Feature
+1. **Current Functionality**:
+   - The system currently recommends content based on user interests, preferences, and past actions.
+   - It supports both GET and POST methods for fetching recommendations.
+   - Filters recommendations based on user-defined search keywords.
+
+2. **Potential Enhancements**:
+   - **Personalization**: Enhance the algorithm to provide more personalized recommendations, possibly using machine learning models or more complex rules.
+   - **Dynamic Updates**: Ensure that recommendations adapt in real-time as user behavior changes.
+   - **Content Categorization**: Introduce categorization or tagging of content, allowing for more nuanced recommendations.
+   - **User Feedback Loop**: Incorporate user feedback (like/dislike) into the recommendation logic to improve future suggestions.
+
+### Step 2: Define the Requirements for Enhancements
+1. **User Story**:
+   - As a user, I want to receive more personalized detox content recommendations that reflect my evolving interests and needs.
+   - As an admin, I want to ensure the recommendation system can adapt to new content types and user behaviors without extensive rework.
+
+2. **Functional Requirements**:
+   - The system should analyze user activity logs and preferences to update recommendations dynamically.
+   - The system should categorize content and use these categories to refine recommendations.
+   - Users should be able to provide feedback on recommendations to improve future suggestions.
+
+3. **Non-Functional Requirements**:
+   - The recommendation system should be scalable to handle increasing amounts of data as more users and content are added.
+   - The system should remain performant, providing recommendations within a reasonable time frame, even under high load.
+
+### Step 3: Low-Level Design Considerations
+1. **Data Structure**:
+   - Use a combination of SQL and in-memory data stores (e.g., Redis) for storing user preferences and activity logs.
+   - Implement a tagging system for content categorization, stored in a relational database.
+
+2. **Algorithm**:
+   - Start with a rules-based system (if-else conditions based on preferences, activity).
+   - Optionally, move towards a machine learning model that learns from user behavior over time (consider starting with a basic collaborative filtering algorithm).
+
+3. **API Design**:
+   - Extend existing endpoints to support the new personalization features.
+   - Create new endpoints if necessary, for features like user feedback.
+
+### Step 4: Implementation Plan
+1. **Phase 1**: Implement content categorization and tagging, and update the recommendation logic to use these categories.
+2. **Phase 2**: Introduce dynamic updates based on user activity.
+3. **Phase 3**: Add user feedback functionality.
+4. **Phase 4**: Test the new recommendation system with real user data and optimize as needed.
+
+Would you like to start with Phase 1, or is there anything else you'd like to adjust or add?
+
+Great! Let's begin with the updates needed for the models to support content categorization and tagging.
+
+### Step 1: Update Database Models
+
+**File Name**: `models.py`  
+**Location**: `G:/E_drive_data/GitHubProjects/CurateHub/CurateHub/src/`
+
+**Tasks**:
+1. **Add Models for Categories and Tags**:
+   - Create new models for categories and tags.
+   - Define relationships between these models and existing models.
+
+**Example Changes to `models.py`**:
+
+```python
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
+
+db = SQLAlchemy()
+
+# User model (existing)
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    password_hash = db.Column(db.String(120), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    preferences = db.Column(db.String(500), nullable=True)
+    # Relationship with tags
+    tags = db.relationship('Tag', secondary='user_tags', back_populates='users')
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
+# Category model (new)
+class Category(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), unique=True, nullable=False)
+    # Relationship with content
+    contents = db.relationship('Content', back_populates='category')
+
+    def __repr__(self):
+        return f'<Category {self.name}>'
+
+# Tag model (new)
+class Tag(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), unique=True, nullable=False)
+    # Relationship with users and content
+    users = db.relationship('User', secondary='user_tags', back_populates='tags')
+    contents = db.relationship('Content', secondary='content_tags', back_populates='tags')
+
+    def __repr__(self):
+        return f'<Tag {self.name}>'
+
+# Association table for user-tags relationship
+user_tags = db.Table('user_tags',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+    db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'), primary_key=True)
+)
+
+# Association table for content-tags relationship
+content_tags = db.Table('content_tags',
+    db.Column('content_id', db.Integer, db.ForeignKey('content.id'), primary_key=True),
+    db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'), primary_key=True)
+)
+
+# Content model (new)
+class Content(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200), nullable=False)
+    category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
+    category = db.relationship('Category', back_populates='contents')
+    tags = db.relationship('Tag', secondary='content_tags', back_populates='contents')
+
+    def __repr__(self):
+        return f'<Content {self.title}>'
+
+# Activity Log model (existing)
+class ActivityLog(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), nullable=False)
+    action = db.Column(db.String(200), nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__(self):
+        return f'<ActivityLog {self.username} - {self.action}>'
+```
+
+### Step 2: Create Migration Script
+
+After updating the models, you'll need to generate and apply a migration script to update the database schema.
+
+1. **Generate Migration Script**:
+
+   ```bash
+   flask db migrate -m "Add categories and tags models"
+   ```
+
+2. **Apply the Migration**:
+
+   ```bash
+   flask db upgrade
+   ```
+
+### Step 3: Update Business Logic
+
+In the `app.py` file, you'll need to integrate logic for handling categories and tags. This includes:
+
+- Adding routes for creating and managing categories and tags.
+- Updating the recommendation system to consider categories and tags.
+
+Let me know if you want to proceed with the next steps or if you need assistance with any part of this process!
+
+//----------------------------------------------------------------------------------------
+
+CATEGORIZATION AND Tagging
+
+For the `app.py` file, we need to:
+
+1. **Add Routes**:
+   - **Category and Tag Management**:
+     - Create endpoints for managing categories and tags (CRUD operations).
+   - **Associate Content with Categories/Tags**:
+     - Create endpoints to associate content with categories and tags.
+
+2. **Update Existing Routes**:
+   - Update recommendation-related routes to include categories and tags in the recommendations.
+
+Let's start by updating the `app.py` file. 
+
+### 1. Add Routes
+
+We'll add routes for managing categories and tags. 
+
+Here’s what the new routes might look like:
+
+#### Adding and Managing Categories and Tags
+
+```python
+# Category model
+class Category(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), unique=True, nullable=False)
+    content_items = db.relationship('Content', backref='category', lazy=True)
+
+    def __repr__(self):
+        return f'<Category {self.name}>'
+
+# Tag model
+class Tag(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), unique=True, nullable=False)
+    content_items = db.relationship('Content', secondary='content_tags', backref='tags')
+
+    def __repr__(self):
+        return f'<Tag {self.name}>'
+
+# Association table for many-to-many relationship between Content and Tags
+content_tags = db.Table('content_tags',
+    db.Column('content_id', db.Integer, db.ForeignKey('content.id'), primary_key=True),
+    db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'), primary_key=True)
+)
+
+# Content model
+class Content(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200), nullable=False)
+    category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=True)
+    # Define the relationship to tags through the association table
+    tags = db.relationship('Tag', secondary=content_tags, backref='content_items')
+
+    def __repr__(self):
+        return f'<Content {self.title}>'
+
+# Route to create a new category
+@app.route('/categories', methods=['POST'])
+@jwt_required()
+def create_category():
+    data = request.get_json()
+    name = data.get('name')
+
+    if Category.query.filter_by(name=name).first() is not None:
+        return jsonify({"error": "Category already exists"}), 400
+
+    new_category = Category(name=name)
+    db.session.add(new_category)
+    db.session.commit()
+
+    return jsonify({"message": "Category created successfully"}), 201
+
+# Route to get all categories
+@app.route('/categories', methods=['GET'])
+def get_categories():
+    categories = Category.query.all()
+    return jsonify([{"id": cat.id, "name": cat.name} for cat in categories])
+
+# Route to create a new tag
+@app.route('/tags', methods=['POST'])
+@jwt_required()
+def create_tag():
+    data = request.get_json()
+    name = data.get('name')
+
+    if Tag.query.filter_by(name=name).first() is not None:
+        return jsonify({"error": "Tag already exists"}), 400
+
+    new_tag = Tag(name=name)
+    db.session.add(new_tag)
+    db.session.commit()
+
+    return jsonify({"message": "Tag created successfully"}), 201
+
+# Route to get all tags
+@app.route('/tags', methods=['GET'])
+def get_tags():
+    tags = Tag.query.all()
+    return jsonify([{"id": tag.id, "name": tag.name} for tag in tags])
+
+# Route to associate content with a category
+@app.route('/content/<int:content_id>/category/<int:category_id>', methods=['PUT'])
+@jwt_required()
+def associate_content_with_category(content_id, category_id):
+    content = Content.query.get(content_id)
+    category = Category.query.get(category_id)
+    
+    if not content or not category:
+        return jsonify({"error": "Content or Category not found"}), 404
+    
+    content.category = category
+    db.session.commit()
+
+    return jsonify({"message": "Content associated with category successfully"}), 200
+
+# Route to associate tags with content
+@app.route('/content/<int:content_id>/tags', methods=['POST'])
+@jwt_required()
+def associate_tags_with_content(content_id):
+    data = request.get_json()
+    tag_ids = data.get('tag_ids', [])
+
+    content = Content.query.get(content_id)
+    if not content:
+        return jsonify({"error": "Content not found"}), 404
+    
+    tags = Tag.query.filter(Tag.id.in_(tag_ids)).all()
+    content.tags = tags
+    db.session.commit()
+
+    return jsonify({"message": "Tags associated with content successfully"}), 200
+```
+
+### 2. Update Existing Routes
+
+Update the recommendation routes to incorporate categories and tags.
+
+#### Update Recommendations
+
+```python
+# Update recommendations to include categories and tags
+@app.route('/api/recommendations', methods=['GET'])
+@jwt_required()
+def get_recommendations_get():
+    current_user = get_jwt_identity()
+    user = User.query.filter_by(username=current_user).first()
+    interests = request.args.getlist('interests')
+    search_keyword = request.args.get('search', '')
+
+    logging.debug("Interests: %s", interests)
+    logging.debug("Search Keyword: %s", search_keyword)
+
+    preferences = user.preferences.split(',') if user.preferences else []
+    logging.debug("Preferences: %s", preferences)
+
+    activity_logs = ActivityLog.query.filter_by(username=current_user).all()
+    past_actions = [log.action for log in activity_logs]
+    logging.debug("Past Actions: %s", past_actions)
+
+    relevant_topics = set(interests + preferences + past_actions)
+    logging.debug("Relevant Topics: %s", relevant_topics)
+
+    # Fetch content items related to the relevant topics
+    content_items = Content.query.join(Tag).filter(Tag.name.in_(relevant_topics)).all()
+    recommendations = [{"title": content.title} for content in content_items]
+    logging.debug("Recommendations before search filter: %s", recommendations)
+
+    if search_keyword:
+        recommendations = [rec for rec in recommendations if search_keyword.lower() in rec['title'].lower()]
+
+    logging.debug("Filtered Recommendations: %s", recommendations)
+
+    return jsonify({'recommendations': recommendations})
+
+@app.route('/api/recommendations', methods=['POST'])
+@jwt_required()
+def get_recommendations_post():
+    current_user = get_jwt_identity()
+    user = User.query.filter_by(username=current_user).first()
+    data = request.json
+    interest = data.get('interest')
+    search_keyword = data.get('search', '')
+
+    preferences = user.preferences.split(',') if user.preferences else []
+
+    activity_logs = ActivityLog.query.filter_by(username=current_user).all()
+    past_actions = [log.action for log in activity_logs]
+
+    relevant_topics = set([interest] + preferences + past_actions)
+    content_items = Content.query.join(Tag).filter(Tag.name.in_(relevant_topics)).all()
+    recommendations = [{"title": content.title} for content in content_items]
+
+    if search_keyword:
+        recommendations = [rec for rec in recommendations if search_keyword.lower() in rec['title'].lower()]
+
+    return jsonify({"recommendations": recommendations})
+```
+
+### Next Steps
+
+1. **Add** these routes and updates to your `app.py` file.
+2. **Test** all the routes to ensure they work as expected and do not disrupt existing functionality.
+
+Please proceed with making these changes to the `app.py` file. Let me know if you need further assistance or have any questions!
+
+//-------------------------------------------------------------------------------------------------------
+
+Great! Now that you've deleted the database and the migration files, you can proceed to recreate the database and apply the initial migrations. Here's how to do it:
+
+1. **Initialize the Migration Environment**:
+   - Run the following command to set up a new migration environment:
+
+   ```bash
+   flask db init
+   ```
+
+   This will create a `migrations` directory in your project if it doesn't already exist.
+
+2. **Create an Initial Migration**:
+   - Generate a new migration script based on your current models:
+
+   ```bash
+   flask db migrate -m "Initial migration"
+   ```
+
+   This will create a migration script in the `migrations/versions` directory.
+
+3. **Apply the Migration**:
+   - Apply the migration to create the database and its tables:
+
+   ```bash
+   flask db upgrade
+   ```
+
+   This will apply the migration and create the necessary tables in the database.
+
+4. **Verify**:
+   - Check that the database has been created and that the tables are correctly set up.
+
+Let me know if everything works smoothly!
+
+//-------------------------------------------------------------------------------------------------
+
+The output confirms that the Alembic module is correctly installed and being referenced from the expected path in your virtual environment.
+
+Given that the Alembic installation seems correct, and you're still encountering the "Module 'alembic.op' has no 'create_table' member" error, we can try the following steps:
+
+### 1. **Check if Pylint is Updated**
+Ensure that Pylint is up to date, as it might be flagging a false positive:
+```bash
+pip install --upgrade pylint
+```
+
+### 2. **Manually Verify the `op` Object**
+You can manually inspect the `op` object in a Python shell to ensure it has the `create_table` method:
+1. Open a Python shell within your virtual environment:
+   ```bash
+   python
+   ```
+2. Import the necessary modules and inspect the `op` object:
+   ```python
+   from alembic import op
+   dir(op)
+   ```
+   Check if `create_table` appears in the list.
+
+### 3. **Recheck the Migration Script**
+Ensure your migration script is correctly structured:
+```python
+from alembic import op
+import sqlalchemy as sa
+
+def upgrade():
+    op.create_table(
+        'example_table',
+        sa.Column('id', sa.Integer, primary_key=True),
+        sa.Column('name', sa.String(50), nullable=False)
+    )
+```
+
+### 4. **Regenerate the Migration**
+If the issue persists, consider deleting the existing migration script and regenerating it using Alembic:
+```bash
+alembic revision --autogenerate -m "initial migration"
+```
+This might correct any inconsistencies in the migration scripts.
+
+If none of these steps resolves the issue, there could be a deeper configuration issue that might require more detailed investigation.
+
+//-----------------------------------------------------
+
+Since you've deleted the migrations and no longer have the `alembic.ini` file, you'll need to reinitialize Alembic in your project to generate a new `alembic.ini` file and the necessary migrations structure.
+
+Here’s how you can do that:
+
+1. **Navigate to Your Project Directory:**
+   Make sure you are in the root directory of your project (in your case, `G:\E_drive_data\GitHubProjects\CurateHub\CurateHub\src`).
+
+2. **Initialize Alembic:**
+   Run the following command to reinitialize Alembic. This will create a new `alembic.ini` file and a `migrations` directory:
+
+   ```bash
+   alembic init migrations
+   ```
+
+3. **Configure Alembic:**
+   - Open the newly created `alembic.ini` file.
+   - Update the `sqlalchemy.url` configuration in the file to match the database connection string for your project.
+   - In `migrations/env.py`, ensure that the `target_metadata` variable is set to your SQLAlchemy metadata object (e.g., `from yourapp import models; target_metadata = models.Base.metadata`).
+
+4. **Generate a New Migration:**
+   Now that Alembic is reinitialized, you can generate a new migration:
+
+   ```bash
+   alembic revision --autogenerate -m "initial migration"
+   ```
+
+5. **Apply the Migration:**
+   Finally, apply the migration to create the database schema:
+
+   ```bash
+   alembic upgrade head
+   ```
+
+This process will recreate the necessary Alembic configuration and allow you to start fresh with your migrations.
+
+//---------------------------------------------------------------------------------------
+
+The error message "Module 'alembic.context' has no 'config' member" typically suggests that there is an issue with the Alembic installation or environment configuration. Since you've just reinitialized Alembic, let's ensure everything is set up correctly.
+
+### Steps to Resolve:
+
+1. **Verify Alembic Installation:**
+   Since you previously upgraded Alembic, ensure that it's properly installed and that you're not using an old or corrupted version. Run the following command to confirm:
+
+   ```bash
+   pip show alembic
+   ```
+
+2. **Check Python Path:**
+   Ensure your virtual environment is active and that Python is correctly pointing to the environment where Alembic is installed:
+
+   ```bash
+   (venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub\src> where python
+   ```
+
+   This should point to the `venv` directory.
+
+3. **Review `env.py`:**
+   Ensure your `env.py` file is correctly set up. Specifically, the `context` module from Alembic should be imported properly. Here's a simplified version of the relevant parts:
+
+   ```python
+   from alembic import context
+   from logging.config import fileConfig
+   from sqlalchemy import engine_from_config, pool
+   from myapp import Base  # Replace 'myapp' with the correct module where your Base metadata is defined
+
+   # This is the Alembic Config object
+   config = context.config
+
+   # Setting up logging
+   if config.config_file_name is not None:
+       fileConfig(config.config_file_name)
+
+   target_metadata = Base.metadata
+
+   # Rest of the `env.py` as provided
+   ```
+
+   Ensure `target_metadata` is correctly set, pointing to your SQLAlchemy Base metadata object.
+
+4. **Update `alembic.ini`:**
+   Update the `sqlalchemy.url` with your actual database connection string in `alembic.ini`. It should look something like:
+
+   ```ini
+   sqlalchemy.url = sqlite:///path/to/your/database.db  # Or your actual database URI
+   ```
+
+5. **Run Migration Again:**
+   After making sure everything is set up correctly, try running the migration command again:
+
+   ```bash
+   alembic upgrade head
+   ```
+
+6. **Check for Errors:**
+   If you still encounter errors, consider reinstalling Alembic:
+
+   ```bash
+   pip uninstall alembic
+   pip install alembic
+   ```
+
+These steps should help resolve the issue with Alembic and ensure your migration setup is functioning correctly.
+
+//------------------------------
+
+The code you provided is a well-structured `env.py` script for Alembic. It defines two functions, `run_migrations_offline` and `run_migrations_online`, to handle database migrations based on the Alembic configuration. Let's break down the code and address the potential issue with the `config` attribute:
+
+**Explanation:**
+
+1. **Imports:**
+   - `logging.config.fileConfig`: Imports a function for configuring logging from a file.
+   - `sqlalchemy.engine_from_config`: Imports a function for creating a database engine from Alembic configuration.
+   - `sqlalchemy.pool`: Imports the `pool` class for configuring connection pooling.
+   - `alembic.context`: Imports the `context` module from Alembic, which provides access to configuration and migration execution.
+
+2. **`config` Access:**
+   - The code correctly accesses the `config` attribute from the `context` module. This attribute holds the configuration loaded from the Alembic configuration file (`alembic.ini`).
+
+3. **Logging Configuration:**
+   - The code checks if `config.config_file_name` is not `None`. This indicates the presence of an Alembic configuration file.
+   - If the file exists, the `fileConfig` function from the `logging` module is used to configure logging based on the settings in the `alembic.ini` file.
+
+4. **`target_metadata`:**
+   - The code defines a `target_metadata` variable to hold the SQLAlchemy metadata object representing your database models. If you're using autogeneration of migrations, this variable should be set to your model's `Base.metadata` object. Currently, it's set to `None`.
+
+5. **`run_migrations_offline` Function:**
+   - This function handles running migrations in offline mode.
+   - It retrieves the database connection URL from the `config` attribute using `get_main_option("sqlalchemy.url")`.
+   - It configures the Alembic context with this URL, `target_metadata` (if set), `literal_binds=True`, and dialect options for named parameters.
+   - It runs the migrations within a transaction.
+
+6. **`run_migrations_online` Function:**
+   - This function handles running migrations in online mode.
+   - It creates a database engine using `engine_from_config` and the `config` object.
+   - It establishes a connection with the engine and configures the Alembic context with that connection and `target_metadata` (if set).
+   - It runs the migrations within a transaction.
+
+7. **Conditional Execution:**
+   - The code checks if the context is in offline mode using `context.is_offline_mode()`.
+   - If offline, it calls `run_migrations_offline`.
+   - If online, it calls `run_migrations_online`.
+
+**Addressing Potential Issues:**
+
+- **Missing `alembic.ini`:** Ensure you have an `alembic.ini` file that defines the Alembic configuration, including the database connection URL.
+- **Incorrect `config_ini_section`:** Double-check that the `config_ini_section` in `run_migrations_online` matches the section name used in your `alembic.ini` file.
+- **Model Metadata:** If you're using autogeneration of migrations, ensure you have set the `target_metadata` variable to your model's `Base.metadata` object.
+
+If you're still encountering the "Module 'alembic.context' has no 'config' member" error, please share more details about your environment, Alembic version, and any specific error messages. This will help diagnose the issue further.
+
+Overall, the provided code seems well-structured and should work as intended. Make sure your configuration is set up correctly and adjust the `target_metadata` variable if required.
+
+//-------------------------------------------------------------------------------------------------------
+
+Testing and error resolution(28-8-24)
+
+### Comprehensive Testing Plan for CurateHub
+
+Given the structure, tech stack, programming language, database, and the previous issues faced, particularly with Alembic, here’s a tailored testing plan:
+
+#### **1. Preparation Phase**
+- **Backup Database:** Ensure that you have backups of your current database state before testing.
+- **Set Up Testing Environment:** Use a separate testing environment with the same configurations as production to avoid disrupting active development or real data.
+- **Documentation Review:** Revisit the Excel sheet you’ve been filling out to note previous errors and areas of concern.
+
+#### **2. Unit Testing**
+- **Test Each Functionality:** Write or update unit tests for each function or method in your Flask application. 
+- **Focus on Edge Cases:** Consider boundary values, null inputs, incorrect data types, and malformed requests.
+- **Database Interaction:** Test CRUD operations for all models, ensuring that they work as expected and handle errors gracefully.
+
+#### **3. Integration Testing**
+- **Test Endpoint Logic:** Verify that each API endpoint behaves as expected when integrated with the database and other components.
+- **JWT Authentication:** Ensure that authentication and authorization work correctly, including token generation, expiry, and validation.
+- **Data Integrity:** Test how different components interact with the database, especially during transactions, ensuring that data remains consistent.
+
+#### **4. Regression Testing**
+- **Test Past Issues:** Re-run tests on functionalities that had issues before, like those related to Alembic migrations. 
+- **Schema Migrations:** Test Alembic migrations thoroughly by simulating upgrades and downgrades to ensure database schema changes are correctly applied.
+- **Historical Data:** Test with older data in the database to ensure that updates haven’t broken compatibility with existing records.
+
+#### **5. Performance Testing**
+- **Load Testing:** Simulate multiple users accessing the application simultaneously to test its scalability and performance under stress.
+- **Query Optimization:** Analyze SQL queries for performance bottlenecks, ensuring they execute efficiently.
+
+#### **6. User Acceptance Testing (UAT)**
+- **Real-world Scenarios:** Perform tests that mimic real user behavior to see if the application meets business requirements.
+- **End-to-End Testing:** Test complete workflows, from user registration to recommendation fetching, to ensure all parts of the application work together seamlessly.
+
+#### **7. Security Testing**
+- **SQL Injection:** Test for SQL injection vulnerabilities, especially in endpoints that interact with the database.
+- **Data Validation:** Ensure that all user inputs are correctly validated and sanitized to prevent malicious data from entering the system.
+- **Access Control:** Verify that unauthorized users cannot access restricted resources.
+
+#### **8. Error Handling and Logging**
+- **Graceful Degradation:** Test how the application handles unexpected failures, such as database connectivity issues or invalid data.
+- **Logging Review:** Check that all critical operations are logged correctly, providing clear and actionable logs for debugging.
+
+#### **9. Test Automation**
+- **Automate Tests:** Use frameworks like `pytest` for Python to automate as many tests as possible. Consider integrating these tests into a CI/CD pipeline.
+- **Regular Testing:** Set up automated nightly or weekly tests to catch regressions early.
+
+#### **10. Documentation and Reporting**
+- **Update the Excel Sheet:** As you find issues, document them in the Excel sheet, along with steps to reproduce, severity, and possible solutions.
+- **Final Review:** Once all tests are complete, review the findings and ensure all issues are resolved before moving forward.
+
+#### **11. Post-Testing Review**
+- **Evaluate Readiness:** Once all identified errors are fixed, perform a final review to decide if the application is ready for new features.
+- **Ask for Approval:** Before starting new development, review the overall system state and ask yourself or stakeholders for approval.
+
+This plan should provide comprehensive coverage, ensuring that the application is stable, secure, and ready for further development.
+
+//-------------------------------------------------------------------------------------
+
+Let's systematically test each part of the application. We'll start by testing individual components, such as the user authentication, content management, and recommendation system, one at a time. I'll guide you through testing the relevant endpoints, models, and functions.
+
+### Step 1: **User Authentication and Management**
+
+We'll begin by testing the user registration, login, profile management, and authentication features.
+
+#### 1.1 **User Registration (`/register`)**
+- **Test cases:**
+  - Register with valid details.
+  - Register with an existing username.
+  - Register with invalid data (e.g., missing fields).
+
+#### 1.2 **User Login (`/login`)**
+- **Test cases:**
+  - Login with correct credentials.
+  - Login with incorrect credentials.
+  - Login with missing fields.
+
+#### 1.3 **Profile Management (`/profile` GET and PUT)**
+- **Test cases:**
+  - Retrieve user profile after logging in.
+  - Update user profile with valid data.
+  - Update user profile with invalid or missing data.
+  - Attempt to access or update the profile without logging in.
+
+#### 1.4 **JWT Authentication**
+- **Test cases:**
+  - Verify token creation on login.
+  - Verify protected endpoints (e.g., creating categories, tags) require a valid JWT.
+  - Access protected routes with an invalid or expired token.
+
+Let's start by testing the **User Registration** endpoint. We will write unit tests for it to verify the expected behavior. Do you want to start by writing test cases, or would you like a brief overview of how to structure these tests?
+
+//---------------------------------------------------------------------------------------
+
+Given the aim of CurateHub and the project structure, let's begin by systematically testing each part of the application to ensure it functions as intended. We'll start with the most fundamental components and move on to more complex integrations, following the comprehensive testing plan we've outlined.
+
+### Testing Focus Areas
+1. **Database & Migrations**:
+   - **Files**: `models.py`, migration files (in the `migrations/` folder)
+   - **Location**: `/`
+   - **Goal**: Verify that the database schema is correct, migrations run without issues, and all tables, relationships, and constraints are properly defined.
+
+2. **User Authentication & JWT Handling**:
+   - **Files**: `app.py`, `models.py`, `auth.py` (if exists)
+   - **Location**: `/`
+   - **Goal**: Ensure that user registration, login, profile updates, and JWT token handling work seamlessly.
+
+3. **Category & Tag Management**:
+   - **Files**: `app.py`, `models.py`, `categories.py` (if exists)
+   - **Location**: `/`
+   - **Goal**: Test CRUD operations on categories and tags, ensuring that they integrate correctly with content.
+
+4. **Content Management**:
+   - **Files**: `app.py`, `models.py`, `content.py` (if exists)
+   - **Location**: `/`
+   - **Goal**: Validate that content creation, tagging, and categorization work properly, and that content is correctly associated with the user's interests.
+
+5. **Recommendation System**:
+   - **Files**: `app.py`, `models.py`, `recommendations.py` (if exists)
+   - **Location**: `/`
+   - **Goal**: Ensure the recommendation engine accurately reflects user preferences and past activities, and that it functions as expected under various inputs.
+
+6. **Activity Logging & Analytics**:
+   - **Files**: `app.py`, `models.py`, `activity_log.py` (if exists)
+   - **Location**: `/`
+   - **Goal**: Verify that all user actions are logged correctly and that analytics provide meaningful insights.
+
+7. **Frontend Integration**:
+   - **Files**: HTML/CSS/JS files (if any), API endpoints in `app.py`
+   - **Location**: `/templates`, `/static`
+   - **Goal**: Test the frontend's interaction with the backend, ensuring seamless integration and correct data presentation.
+
+8. **Error Handling & Logging**:
+   - **Files**: `app.py`, `logging.py` (if exists)
+   - **Location**: `/`
+   - **Goal**: Validate that errors are handled gracefully, with proper logging and user feedback.
+
+9. **Security**:
+   - **Files**: `app.py`, `models.py`
+   - **Location**: `/`
+   - **Goal**: Test security aspects like data validation, access control, and prevention of common vulnerabilities.
+
+10. **Performance & Scalability**:
+    - **Files**: Relevant code sections across the project
+    - **Location**: `/`
+    - **Goal**: Measure performance under load, ensuring the application scales as intended.
+
+---
+
+We can begin with **Database & Migrations**. Would you like to start by testing the database schema and migrations, or would you prefer to begin with another component?
+
+
+To inspect the database schema, we'll take the following steps:
+
+### 1. **Reviewing the Models:**
+   - We will review the model definitions for `User`, `ActivityLog`, `Category`, `Tag`, and `Content` to ensure they align with the intended database schema.
+
+### 2. **Checking the Database:**
+   - We'll inspect the actual database schema to verify that it matches the model definitions. This can be done by querying the database or using tools to visualize the schema.
+
+### 3. **Comparing Models to Database Schema:**
+   - We'll compare the model definitions in our code to the actual schema in the database to identify any discrepancies.
+
+### Steps:
+
+1. **Review Model Definitions:**
+   - We'll start by looking at the model definitions in the code (`User`, `ActivityLog`, `Category`, `Tag`, `Content`).
+
+2. **Generate the Current Schema:**
+   - Use SQLAlchemy to generate the current schema from the database.
+
+3. **Compare Schema and Models:**
+   - Manually or using tools, compare the generated schema with the model definitions to spot any mismatches.
+
+---
+
+Would you like to proceed with reviewing the model definitions first, or should we directly generate and compare the current schema from the database?
+
+
+
+
+Models.py: 
+db instance = db
+
+Database-> SQLAlchemy
+Model-> db
+table definitions-> 
+class table_name(db.Model):column_name = db.Column(db.data_type, null constraint, nullable)
+
+//------------------------------------------------------------------------------------------
+
+Your `models.py` file looks mostly well-structured, but there are a few areas where we can make some improvements and ensure consistency:
+
+1. **Model Definitions:**
+   - The `User` model has an attribute `tags` that uses a secondary table `user_tags`, but the `user_tags` table definition is not explicitly defining a primary key. You should specify `primary_key=True` for columns that are used in the `user_tags` table.
+   - The `ActivityLog` model uses `datetime.now` for the default timestamp, which should be `datetime.utcnow` to use UTC time.
+
+2. **Tag Model:**
+   - The `Tag` model definition looks good. The many-to-many relationship with `Content` is correctly set up.
+
+3. **Content Model:**
+   - You mentioned `# Other fields` in the `Content` model. Ensure that the model has all the necessary fields and relationships for your application.
+
+Here's a revised version of your `models.py` with these points addressed:
+
+```python
+from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
+
+db = SQLAlchemy()
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password_hash = db.Column(db.String(128), nullable=False)
+    preferences = db.Column(db.String(500))
+    watch_history = db.Column(db.String(500))
+    tags = db.relationship('Tag', secondary='user_tags', backref='users')  # Updated to use a secondary table for many-to-many
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
+class ActivityLog(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), nullable=False)
+    action = db.Column(db.String(200), nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)  # Use UTC time
+
+    def __repr__(self):
+        return f'<ActivityLog {self.username} - {self.action}>'
+
+class Tag(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), unique=True, nullable=False)
+    content_items = db.relationship('Content', secondary='content_tags', backref='tags')  # Updated to use a secondary table for many-to-many
+
+# Association tables
+user_tags = db.Table('user_tags',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+    db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'), primary_key=True)
+)
+
+content_tags = db.Table('content_tags',
+    db.Column('content_id', db.Integer, db.ForeignKey('content.id'), primary_key=True),
+    db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'), primary_key=True)
+)
+
+class Content(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200), nullable=False)
+    # Add other fields as needed
+    tags = db.relationship('Tag', secondary='content_tags', backref='content_items')
+```
+
+**Notes:**
+- Ensure that the `Content` model has all the fields necessary for your application.
+- The association tables `user_tags` and `content_tags` now have primary keys defined for correct many-to-many relationships.
+
+If you have any additional fields or relationships that need to be included, make sure to add them accordingly.
+
+//----------------------------------------------------------------------------------
+
+You should import `db` from the module where it is defined in your Flask application. Typically, this is done in the file where you initialize your Flask extensions, often called `app.py` or `__init__.py` in your application package.
+
+Given your current setup, here's how you might structure the import:
+
+1. **Structure Your Flask Application**:
+   Ensure that your Flask application is organized in a way that allows for easy imports. For example, if you have a file structure like:
+
+   ```
+   CurateHub/
+   ├── src/
+   │   ├── app.py
+   │   ├── models.py
+   │   ├── migrations/
+   │   │   └── env.py
+   │   └── ...
+   ```
+
+   In this case, `app.py` likely contains the `db` initialization.
+
+2. **Import `db` in `env.py`**:
+   In your `env.py` file, you should import `db` from the file where it is defined. For example, if `db` is defined in `app.py`, you would import it like this:
+
+   ```python
+   from app import db
+   ```
+
+   This assumes that `db` is defined as follows in `app.py`:
+
+   ```python
+   from flask_sqlalchemy import SQLAlchemy
+
+   db = SQLAlchemy()
+   ```
+
+   If your `db` initialization is in another module (e.g., `models.py` or `__init__.py`), adjust the import path accordingly. For instance:
+
+   ```python
+   from models import db  # if `db` is defined in models.py
+   ```
+
+3. **Ensure Correct Import Path**:
+   Make sure that the import path in `env.py` correctly reflects your project structure. You might need to adjust the import statement if your `app.py` or `models.py` is in a different directory.
+
+4. **Example Import Configuration**:
+   Here’s a complete example assuming your `db` is initialized in `app.py`:
+
+   - **app.py**:
+     ```python
+     from flask import Flask
+     from flask_sqlalchemy import SQLAlchemy
+
+     app = Flask(__name__)
+     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///curatehub.db'
+     db = SQLAlchemy(app)
+     ```
+
+   - **env.py**:
+     ```python
+     from logging.config import fileConfig
+     from sqlalchemy import engine_from_config, pool
+     from alembic import context
+     from app import db  # Import db from app.py
+
+     # this is the Alembic Config object, which provides
+     # access to the values within the .ini file in use.
+     config = context.config
+
+     # Interpret the config file for Python logging.
+     # This line sets up loggers basically.
+     if config.config_file_name is not None:
+         fileConfig(config.config_file_name)
+
+     # Add your model's MetaData object here
+     target_metadata = db.Model.metadata
+
+     def run_migrations_offline() -> None:
+         """Run migrations in 'offline' mode."""
+         url = config.get_main_option("sqlalchemy.url")
+         context.configure(
+             url=url,
+             target_metadata=target_metadata,
+             literal_binds=True,
+             dialect_opts={"paramstyle": "named"},
+         )
+
+         with context.begin_transaction():
+             context.run_migrations()
+
+     def run_migrations_online() -> None:
+         """Run migrations in 'online' mode."""
+         connectable = engine_from_config(
+             config.get_section(config.config_ini_section, {}),
+             prefix="sqlalchemy.",
+             poolclass=pool.NullPool,
+         )
+
+         with connectable.connect() as connection:
+             context.configure(
+                 connection=connection, target_metadata=target_metadata
+             )
+
+             with context.begin_transaction():
+                 context.run_migrations()
+
+     if context.is_offline_mode():
+         run_migrations_offline()
+     else:
+         run_migrations_online()
+     ```
+
+This setup should align with your existing application structure and resolve the errors related to importing `db`. If you have any further issues, let me know!
+
+
+
+File "G:\E_drive_data\GitHubProjects\CurateHub\CurateHub\src\app.py" contains the db instance
+
+//-------------------------------------------------------------------------------------------------------------------
+
+It looks like there are a couple of issues that need to be addressed:
+
+1. **Issue with Importing `flask_pymongo`:**
+
+   Make sure `flask_pymongo` is installed properly. You can install it with:
+
+   ```bash
+   pip install flask_pymongo
+   ```
+
+   If you still encounter issues, ensure that your environment is correctly set up and check for typos in the import statement.
+
+2. **Undefined Variable 'logging':**
+
+   It seems the `logging` module was not imported in the provided code. To fix this, you need to import it at the beginning of your `app.py` file. 
+
+   Here’s how you can import and configure logging:
+
+   ```python
+   import logging
+
+   # Set up logging
+   logging.basicConfig(level=logging.DEBUG)
+   ```
+
+   Ensure this import statement is at the top of your `app.py` file along with other import statements.
+
+### Updated `app.py`
+
+Here’s the updated `app.py` with the logging import added:
+
+```python
+from flask import Flask, jsonify, request, session, redirect, url_for
+from flask_pymongo import PyMongo
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
+from flask_cors import CORS
+import logging
+
+# Set up logging
+logging.basicConfig(level=logging.DEBUG)
+
+# Initialize Flask application
+app = Flask(__name__)
+app.secret_key = b'`\xc8\xe7C5\xc3\x13wE\xe4\xf0\xba\x8cM\xfeW\x0e\x87O6\x87\xbaP\x9f'
+
+# Configuration for MongoDB and JWT
+app.config['MONGO_URI'] = 'mongodb://localhost:27017/curatehub'
+app.config['JWT_SECRET_KEY'] = b'\xe8\xb1\xb9\xcc\xd3i\xa6\x15\xf2\xe2/j\xd0\x1d\xfe\xb2M\xc7(\x1e\x11\xb0\xa3\xb9'
+
+# Initialize extensions
+mongo = PyMongo(app)
+jwt = JWTManager(app)
+
+# Initialize CORS
+CORS(app)
+
+# Define MongoDB collections
+users = mongo.db.users
+activity_logs = mongo.db.activity_logs
+categories = mongo.db.categories
+tags = mongo.db.tags
+contents = mongo.db.contents
+
+# Route to create a new category
+@app.route('/categories', methods=['POST'])
+@jwt_required()
+def create_category():
+    data = request.get_json()
+    name = data.get('name')
+
+    if categories.find_one({'name': name}):
+        return jsonify({"error": "Category already exists"}), 400
+
+    categories.insert_one({'name': name})
+    return jsonify({"message": "Category created successfully"}), 201
+
+# Route to get all categories
+@app.route('/categories', methods=['GET'])
+def get_categories():
+    all_categories = categories.find()
+    return jsonify([{"id": str(cat['_id']), "name": cat['name']} for cat in all_categories])
+
+# Route to create a new tag
+@app.route('/tags', methods=['POST'])
+@jwt_required()
+def create_tag():
+    data = request.get_json()
+    name = data.get('name')
+
+    if tags.find_one({'name': name}):
+        return jsonify({"error": "Tag already exists"}), 400
+
+    tags.insert_one({'name': name})
+    return jsonify({"message": "Tag created successfully"}), 201
+
+# Route to get all tags
+@app.route('/tags', methods=['GET'])
+def get_tags():
+    all_tags = tags.find()
+    return jsonify([{"id": str(tag['_id']), "name": tag['name']} for tag in all_tags])
+
+# Route to associate content with a category
+@app.route('/content/<content_id>/category/<category_id>', methods=['PUT'])
+@jwt_required()
+def associate_content_with_category(content_id, category_id):
+    content = contents.find_one({'_id': content_id})
+    category = categories.find_one({'_id': category_id})
+    
+    if not content or not category:
+        return jsonify({"error": "Content or Category not found"}), 404
+
+    contents.update_one({'_id': content_id}, {'$set': {'category': category_id}})
+    return jsonify({"message": "Content associated with category successfully"}), 200
+
+# Route to associate tags with content
+@app.route('/content/<content_id>/tags', methods=['POST'])
+@jwt_required()
+def associate_tags_with_content(content_id):
+    data = request.get_json()
+    tag_ids = data.get('tag_ids', [])
+
+    content = contents.find_one({'_id': content_id})
+    if not content:
+        return jsonify({"error": "Content not found"}), 404
+    
+    tags_list = tags.find({'_id': {'$in': tag_ids}})
+    contents.update_one({'_id': content_id}, {'$set': {'tags': [tag['_id'] for tag in tags_list]}})
+    return jsonify({"message": "Tags associated with content successfully"}), 200
+
+# User model
+@app.route('/register', methods=['POST'])
+def register():
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
+    email = data.get('email')
+
+    if users.find_one({'username': username}):
+        return jsonify({"error": "Username already exists"}), 400
+
+    user = {
+        'username': username,
+        'password_hash': generate_password_hash(password),
+        'email': email
+    }
+    users.insert_one(user)
+    access_token = create_access_token(identity=username)
+    return jsonify({"access_token": access_token}), 201
+
+@app.route('/profile', methods=['PUT'])
+@jwt_required()
+def update_profile():
+    current_user = get_jwt_identity()
+    data = request.get_json()
+    preferences = data.get('preferences')
+
+    user = users.find_one({'username': current_user})
+    if user:
+        users.update_one({'username': current_user}, {'$set': {'preferences': preferences}})
+        return jsonify({"message": "Profile updated successfully"}), 200
+    return jsonify({"error": "User not found"}), 404
+
+@app.route('/profile', methods=['GET'])
+@jwt_required()
+def get_profile():
+    current_user = get_jwt_identity()
+    user = users.find_one({'username': current_user})
+    if user:
+        return jsonify({"username": user['username'], "email": user['email'], "preferences": user.get('preferences', '')}), 200
+    return jsonify({"error": "User not found"}), 404
+
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
+
+    user = users.find_one({'username': username})
+    if user and check_password_hash(user['password_hash'], password):
+        access_token = create_access_token(identity=username)
+        return jsonify({"access_token": access_token}), 200
+    return jsonify({"error": "Invalid credentials"}), 401
+
+@app.route('/logout', methods=['POST'])
+def logout():
+    session.clear()
+    return redirect(url_for('home'))
+
+@app.route('/log_activity', methods=['POST'])
+@jwt_required()
+def log_activity():
+    current_user = get_jwt_identity()
+    data = request.get_json()
+    action = data.get('action')
+
+    log = {
+        'username': current_user,
+        'action': action,
+        'timestamp': datetime.utcnow()
+    }
+    activity_logs.insert_one(log)
+    return jsonify({"message": "Activity logged successfully"}), 201
+
+@app.route('/analytics', methods=['GET'])
+@jwt_required()
+def get_analytics():
+    current_user = get_jwt_identity()
+    logs = activity_logs.find({'username': current_user})
+    analytics = [{"action": log['action'], "timestamp": log['timestamp']} for log in logs]
+    return jsonify({"analytics": analytics}), 200
+
+@app.route('/test', methods=['GET'])
+def test():
+    return jsonify({'message': 'GET method works!'})
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+### Next Steps
+
+1. **Run Your Flask Application:**
+   Start your Flask application to verify if the changes have resolved the issues.
+
+2. **Testing:**
+   Test all your endpoints to ensure they work correctly with MongoDB.
+
+If you encounter any other issues or need further assistance, feel free to ask!
+
+//-----------------------------------------------------------------------------------------------------
+
+The error "Unable to import 'flask_pymongo'" usually occurs if the `flask_pymongo` package is not installed correctly or if there's an issue with your Python environment.
+
+Here are the steps you can take to troubleshoot and resolve this issue:
+
+### 1. **Check if `flask_pymongo` is Installed:**
+   Run the following command in your terminal or command prompt to ensure that `flask_pymongo` is installed:
+   ```bash
+   pip show flask_pymongo
+   ```
+   If it's not installed, install it using:
+   ```bash
+   pip install flask-pymongo
+   ```
+
+### 2. **Check Your Python Environment:**
+   Make sure that you're using the correct Python environment where `flask_pymongo` is installed. You can check the active environment using:
+   ```bash
+   python -m pip --version
+   ```
+   If you have multiple Python environments, ensure that the correct one is activated.
+
+### 3. **Restart Your IDE or Text Editor:**
+   Sometimes, your IDE or text editor may not recognize new packages. Try restarting it to see if the issue persists.
+
+### 4. **Check for Typo:**
+   Ensure that the import statement is written correctly:
+   ```python
+   from flask_pymongo import PyMongo
+   ```
+
+### 5. **Clear the Pylint Cache:**
+   If you're using an IDE with Pylint (like VSCode), try clearing the Pylint cache. This can sometimes resolve false import errors. You can also try disabling Pylint temporarily to see if the error goes away.
+
+### 6. **Reinstall the Package:**
+   If none of the above steps work, try uninstalling and then reinstalling the package:
+   ```bash
+   pip uninstall flask-pymongo
+   pip install flask-pymongo
+   ```
+
+### 7. **Check Your Python Version:**
+   Ensure that the Python version you're using is compatible with `flask_pymongo`. Some packages have specific Python version requirements.
+
+If the issue persists after following these steps, please let me know, and we can further troubleshoot the problem.
+
+//----------------------------------------------------------------------------------------
+
+(venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>pip show flask-pymongo
+Name: Flask-PyMongo
+Version: 2.3.0
+Summary: PyMongo support for Flask applications
+Home-page: http://flask-pymongo.readthedocs.org/
+Author: Dan Crosta
+Author-email: dcrosta@late.am
+License: BSD
+Location: g:\e_drive_data\githubprojects\curatehub\curatehub\venv\lib\site-packages
+Requires: Flask, PyMongo
+Required-by:
+
+
+//--------------------------------------------------------------------------------------
+
+Great! Since everything is working now, let's continue with the project. We can pick up where we left off. Here's a quick summary of what we planned:
+
+1. **Testing and Validation**: We'll start by rigorously testing the current setup to ensure that all components are functioning correctly.
+   
+2. **Feature Implementation**: Continue enhancing the recommendation system by focusing on content categorization and tagging, ensuring these are well-integrated with MongoDB.
+
+3. **Structured Development**: Follow the structured approach we discussed, with a focus on Low-Level Design (LLD) principles, to gradually build and improve features.
+
+Would you like to start with testing, or should we move directly into feature development?
+
+
+
+For running the application, you should have 
+
+//------------------------------------------------------------------------------
+
+To integrate the frontend with your Flask backend for CurateHub, here are the steps we'll follow:
+
+### 1. **Setting Up the Frontend Framework:**
+   - **Framework Choice**: Do you have a preferred frontend framework, like React, Vue.js, or Angular? If not, I can suggest one based on your project requirements.
+   - **Folder Structure**: We'll set up a `frontend` folder within your project to organize the frontend code.
+
+### 2. **Serving the Frontend with Flask:**
+   - **Static Files**: We'll configure Flask to serve static files like HTML, CSS, and JavaScript.
+   - **Template Rendering**: If you're using Flask for rendering HTML templates, we can configure routes to serve these templates.
+
+### 3. **API Integration:**
+   - We'll connect the frontend to the backend API endpoints that you've already set up. This involves making HTTP requests (using `fetch` or `axios` in JavaScript) to your Flask API to retrieve or send data.
+
+### 4. **Testing Frontend and Backend Integration:**
+   - Once the frontend is integrated, we'll test it to ensure it interacts correctly with the backend.
+
+### 5. **Deploying the Integrated Application:**
+   - Finally, we'll set up a deployment strategy to host both the frontend and backend on a server or a cloud service.
+
+Do you have any specific frontend framework or tools in mind, or should I suggest one?
+
+//---------------------------------------------------------------------------------------------
+
+Given the current state of the project, here’s a logical sequence to follow:
+
+### **1. **Integrate Frontend with Backend**:
+   - **Objective**: Connect your frontend to the Flask backend, ensuring that the data flow and interactions work as expected.
+   - **Tasks**:
+     1. **API Calls**: Verify that your frontend makes the correct API requests to the Flask server. This includes checking all CRUD operations and data retrieval.
+     2. **Data Display**: Ensure that the data fetched from the backend is correctly displayed in your frontend components.
+     3. **Error Handling**: Implement error handling on the frontend for failed requests or invalid data.
+
+### **2. **Implement New Features**:
+   - **Objective**: Enhance your application with the new features you outlined.
+   - **Tasks**:
+     1. **Feature Planning**: Outline the specifics of each new feature you want to add.
+     2. **Backend Development**: Implement the backend logic for the new features.
+     3. **Frontend Integration**: Update your frontend to incorporate and interact with the new features.
+
+### **3. **Testing**:
+   - **Objective**: Ensure that all features and integrations work correctly and reliably.
+   - **Tasks**:
+     1. **Functional Testing**: Verify that all functionalities, both new and existing, work as intended.
+     2. **Integration Testing**: Check that the frontend and backend work seamlessly together.
+     3. **User Acceptance Testing**: Ensure the application meets user expectations and requirements.
+
+### **4. **Documentation and Code Cleanup**:
+   - **Objective**: Prepare the project for deployment and future maintenance.
+   - **Tasks**:
+     1. **Documentation**: Update or create documentation for the project.
+     2. **Code Review**: Clean up the codebase, removing any unnecessary code or comments.
+
+### **5. **Deployment**:
+   - **Objective**: Make the project available for users.
+   - **Tasks**:
+     1. **Hosting**: Choose a hosting solution and deploy your application.
+     2. **Monitoring**: Set up monitoring for your deployed application to track performance and errors.
+
+**Let’s start with integrating the frontend with the backend.** 
+
+**Tasks to complete:**
+
+1. **Verify API Endpoints**:
+   - Ensure your backend API endpoints are working and accessible.
+
+2. **Frontend API Integration**:
+   - Update the frontend code to make API calls to your backend endpoints.
+   - Ensure data fetched from the backend is displayed correctly on the frontend.
+
+3. **Error Handling**:
+   - Implement error handling in your frontend for failed API requests.
+
+Would you like to start with a specific part of this integration, or should we go through the tasks step by step?
+
+
+//-----------------------------------------------------------------------------------------------------
+
+It looks like you need to install `axios`, which is a promise-based HTTP client for making requests in JavaScript. You can install it using npm or yarn.
+
+### To Install `axios`:
+
+**Using npm:**
+
+```bash
+npm install axios
+```
+
+**Using yarn:**
+
+```bash
+yarn add axios
+```
+
+Run one of these commands in your project directory to install `axios`. After installing, restart your development server to ensure that the package is properly recognized.
+
+### Steps:
+
+1. **Open your terminal** and navigate to the frontend project directory:
+
+   ```bash
+   cd G:\E_drive_data\GitHubProjects\CurateHub\CurateHub\frontend
+   ```
+
+2. **Install `axios`:**
+
+   - If using npm:
+     ```bash
+     npm install axios
+     ```
+
+   - If using yarn:
+     ```bash
+     yarn add axios
+     ```
+
+3. **Restart your development server** if it's running:
+
+   ```bash
+   npm start
+   ```
+
+   or
+
+   ```bash
+   yarn start
+   ```
+
+After installing `axios`, try running your application again. This should resolve the import errors related to `axios`.
+
+//---------------------------------------------------------------------------
+
+To work on your React project’s `index.html` and other pages to ensure they display correctly in the browser, follow these steps:
+
+### 1. **Update `index.html`**
+
+The `index.html` file should be in your `public` directory. Ensure it’s configured correctly to serve your React application.
+
+Here’s an example `index.html` file for a React application:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="CurateHub: Control your online video feeds with curated content." />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>CurateHub</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>
+```
+
+### 2. **Create Component Files**
+
+Create the necessary component files inside your `src/components` directory. Here’s an example of how to create basic components:
+
+#### `src/components/CategoryList.js`
+
+```javascript
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+const CategoryList = () => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/categories');
+        setCategories(response.data);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  return (
+    <div>
+      <h2>Categories</h2>
+      <ul>
+        {categories.map(category => (
+          <li key={category.id}>{category.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default CategoryList;
+```
+
+#### `src/components/Profile.js`
+
+```javascript
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+const Profile = () => {
+  const [profile, setProfile] = useState(null);
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/profile');
+        setProfile(response.data);
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+      }
+    };
+
+    fetchProfile();
+  }, []);
+
+  if (!profile) return <div>Loading...</div>;
+
+  return (
+    <div>
+      <h2>Profile</h2>
+      <p>Username: {profile.username}</p>
+      <p>Email: {profile.email}</p>
+      <p>Preferences: {profile.preferences}</p>
+    </div>
+  );
+};
+
+export default Profile;
+```
+
+#### `src/components/TagList.js`
+
+```javascript
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+const TagList = () => {
+  const [tags, setTags] = useState([]);
+
+  useEffect(() => {
+    const fetchTags = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/tags');
+        setTags(response.data);
+      } catch (error) {
+        console.error('Error fetching tags:', error);
+      }
+    };
+
+    fetchTags();
+  }, []);
+
+  return (
+    <div>
+      <h2>Tags</h2>
+      <ul>
+        {tags.map(tag => (
+          <li key={tag.id}>{tag.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default TagList;
+```
+
+### 3. **Update `App.js`**
+
+Ensure your `App.js` file is set up correctly to include routes and render components:
+
+```javascript
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import CategoryList from './components/CategoryList';
+import Profile from './components/Profile';
+import TagList from './components/TagList';
+
+function App() {
+  return (
+    <Router>
+      <div className="App">
+        <h1>CurateHub</h1>
+        <Routes>
+          <Route path="/" element={<CategoryList />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/tags" element={<TagList />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+}
+
+export default App;
+```
+
+### 4. **Run Your React App**
+
+To start your React application, use the following command:
+
+```bash
+npm start
+```
+
+Or if you’re using `yarn`:
+
+```bash
+yarn start
+```
+
+This will start the development server and open your application in the browser. Make sure your backend server is also running on the specified port (5000 in this case) so that your frontend can fetch data from it.
+
+### 5. **Debugging**
+
+If you encounter any issues, check the browser console for errors and ensure that your backend server endpoints are working correctly with tools like Postman.
