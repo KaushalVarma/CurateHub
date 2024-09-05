@@ -5,6 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from flask_cors import CORS
 import logging
+from bson import ObjectId
 
 # Set up logging
 logging.basicConfig(level=logging.DEBUG)
@@ -16,6 +17,8 @@ app.secret_key = b'`\xc8\xe7C5\xc3\x13wE\xe4\xf0\xba\x8cM\xfeW\x0e\x87O6\x87\xba
 # Configuration for MongoDB and JWT
 app.config['MONGO_URI'] = 'mongodb://localhost:27017/curatehub'
 app.config['JWT_SECRET_KEY'] = b'\xe8\xb1\xb9\xcc\xd3i\xa6\x15\xf2\xe2/j\xd0\x1d\xfe\xb2M\xc7(\x1e\x11\xb0\xa3\xb9'
+mongo = PyMongo(app)
+db = mongo.db  # This will give you access to the database
 
 # Initialize extensions
 mongo = PyMongo(app)
@@ -178,6 +181,51 @@ def get_analytics():
     logs = activity_logs.find({'username': current_user})
     analytics = [{"action": log['action'], "timestamp": log['timestamp']} for log in logs]
     return jsonify({"analytics": analytics}), 200
+
+# Route to update or add user preferences
+@app.route('/preferences', methods=['POST'])
+def save_preferences():
+    data = request.json
+    user_id = data.get('user_id')
+    preferences = data.get('preferences')
+
+    if not user_id or not preferences:
+        return jsonify({'error': 'Missing user_id or preferences'}), 400
+
+    user_preferences = {
+        "user_id": ObjectId(user_id),
+        "preferences": preferences
+    }
+
+    # Upsert operation to update or create user preferences
+    result = mongo.db.user_preferences.update_one(
+        {"user_id": ObjectId(user_id)},
+        {"$set": user_preferences},
+        upsert=True
+    )
+
+    return jsonify({"message": "Preferences updated successfully"}), 200
+
+@app.route('/recommendations/<user_id>', methods=['GET'])
+def get_recommendations(user_id):
+    user_preferences = db.user_preferences.find_one({"user_id": ObjectId(user_id)})
+    print("User Preferences: ", user_preferences)  # Debugging
+    
+    if not user_preferences:
+        return jsonify([]), 404
+    
+    preferences = user_preferences.get("preferences", [])
+    print("Preferences: ", preferences)  # Debugging
+    
+    recommendations = list(db.content.find({"category": {"$in": preferences}}))
+    print("Recommendations: ", recommendations)  # Debugging
+    
+    for recommendation in recommendations:
+        recommendation['_id'] = str(recommendation['_id'])
+    
+    return jsonify(recommendations), 200
+
+
 
 @app.route('/test', methods=['GET'])
 def test():

@@ -1,0 +1,24 @@
+Home Page (Root)
+
+URL: http://localhost:3000/
+Description: This is the home page where you see the welcome message and buttons to explore categories, tags, and manage profiles.
+Categories Page
+
+URL: http://localhost:3000/categories
+Description: This page displays the list of categories. It corresponds to the CategoryList component.
+Create Category Page
+
+URL: http://localhost:3000/create-category
+Description: This page allows users to create a new category. It corresponds to the CreateCategory component.
+Tags Page
+
+URL: http://localhost:3000/tags
+Description: This page displays the list of tags. It corresponds to the TagList component.
+Create Tag Page
+
+URL: http://localhost:3000/create-tag
+Description: This page allows users to create a new tag. It corresponds to the CreateTag component.
+Profile Page
+
+URL: http://localhost:3000/profile
+Description: This page allows users to manage their profile. It corresponds to the Profile component.
