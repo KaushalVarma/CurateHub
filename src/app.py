@@ -212,9 +212,22 @@ def get_recommendations(user_id):
     print("User Preferences: ", user_preferences)  # Debugging
     
     if not user_preferences:
-        return jsonify([]), 404
+        return jsonify({"error": "User not found"}), 404
     
     preferences = user_preferences.get("preferences", [])
+    requested_tags = request.args.getlist('tags')  # New addition: Get tags from query parameters
+
+    query = {"category": {"$in": preferences}}
+
+    if tags: # Add tags to the query if provided
+        query["tags"] = {"$in": tags}
+
+    recommendations = list(db.content.find(query))
+
+    # Ensure ObjectIds are serialized
+    for rec in recommendations:
+        rec["_id"] = str(rec["_id"])
+
     print("Preferences: ", preferences)  # Debugging
     
     recommendations = list(db.content.find({"category": {"$in": preferences}}))
