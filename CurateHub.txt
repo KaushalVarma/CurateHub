@@ -9687,3 +9687,414 @@ To implement the feature where user recommendations act as filter criteria for c
    - Deploy the updated application and monitor it to ensure it behaves as expected in a live environment.
 
 Would you like to start with updating the database schema or modify the recommendation system first?
+
+//------------------------------------------------------------------------------------------------------------------
+
+(venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>git add src/app.py src/models.py src/recommendation_logic.py src/user_profile.py  
+
+(venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>git commit -m "Update backend features and fix issues"
+[master 6143590] Update backend features and fix issues
+ 179 files changed, 41111 insertions(+), 18904 deletions(-)
+ delete mode 100644 frontend/.gitignore
+ delete mode 100644 frontend/README.md
+ delete mode 100644 frontend/package-lock.json
+ delete mode 100644 frontend/package.json
+ delete mode 100644 frontend/public/favicon.ico
+ delete mode 100644 frontend/public/index.html
+ delete mode 100644 frontend/public/logo192.png
+ delete mode 100644 frontend/public/logo512.png
+ delete mode 100644 frontend/public/manifest.json
+ delete mode 100644 frontend/public/robots.txt
+ delete mode 100644 frontend/src/App.js
+ delete mode 100644 frontend/src/components/CategoryList.js
+ delete mode 100644 frontend/src/components/Footer.js
+ delete mode 100644 frontend/src/components/Header.js
+ delete mode 100644 frontend/src/components/Home.css
+ delete mode 100644 frontend/src/components/Home.js
+ delete mode 100644 frontend/src/components/Profile.js
+ delete mode 100644 frontend/src/components/TagList.js
+ delete mode 100644 frontend/src/index.js
+ delete mode 100644 frontend/src/pages/Home.js
+ delete mode 100644 frontend/src/pages/Profile.js
+ delete mode 100644 frontend/src/pages/Recommendations.js
+ delete mode 100644 frontend/src/services/api.js
+ delete mode 100644 frontend/src/services/recommendationService.js
+ delete mode 100644 frontend/src/services/userService.js
+ create mode 100644 node_modules/.package-lock.json
+ create mode 100644 node_modules/asynckit/LICENSE
+ create mode 100644 node_modules/asynckit/README.md
+ create mode 100644 node_modules/asynckit/bench.js
+ create mode 100644 node_modules/asynckit/index.js
+ create mode 100644 node_modules/asynckit/lib/abort.js
+ create mode 100644 node_modules/asynckit/lib/async.js
+ create mode 100644 node_modules/asynckit/lib/defer.js
+ create mode 100644 node_modules/asynckit/lib/iterate.js
+ create mode 100644 node_modules/asynckit/lib/readable_asynckit.js
+ create mode 100644 node_modules/asynckit/lib/readable_parallel.js
+ create mode 100644 node_modules/asynckit/lib/readable_serial.js
+ create mode 100644 node_modules/asynckit/lib/readable_serial_ordered.js
+ create mode 100644 node_modules/asynckit/lib/state.js
+ create mode 100644 node_modules/asynckit/lib/streamify.js
+ create mode 100644 node_modules/asynckit/lib/terminator.js
+ create mode 100644 node_modules/asynckit/package.json
+ create mode 100644 node_modules/asynckit/parallel.js
+ create mode 100644 node_modules/asynckit/serial.js
+ create mode 100644 node_modules/asynckit/serialOrdered.js
+ create mode 100644 node_modules/asynckit/stream.js
+ create mode 100644 node_modules/axios/CHANGELOG.md
+ create mode 100644 node_modules/axios/LICENSE
+ create mode 100644 node_modules/axios/MIGRATION_GUIDE.md
+ create mode 100644 node_modules/axios/README.md
+ create mode 100644 node_modules/axios/SECURITY.md
+ create mode 100644 node_modules/axios/dist/axios.js
+ create mode 100644 node_modules/axios/dist/axios.js.map
+ create mode 100644 node_modules/axios/dist/axios.min.js
+ create mode 100644 node_modules/axios/dist/axios.min.js.map
+ create mode 100644 node_modules/axios/dist/browser/axios.cjs
+ create mode 100644 node_modules/axios/dist/browser/axios.cjs.map
+ create mode 100644 node_modules/axios/dist/esm/axios.js
+ create mode 100644 node_modules/axios/dist/esm/axios.js.map
+ create mode 100644 node_modules/axios/dist/esm/axios.min.js
+ create mode 100644 node_modules/axios/dist/esm/axios.min.js.map
+ create mode 100644 node_modules/axios/dist/node/axios.cjs
+ create mode 100644 node_modules/axios/dist/node/axios.cjs.map
+ create mode 100644 node_modules/axios/index.d.cts
+ create mode 100644 node_modules/axios/index.d.ts
+ create mode 100644 node_modules/axios/index.js
+ create mode 100644 node_modules/axios/lib/adapters/README.md
+ create mode 100644 node_modules/axios/lib/adapters/adapters.js
+ create mode 100644 node_modules/axios/lib/adapters/fetch.js
+ create mode 100644 node_modules/axios/lib/adapters/http.js
+ create mode 100644 node_modules/axios/lib/adapters/xhr.js
+ create mode 100644 node_modules/axios/lib/axios.js
+ create mode 100644 node_modules/axios/lib/cancel/CancelToken.js
+ create mode 100644 node_modules/axios/lib/cancel/CanceledError.js
+ create mode 100644 node_modules/axios/lib/cancel/isCancel.js
+ create mode 100644 node_modules/axios/lib/core/Axios.js
+ create mode 100644 node_modules/axios/lib/core/AxiosError.js
+ create mode 100644 node_modules/axios/lib/core/AxiosHeaders.js
+ create mode 100644 node_modules/axios/lib/core/InterceptorManager.js
+ create mode 100644 node_modules/axios/lib/core/README.md
+ create mode 100644 node_modules/axios/lib/core/buildFullPath.js
+ create mode 100644 node_modules/axios/lib/core/dispatchRequest.js
+ create mode 100644 node_modules/axios/lib/core/mergeConfig.js
+ create mode 100644 node_modules/axios/lib/core/settle.js
+ create mode 100644 node_modules/axios/lib/core/transformData.js
+ create mode 100644 node_modules/axios/lib/defaults/index.js
+ create mode 100644 node_modules/axios/lib/defaults/transitional.js
+ create mode 100644 node_modules/axios/lib/helpers/AxiosTransformStream.js
+ create mode 100644 node_modules/axios/lib/helpers/AxiosURLSearchParams.js
+ create mode 100644 node_modules/axios/lib/helpers/HttpStatusCode.js
+ create mode 100644 node_modules/axios/lib/helpers/README.md
+ create mode 100644 node_modules/axios/lib/helpers/ZlibHeaderTransformStream.js
+ create mode 100644 node_modules/axios/lib/helpers/bind.js
+ create mode 100644 node_modules/axios/lib/helpers/buildURL.js
+ create mode 100644 node_modules/axios/lib/helpers/callbackify.js
+ create mode 100644 node_modules/axios/lib/helpers/combineURLs.js
+ create mode 100644 node_modules/axios/lib/helpers/composeSignals.js
+ create mode 100644 node_modules/axios/lib/helpers/cookies.js
+ create mode 100644 node_modules/axios/lib/helpers/deprecatedMethod.js
+ create mode 100644 node_modules/axios/lib/helpers/formDataToJSON.js
+ create mode 100644 node_modules/axios/lib/helpers/formDataToStream.js
+ create mode 100644 node_modules/axios/lib/helpers/fromDataURI.js
+ create mode 100644 node_modules/axios/lib/helpers/isAbsoluteURL.js
+ create mode 100644 node_modules/axios/lib/helpers/isAxiosError.js
+ create mode 100644 node_modules/axios/lib/helpers/isURLSameOrigin.js
+ create mode 100644 node_modules/axios/lib/helpers/null.js
+ create mode 100644 node_modules/axios/lib/helpers/parseHeaders.js
+ create mode 100644 node_modules/axios/lib/helpers/parseProtocol.js
+ create mode 100644 node_modules/axios/lib/helpers/progressEventReducer.js
+ create mode 100644 node_modules/axios/lib/helpers/readBlob.js
+ create mode 100644 node_modules/axios/lib/helpers/resolveConfig.js
+ create mode 100644 node_modules/axios/lib/helpers/speedometer.js
+ create mode 100644 node_modules/axios/lib/helpers/spread.js
+ create mode 100644 node_modules/axios/lib/helpers/throttle.js
+ create mode 100644 node_modules/axios/lib/helpers/toFormData.js
+ create mode 100644 node_modules/axios/lib/helpers/toURLEncodedForm.js
+ create mode 100644 node_modules/axios/lib/helpers/trackStream.js
+ create mode 100644 node_modules/axios/lib/helpers/validator.js
+ create mode 100644 node_modules/axios/lib/platform/browser/classes/Blob.js
+ create mode 100644 node_modules/axios/lib/platform/browser/classes/FormData.js
+ create mode 100644 node_modules/axios/lib/platform/browser/classes/URLSearchParams.js
+ create mode 100644 node_modules/axios/lib/platform/browser/index.js
+ create mode 100644 node_modules/axios/lib/platform/common/utils.js
+ create mode 100644 node_modules/axios/lib/platform/index.js
+ create mode 100644 node_modules/axios/lib/platform/node/classes/FormData.js
+ create mode 100644 node_modules/axios/lib/platform/node/classes/URLSearchParams.js
+ create mode 100644 node_modules/axios/lib/platform/node/index.js
+ create mode 100644 node_modules/axios/lib/utils.js
+ create mode 100644 node_modules/axios/package.json
+ create mode 100644 node_modules/combined-stream/License
+ create mode 100644 node_modules/combined-stream/Readme.md
+ create mode 100644 node_modules/combined-stream/lib/combined_stream.js
+ create mode 100644 node_modules/combined-stream/package.json
+ create mode 100644 node_modules/combined-stream/yarn.lock
+ create mode 100644 node_modules/delayed-stream/.npmignore
+ create mode 100644 node_modules/delayed-stream/License
+ create mode 100644 node_modules/delayed-stream/Makefile
+ create mode 100644 node_modules/delayed-stream/Readme.md
+ create mode 100644 node_modules/delayed-stream/lib/delayed_stream.js
+ create mode 100644 node_modules/delayed-stream/package.json
+ create mode 100644 node_modules/follow-redirects/LICENSE
+ create mode 100644 node_modules/follow-redirects/README.md
+ create mode 100644 node_modules/follow-redirects/debug.js
+ create mode 100644 node_modules/follow-redirects/http.js
+ create mode 100644 node_modules/follow-redirects/https.js
+ create mode 100644 node_modules/follow-redirects/index.js
+ create mode 100644 node_modules/follow-redirects/package.json
+ create mode 100644 node_modules/form-data/License
+ create mode 100644 node_modules/form-data/README.md.bak
+ create mode 100644 node_modules/form-data/Readme.md
+ create mode 100644 node_modules/form-data/index.d.ts
+ create mode 100644 node_modules/form-data/lib/browser.js
+ create mode 100644 node_modules/form-data/lib/form_data.js
+ create mode 100644 node_modules/form-data/lib/populate.js
+ create mode 100644 node_modules/form-data/package.json
+ create mode 100644 node_modules/mime-db/HISTORY.md
+ create mode 100644 node_modules/mime-db/LICENSE
+ create mode 100644 node_modules/mime-db/README.md
+ create mode 100644 node_modules/mime-db/db.json
+ create mode 100644 node_modules/mime-db/index.js
+ create mode 100644 node_modules/mime-db/package.json
+ create mode 100644 node_modules/mime-types/HISTORY.md
+ create mode 100644 node_modules/mime-types/LICENSE
+ create mode 100644 node_modules/mime-types/README.md
+ create mode 100644 node_modules/mime-types/index.js
+ create mode 100644 node_modules/mime-types/package.json
+ create mode 100644 node_modules/proxy-from-env/.eslintrc
+ create mode 100644 node_modules/proxy-from-env/.travis.yml
+ create mode 100644 node_modules/proxy-from-env/LICENSE
+ create mode 100644 node_modules/proxy-from-env/README.md
+ create mode 100644 node_modules/proxy-from-env/index.js
+ create mode 100644 node_modules/proxy-from-env/package.json
+ create mode 100644 node_modules/proxy-from-env/test.js
+ create mode 100644 package-lock.json
+ create mode 100644 package.json
+
+(venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>git push origin master
+Enumerating objects: 191, done.
+Counting objects: 100% (191/191), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (178/178), done.
+Writing objects: 100% (185/185), 465.78 KiB | 2.41 MiB/s, done.
+Total 185 (delta 21), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (21/21), completed with 5 local objects.
+To https://github.com/KaushalVarma/CurateHub
+   be65653..6143590  master -> master
+
+
+//--------------------------------------------------------------------------------------------------------------
+
+Improving the recommendation filtering system
+
+To improve the recommendation filtering system, we can take the following steps:
+
+### 1. **Enhance the Filtering Logic**
+   - **Current Implementation**: The system retrieves content based on the categories specified in user preferences.
+   - **Proposed Improvement**: Implement more advanced filtering criteria such as:
+     - **Tag-based Filtering**: In addition to categories, allow users to filter by tags.
+     - **Content Popularity**: Prioritize content that has higher engagement (e.g., views, likes).
+     - **Time-based Filtering**: Option to show the most recent or trending content.
+     - **Content Type**: Filter based on content type (e.g., articles, videos, podcasts).
+   
+### 2. **Dynamic Filtering by User Preferences**
+   - Each user's preferences should act as dynamic filters to generate personalized recommendations. We could allow users to prioritize their interests and adjust the recommendation weightings accordingly.
+
+### 3. **Incorporate Feedback Loop**
+   - Implement a feedback mechanism where users can upvote or downvote content. The system will adapt based on the user’s feedback to refine future recommendations.
+
+### 4. **Refactor the Backend API**
+   We will modify the API endpoints to include the new filtering features and ensure that the backend can handle complex filtering logic.
+
+---
+
+### Step-by-step Plan:
+
+1. **Add Filtering by Tags**:
+   - Update the recommendation logic to include tags in the content metadata.
+   - Modify the `GET /recommendations/:user_id` endpoint to include tag-based filtering.
+   
+2. **Content Popularity and Engagement**:
+   - Add fields like `views` or `likes` in the content schema.
+   - Update the filtering system to allow sorting by popularity.
+
+3. **Modify User Preferences Data Model**:
+   - Allow users to provide more granular filtering preferences (e.g., by tags, popularity, or recency).
+   - Update the MongoDB schema to store these new preferences.
+
+4. **Backend API Updates**:
+   - Add query parameters to allow clients to pass filtering options such as tags, recency, or popularity.
+   - Update the `get_recommendations` function to use these filters.
+
+---
+
+Shall we start by implementing **tag-based filtering** first?
+
+//--------------------------------------------------------------------------------------
+
+Here’s the plan for implementing **tag-based filtering** and the MongoDB commands you'll need to run MongoDB locally.
+
+### MongoDB Startup Commands:
+1. **Start MongoDB Server**:
+   If MongoDB is installed on your system, start the server by running:
+   ```bash
+   mongod --dbpath /path/to/your/db
+   ```
+   Replace `/path/to/your/db` with the path to the MongoDB data directory on your system.
+
+2. **Connect to MongoDB**:
+   Open another terminal and connect to MongoDB:
+   ```bash
+   mongo
+   ```
+   If you're using MongoDB Compass, use the following connection string:
+   ```
+   mongodb://localhost:27017
+   ```
+
+---
+
+### Steps for Tag-Based Filtering Implementation:
+
+#### 1. **Modify the Content Schema**:
+Update the content documents in your MongoDB to include a `tags` field. For example:
+
+```json
+{
+  "_id": "66d93257ad78aee7f8c0d2e7",
+  "category": "technology",
+  "description": "An overview of upcoming tech trends.",
+  "title": "The Future of Technology",
+  "tags": ["AI", "Machine Learning", "Cloud Computing"]
+}
+```
+
+#### 2. **Update MongoDB Documents**:
+Run the following commands in MongoDB to update your existing content with tags.
+
+```js
+use CurateHubDB
+
+db.content.updateOne(
+  { _id: ObjectId("66d93257ad78aee7f8c0d2e7") },
+  { $set: { tags: ["AI", "Machine Learning", "Cloud Computing"] } }
+)
+
+db.content.updateOne(
+  { _id: ObjectId("66d93257ad78aee7f8c0d2e8") },
+  { $set: { tags: ["Fitness", "Nutrition"] } }
+)
+
+db.content.updateOne(
+  { _id: ObjectId("66d93257ad78aee7f8c0d2e9") },
+  { $set: { tags: ["Online Learning", "EdTech"] } }
+)
+```
+
+#### 3. **Backend Code Update for Tag-Based Filtering**:
+
+Modify the `get_recommendations` endpoint in the backend to include tag-based filtering.
+
+```python
+@app.route('/recommendations/<user_id>', methods=['GET'])
+def get_recommendations(user_id):
+    user = db.user_preferences.find_one({"user_id": ObjectId(user_id)})
+    
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+    
+    preferences = user.get('preferences', [])
+    tags = request.args.getlist('tags')  # New addition: Get tags from query parameters
+
+    query = {"category": {"$in": preferences}}
+
+    if tags:  # Add tags to the query if provided
+        query["tags"] = {"$in": tags}
+
+    recommendations = list(db.content.find(query))
+
+    # Ensure ObjectIds are serialized
+    for rec in recommendations:
+        rec["_id"] = str(rec["_id"])
+
+    return jsonify(recommendations), 200
+```
+
+#### 4. **Test the Filtering**:
+
+- **Without Tags**: Get recommendations based on preferences.
+  ```bash
+  curl http://localhost:5000/recommendations/64ffdbf1c2f4a5b3a1234567
+  ```
+
+- **With Tags**: Pass tags to filter results.
+  ```bash
+  curl "http://localhost:5000/recommendations/64ffdbf1c2f4a5b3a1234567?tags=AI&tags=Cloud%20Computing"
+  ```
+
+This will return content related to user preferences **and** matching the specified tags. Let me know if you would like to proceed with these steps!
+
+//-----------------------------------------------------------------------------------
+
+(venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub\src>git add app.py     
+
+(venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub\src>git commit -m "Fix: Updated recommendation filtering and user profile endpoints"
+[master 8ee0698] Fix: Updated recommendation filtering and user profile endpoints
+ 1 file changed, 14 insertions(+), 1 deletion(-)
+
+(venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub\src>git push origin master
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 617 bytes | 617.00 KiB/s, done.
+Total 4 (delta 3), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (3/3), completed with 3 local objects.
+To https://github.com/KaushalVarma/CurateHub
+   6143590..8ee0698  master -> master
+
+
+//--------------------------------------------------------------------(7-9-24)--------------------
+
+Let's start by implementing a **"User Activity Log Feature"**. 
+This feature will allow us to keep track of all user actions within the system. We can store actions like logging in, 
+updating profiles, creating content, or viewing specific content, along with timestamps. This can later be used for analytics, 
+auditing, or even personal user dashboards.
+
+### Key Steps:
+1. **Database Schema**: We'll define a collection `activity_logs` to store actions.
+   - Fields: `username`, `action`, `timestamp`.
+
+2. **Logging Actions**: Create endpoints to log user actions such as login, profile update, content creation, etc.
+
+3. **View Activity Logs**: Create an endpoint that allows the user or admin to view their activity logs, sorted by date or action.
+
+4. **Optional Enhancement**: Add filters to view actions by type or by date range.
+
+Would you like to proceed with this feature, or make any changes to the suggestion?
+
+We can begin by implementing the User Activity Log Feature. This feature will log actions performed by users, such as logging in, updating profiles, or interacting with content, and store these logs in MongoDB. Additionally, we'll create an endpoint to retrieve and display these logs for analytics purposes.
+
+Here’s a breakdown of what we’ll do:
+
+Activity Log Schema: Define a MongoDB collection for storing user activities.
+Logging Activity: Add a function to log user activities (e.g., login, profile update).
+Retrieve Logs: Create an endpoint to view logged activities.
+
+Steps:
+Define Activity Log Schema in MongoDB: Ensure a collection exists to store logs with fields like:
+
+username (the user performing the action)
+action (the type of action)
+timestamp (the time the action occurred)
+Log User Actions: Create a route that will log actions like login, profile updates, or content interactions.
+
+Retrieve Logs: Implement a route to fetch the logged activity for a user, allowing the user to see their own actions.
+
+Test the Feature: Use Postman to log some actions and fetch the activity logs.
+
+Let's proceed with step 1: defining the activity log structure and ensuring the logging route works. Shall we continue with this?
+
+
+To check if a collection is present in the database:
+db.getCollectionNames()

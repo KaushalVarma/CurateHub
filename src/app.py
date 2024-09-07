@@ -169,10 +169,48 @@ def log_activity():
     log = {
         'username': current_user,
         'action': action,
-        'timestamp': datetime.utcnow()
+        'timestamp': datetime.now()
     }
+    # Insert the log into the MongoDB collection
     activity_logs.insert_one(log)
     return jsonify({"message": "Activity logged successfully"}), 201
+
+
+@app.route('/get_logs', methods=['GET'])
+@jwt_required()
+def get_logs():
+    current_user = get_jwt_identity()
+    logs = activity_logs.find({'username': current_user})
+    
+    # Format logs for output
+    formatted_logs = [
+        {
+            'action': log['action'],
+            'timestamp': log['timestamp'].strftime('%Y-%m-%d %H:%M:%S')
+        }
+        for log in logs
+    ]
+    
+    return jsonify({"logs": formatted_logs}), 200
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @app.route('/analytics', methods=['GET'])
 @jwt_required()

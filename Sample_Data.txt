@@ -3,12 +3,21 @@ Registeration
 
 
 {
-  "username": "testuser124",
-  "password": "password@99",
-  "email": "testuser124@example.com",
-  "full_name": "Test User"
+  "username": "testuser",
+  "password": "password123",
+  "email": "testuser@example.com"
+}
+
+Register token
+{
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyNTU5ODMyMSwianRpIjoiYTc5MWQwYzEtMGNkZi00MWIzLTk1MGItMGY1ZTZiYjY0Zjk5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InRlc3R1c2VyIiwibmJmIjoxNzI1NTk4MzIxLCJjc3JmIjoiMjk5NGViM2MtMzA4NS00YTljLWI0YTktODU1ZjljMjc2MmYxIiwiZXhwIjoxNzI1NTk5MjIxfQ._ERCs7eywLYuDhpWGmDNKtretbf7k9GDwR7g1Y2KI7M"
 }
 
 
+
+Login token
+{
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcyNTU5ODM5OCwianRpIjoiNjQ3OTU4NDgtZWQ3Mi00MmZhLWExMWEtYzFiODJlYjA5NWZmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InRlc3R1c2VyIiwibmJmIjoxNzI1NTk4Mzk4LCJjc3JmIjoiNjExMTliOWMtMjczNC00NzViLWEyY2ItOTQ2MTdiNmZjMDc5IiwiZXhwIjoxNzI1NTk5Mjk4fQ.pURT50kzDeeFiVftqAIU2N26GAaz2omlvxykSb1w5Kg"
+}
 
 
