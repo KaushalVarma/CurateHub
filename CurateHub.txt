@@ -10098,3 +10098,28 @@ Let's proceed with step 1: defining the activity log structure and ensuring the 
 
 To check if a collection is present in the database:
 db.getCollectionNames()
+
+//---------------------------------------------------------------------------------------------------
+
+(venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>git add .
+
+(venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>git commit -m "Added User Activity Log feature"
+[master 3f8a8ac] Added User Activity Log feature
+ 4 files changed, 466 insertions(+), 8 deletions(-)
+
+(venv) G:\E_drive_data\GitHubProjects\CurateHub\CurateHub>git push origin master
+Enumerating objects: 13, done.
+Counting objects: 100% (13/13), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (7/7), done.
+Writing objects: 100% (7/7), 6.52 KiB | 953.00 KiB/s, done.
+Total 7 (delta 5), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (5/5), completed with 5 local objects.
+To https://github.com/KaushalVarma/CurateHub
+   8ee0698..3f8a8ac  master -> master
+
+
+//-----------------------------------------------------------------------------------------------
+
+Content Search by Tags and Categories
+

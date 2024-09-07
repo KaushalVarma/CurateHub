@@ -277,6 +277,32 @@ def get_recommendations(user_id):
     return jsonify(recommendations), 200
 
 
+@app.route('/search', methods=['GET'])
+def search_content():
+    category = request.args.get('category')
+    tags = request.args.getlist('tags')
+
+    query = {}
+    if category:
+        query['category'] = {'$regex': f'^{category}$', '$options': 'i'}  # Case-insensitive search for category
+    if tags:
+        query['tags'] = {'$in': tags}
+
+    results = contents.find(query)
+    search_results = []
+
+    for result in results:
+        search_results.append({
+            "id": str(result["_id"]),
+            "title": result.get("title"),
+            "category": result.get("category"),
+            "tags": result.get("tags", [])
+        })
+
+    return jsonify(search_results), 200
+
+
+
 
 @app.route('/test', methods=['GET'])
 def test():
